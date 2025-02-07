@@ -1,0 +1,16 @@
+{"label": "POLITICIAN", "pattern": "mayor", "id": "POLITICIAN_mayor"}
+{"label": "POLITICIAN", "pattern": "senator", "id": "POLITICIAN_senator"}
+{"label": "POLITICIAN", "pattern": "council member", "id": "POLITICIAN_council member"}
+{"label": "POLITICIAN", "pattern": "representative", "id": "POLITICIAN_representative"}
+{"label": "POLITICIAN", "pattern": [{"LOWER": {"IN": ["mayor", "senator"]}}, {"ENT_TYPE": "PERSON"}], "id": "POLITICIAN_title_person"}
+{"label": "POLITICIAN", "pattern": [{"ENT_TYPE": "PERSON"}, {"ENT_TYPE": "PERSON"}], "id": "POLITICIAN_full_name"}
+{"label": "GOVERNMENT_ORG", "pattern": "city council", "id": "GOVERNMENT_ORG_city council"}
+{"label": "GOVERNMENT_ORG", "pattern": "department", "id": "GOVERNMENT_ORG_department"}
+{"label": "GOVERNMENT_ORG", "pattern": "committee", "id": "GOVERNMENT_ORG_committee"}
+{"label": "GOVERNMENT_ORG", "pattern": "agency", "id": "GOVERNMENT_ORG_agency"}
+{"label": "GOVERNMENT_ORG", "pattern": [{"LOWER": "department"}, {"LOWER": "of"}, {"IS_TITLE": true}], "id": "GOVERNMENT_ORG_org_full"}
+{"label": "POLICY", "pattern": "bill", "id": "POLICY_bill"}
+{"label": "POLICY", "pattern": "ordinance", "id": "POLICY_ordinance"}
+{"label": "POLICY", "pattern": "regulation", "id": "POLICY_regulation"}
+{"label": "POLICY", "pattern": "resolution", "id": "POLICY_resolution"}
+{"label": "POLICY", "pattern": [{"LOWER": {"IN": ["bill", "ordinance"]}}, {"IS_TITLE": true, "OP": "+"}], "id": "POLICY_policy_name"}
