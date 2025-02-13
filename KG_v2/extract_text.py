@@ -10,12 +10,15 @@ def clean_text(text):
     """Extracts only the article content, author, and date/time while removing footers and other irrelevant data."""
     lines = text.split("\n")
     cleaned_lines = []
-    capturing = False
+    capturing = False 
     metadata = {"author": None, "date": None}
     
     for line in lines:
         line = line.strip()
         
+        if line.lower() == "advertisement":
+            continue  
+
         # Extract author
         if re.search(r'By [A-Z][a-z]+ [A-Z][a-z]+', line):
             metadata["author"] = line
@@ -25,14 +28,14 @@ def clean_text(text):
             metadata["date"] = line
         
         # Start capturing article content after metadata
-        if "NEWS" in line or "POLITICS" in line or "OPINION" in line:
+        if "NEWS" in line or "POLITICS" in line or "OPINION" in line or "MINNEAPOLIS" in line:
             capturing = True
             continue
-        
+
         # Stop capturing when encountering footer-like content
-        if re.search(r'Page \d+ of \d+|All rights reserved|©|Subscribe|Contact us|ADVERTISEMENT|Subscribe Today', line, re.IGNORECASE):
+        if re.search(r'Page \d+ of \d+|All rights reserved|©|Subscribe|Contact us|Subscribe Today|About the Writer|Share|More from Minneapolis|Around the Web', line, re.IGNORECASE):
             capturing = False
-        
+
         if capturing and line:
             cleaned_lines.append(line)
     
@@ -51,7 +54,6 @@ def extract_text_from_pdfs(input_dir, output_file):
         for entry in data:
             json.dump(entry, f)
             f.write("\n")
-
     print(f"✅ Extracted and cleaned article content, author, and date/time from PDFs, saved to {output_file}")
 
 extract_text_from_pdfs(input_dir, output_file)

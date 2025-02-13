@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Neo4j Knowledge Graph</title>
+    <style>
+      body {
+        width: 400px;
+        padding: 15px;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          sans-serif;
+      }
+      h3 {
+        margin-top: 0;
+      }
+      input {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 10px;
+        box-sizing: border-box;
+      }
+      button {
+        width: 100%;
+        padding: 8px;
+        margin-bottom: 15px;
+      }
+      #graph p {
+        margin: 8px 0;
+        font-size: 14px;
+        line-height: 1.4;
+      }
+    </style>
+    <script src="popup.js" defer></script>
+  </head>
+  <body>
+    <h3>Neo4j Knowledge Graph</h3>
+    <input type="text" id="queryInput" placeholder="Enter entity..." />
+    <button id="searchBtn">Search</button>
+    <div id="graph"></div>
+  </body>
+</html>
