@@ -1,0 +1,6 @@
+*.pyc
+/.venv
+*.env
+KG_v2/.DS_Store
+KG_builder/.DS_Store
+.DS_Store
