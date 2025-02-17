@@ -29,7 +29,7 @@ from collections import defaultdict
 
 import prodigy
 from prodigy.components.loaders import JSONL
-from KG_builder_w_KB.entity_matcher import unify_mention_to_kb_id  # Import the function
+from entity_matcher import unify_mention_to_kb_id  # Import the function
 
 # For sentence segmentation:
 nlp = spacy.load("en_core_web_sm")

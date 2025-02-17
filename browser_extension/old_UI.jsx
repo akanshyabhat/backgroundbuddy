@@ -3,7 +3,10 @@ import { ForceGraph2D } from "react-force-graph";
 
 const fakeGraph = {
   "Jacob Frey": [
-    { relationship: "PARTICIPATING_IN", target: "Minneapolis Mayoral Election 2025" },
+    {
+      relationship: "PARTICIPATING_IN",
+      target: "Minneapolis Mayoral Election 2025",
+    },
     { relationship: "LIVES_IN", target: "Minneapolis" },
   ],
   Minneapolis: [
@@ -12,17 +15,20 @@ const fakeGraph = {
   ],
   "Omar Fateh": [
     { relationship: "LIVES_IN", target: "Minneapolis" },
-    { relationship: "PARTICIPATING_IN", target: "Minneapolis Mayoral Election 2025" },
+    {
+      relationship: "PARTICIPATING_IN",
+      target: "Minneapolis Mayoral Election 2025",
+    },
     { relationship: "CHALLENGING", target: "Jacob Frey" },
     { relationship: "MEMBER_OF", target: "Senate" },
   ],
 };
 
 function getRandomColor() {
-  var letters = '0123456789ABCDEF';
-  var color = '#';
+  var letters = "0123456789ABCDEF";
+  var color = "#";
   for (var i = 0; i < 6; i++) {
-      color += letters[Math.floor(Math.random() * 16)];
+    color += letters[Math.floor(Math.random() * 16)];
   }
   return color;
 }
@@ -31,7 +37,7 @@ function getRandomColor() {
 const transformGraphData = (graph, entity) => {
   if (!entity || !graph[entity]) return { nodes: [], links: [] };
 
-  const nodes = [{ id: entity, name: entity, color: getRandomColor()}];
+  const nodes = [{ id: entity, name: entity, color: getRandomColor() }];
   const links = graph[entity].map((connection) => ({
     source: entity,
     target: connection.target,
@@ -41,7 +47,11 @@ const transformGraphData = (graph, entity) => {
   // Add unique target nodes
   graph[entity].forEach((connection) => {
     if (!nodes.find((node) => node.id === connection.target)) {
-      nodes.push({ id: connection.target, name: connection.target, color: getRandomColor() });
+      nodes.push({
+        id: connection.target,
+        name: connection.target,
+        color: getRandomColor(),
+      });
     }
   });
 
@@ -62,20 +72,26 @@ function App() {
     Object.keys(fakeGraph).forEach((entity) => {
       const index = userText.indexOf(entity);
       if (index !== -1) {
-        results.push({ text: entity, start: index, end: index + entity.length });
+        results.push({
+          text: entity,
+          start: index,
+          end: index + entity.length,
+        });
       }
     });
     results.sort((a, b) => a.start - b.start);
     setEntities(results);
   }, [userText]);
-  
 
   const segments = [];
   let lastIndex = 0;
 
   entities.forEach((ent) => {
     if (ent.start > lastIndex) {
-      segments.push({ text: userText.slice(lastIndex, ent.start), isEntity: false });
+      segments.push({
+        text: userText.slice(lastIndex, ent.start),
+        isEntity: false,
+      });
     }
     segments.push({ text: userText.slice(ent.start, ent.end), isEntity: true });
     lastIndex = ent.end;
@@ -84,7 +100,9 @@ function App() {
     segments.push({ text: userText.slice(lastIndex), isEntity: false });
   }
 
-  const graphData = clickedEntity ? transformGraphData(fakeGraph, clickedEntity) : { nodes: [], links: [] };
+  const graphData = clickedEntity
+    ? transformGraphData(fakeGraph, clickedEntity)
+    : { nodes: [], links: [] };
 
   useEffect(() => {
     if (graphRef.current) {
@@ -134,13 +152,18 @@ function App() {
                       <ul className="text-sm">
                         {fakeGraph[seg.text].map((conn, idx) => (
                           <li key={idx}>
-                            <span className="text-green-400">{conn.relationship}</span> →{" "}
+                            <span className="text-green-400">
+                              {conn.relationship}
+                            </span>{" "}
+                            →{" "}
                             <span className="text-blue-300">{conn.target}</span>
                           </li>
                         ))}
                       </ul>
                     ) : (
-                      <div className="text-sm text-gray-400">No connections found.</div>
+                      <div className="text-sm text-gray-400">
+                        No connections found.
+                      </div>
                     )}
                   </div>
                 )}
@@ -172,7 +195,6 @@ function App() {
               linkDirectionalArrowLength={5}
               linkDirectionalArrowRelPos={1}
               nodeCanvasObject={(node, ctx, globalScale) => {
-                
                 const radius = 6;
                 ctx.beginPath();
                 ctx.arc(node.x, node.y, radius, 0, 2 * Math.PI, false);
