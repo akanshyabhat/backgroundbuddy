@@ -18,16 +18,18 @@ pip install openai python-dotenv spacy sentence-transformers prodigy neo4j numpy
 import os
 import dotenv
 import json
-from typing import Dict, Any, List
+from typing import Dict, Any, List, Optional, Set
 import spacy
 from spacy.tokens import Span
 from sentence_transformers import SentenceTransformer # for embedding entities (consolidation)
 import uuid # for unique ids in KB
 import numpy as np # for cosine similarity of embeddings
 from langchain_openai import ChatOpenAI
+from collections import defaultdict
 
 import prodigy
 from prodigy.components.loaders import JSONL
+from KG_builder_w_KB.entity_matcher import unify_mention_to_kb_id  # Import the function
 
 # For sentence segmentation:
 nlp = spacy.load("en_core_web_sm")
@@ -482,88 +484,6 @@ def extract_relationships_for_block(block_text, block_entities, headline, date, 
     return relationships
 
 ### THIS PART IS SHIT RIGHT NOW>>> SO OVERCOMPLICATED NEED TO SIMPLIFY
-import difflib
-
-def unify_mention_to_kb_id(
-    mention_text: str,
-    mention_evidence: str,
-    entity_records: List[Dict[str, Any]],
-    text_threshold: float = 0.8,
-    evidence_threshold: float = 0.4
-) -> str:
-    """
-    Attempt to match (mention_text, mention_evidence) from the LLM
-    to a single entity in 'entity_records' by looking at:
-      - The entity's 'entity_text'
-      - The entity's 'evidence' snippet
-    1) We compute string similarity between mention_text and entity_text
-    2) We also compute an overlap/similarity measure between mention_evidence and the entity's evidence
-    3) We combine or weigh these to pick the best match
-    4) If best match is above some threshold, return that entity's kb_id
-       Otherwise return None (or create a new entity if you want)
-    """
-    if not mention_text:
-        return None
-
-    best_kb_id = None
-    best_score = 0.0
-
-    for record in entity_records:
-        # The text we got from the dataset
-        ent_text = record["entity_text"]
-        ent_evidence = record["evidence"]
-
-        # 1) Compare mention_text to ent_text
-        text_sim = sequence_similarity(mention_text, ent_text)
-
-        # 2) Compare mention_evidence to ent_evidence
-        # (We can do partial match or ratio – up to you.)
-        # E.g. see how much of mention_evidence is found in ent_evidence
-        overlap_ratio = overlap_coefficient(mention_evidence, ent_evidence)
-
-        # Combine or weigh these
-        # For example, we might do a simple average
-        combined_score = (text_sim + overlap_ratio) / 2.0
-
-        if combined_score > best_score:
-            best_score = combined_score
-            best_kb_id = record["kb_id"]
-
-    # If we consider ~0.5 or 0.6 a good overall threshold, tune as needed:
-    if best_score > 0.5:
-        return best_kb_id
-    else:
-        return None
-
-
-def sequence_similarity(a: str, b: str) -> float:
-    """
-    Simple ratio from difflib. Values in [0..1].
-    """
-    return difflib.SequenceMatcher(None, a.lower(), b.lower()).ratio()
-
-
-def overlap_coefficient(text_a: str, text_b: str) -> float:
-    """
-    A simple measure of overlap between two strings:
-    length_of_intersection / min(len(a), len(b))
-    We'll just do naive token sets.
-
-    If there's no overlap, returns 0. 
-    If one string is completely contained in the other, returns 1.
-    """
-    tokens_a = set(text_a.lower().split())
-    tokens_b = set(text_b.lower().split())
-    if not tokens_a or not tokens_b:
-        return 0.0
-    intersection = tokens_a.intersection(tokens_b)
-    overlap = len(intersection)
-    denom = min(len(tokens_a), len(tokens_b))
-    return overlap / denom if denom else 0.0
-### END SHIT PART   
-
-
-    
 def extract_relationships_block_by_block(
     consolidated_data: List[Dict[str, Any]],
     model_name
@@ -604,6 +524,7 @@ def extract_relationships_block_by_block(
             obj_text = rel.get("object_text", "").strip()
             rel_evidence = rel.get("evidence", "").strip()  # from LLM
 
+            # Use the unify_mention_to_kb_id function
             subject_kb_id = unify_mention_to_kb_id(sub_text, rel_evidence, entity_records)
             object_kb_id = unify_mention_to_kb_id(obj_text, rel_evidence, entity_records)
 
@@ -618,7 +539,6 @@ def extract_relationships_block_by_block(
                 "object_text": obj_text,
                 "object_kb_id": object_kb_id,
                 "relationship": rel.get("relationship", ""),
-                #"properties": rel.get("properties", {}),
                 "confidence": rel.get("confidence", 0.0),
                 "evidence": rel_evidence
             }
