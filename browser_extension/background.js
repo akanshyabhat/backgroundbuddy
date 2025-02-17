@@ -2,3 +2,5 @@
 chrome.runtime.onInstalled.addListener(() => {
   console.log("Knowledge Graph Extension installed");
 });
+
+// You can add more background functionality here as needed

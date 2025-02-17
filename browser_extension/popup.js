@@ -33,6 +33,24 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
+  // Report Relationship button functionality
+  document.getElementById("reportBtn").addEventListener("click", function () {
+    const selectedText = window.getSelection().toString().trim();
+    if (!selectedText) {
+      alert("Please highlight a relationship to report.");
+      return;
+    }
+
+    const report = prompt(
+      "Please describe the relationship you want to report:"
+    );
+    if (report) {
+      console.log(`Reported relationship for "${selectedText}": ${report}`);
+      document.getElementById("reportMessage").innerText =
+        "Thank you for your report!";
+    }
+  });
+
   function displayRelationships(entity) {
     // Remove any existing relationship displays
     const existingResults = document.querySelector(".relationships");
