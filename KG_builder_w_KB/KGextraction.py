@@ -15,7 +15,6 @@ Knowledge Graph Extraction Script
 pip install openai python-dotenv spacy sentence-transformers prodigy neo4j numpy langchain langchain-openai
 '''
 
-import os
 import dotenv
 import json
 from typing import Dict, Any, List, Optional, Set
@@ -43,27 +42,6 @@ dotenv.load_dotenv("API.env")
 '''
 BACKGROUND - SETTING UP PRODIGY TO WORK WITH RELATIONSHIPS
 '''
-# Restricting relationship types and their properties
-RELATIONSHIP_TYPES = {
-    "WORKS_FOR": ["since"],
-    "MENTIONS": ["frequency"],
-    "LOCATED_IN": ["since"],
-    "AFFILIATED_WITH": ["start_date", "end_date"],
-    "VETOED": ["date"],
-    "PROPOSED": ["date"],
-    "SUPPORTED": ["date"],
-    "OPPOSED": ["date"],
-    "MENTIONS": ["frequency"],
-    "MENTIONED_IN": ["frequency"],
-    "HAS_PARTICIPANT": ["role"],
-    "HAS_LOCATION": ["region", "country"],
-    "HAS_DATE": ["date"],
-    "HAS_TYPE": ["type"],
-    "IS_ACCUSED_OF": ["charge"],
-    "IS_CHARGED_WITH": ["charge"],
-    "IS_PAROLE_ELIGIBLE": ["date"],
-    "IS_PAROLE_GRANTED": ["date"],
-}
 
 def add_tokens(task):
     """
@@ -309,130 +287,6 @@ note: right now this is being done content block by content block
 ------------------------------------------------------------
 '''
 
-
-def extract_relationships_for_block(block_text, block_entities, headline, date, model_name):
-    """
-    Extract relationships from each block of text using OpenAI's API via LangChain.
-    """
-    relationships = []
-    
-    llm = ChatOpenAI(model_name=model_name, temperature=0, openai_api_key=os.getenv("OPENAI_API_KEY"))
-
-    
-    prompt = f"""
-    Given the following block of text, identify relationships between the named entities.
-
-    ---
-
-    Headline: "{headline}"
-    Date: "{date}"
-    Text Block: "{block_text}"
-
-    Named Entities (from the text): {block_entities}
-
-    ---
-
-    Possible relationships: 
-    {RELATIONSHIP_TYPES}
-
-    Return structured JSON in this exact format:
-
-    [
-        {{
-            "subject_text": "<subject entity>",
-            "relationship": "<relationship>",
-            "object_text": "<object entity>",
-            "confidence": <confidence score (0.0-1.0)>,
-            "evidence": "<sentence containing the relationship>"
-        }},
-        ...
-    ]
-    """
-
-    try:
-        response = llm.invoke(prompt)
-        content = response.content.strip()
-        print("[DEBUG] LLM Response:\n", content)
-
-        if content.startswith("```"):
-            # Remove the first line (e.g., "```json") and the last line ("```")
-            content = "\n".join(content.splitlines()[1:-1]).strip()
-
-        rel = json.loads(content)  # Convert JSON string to Python list
-        relationships.extend(rel)
-
-    except json.JSONDecodeError:
-        print("[ERROR] LLM returned invalid JSON:", content)
-    except Exception as e:
-        print(f"[ERROR] OpenAI API Error: {e}")
-
-    print(f"[INFO] Extracted {len(relationships)} relationships.")
-    return relationships
-
-### THIS PART IS SHIT RIGHT NOW>>> SO OVERCOMPLICATED NEED TO SIMPLIFY
-def extract_relationships_block_by_block(
-    consolidated_data: List[Dict[str, Any]],
-    model_name
-) -> List[Dict[str, Any]]:
-    from collections import defaultdict
-
-    # Group the consolidated data by block_text
-    block_map = defaultdict(list)
-    for rec in consolidated_data:
-        block_map[rec["block_text"]].append(rec)
-
-    all_relationships = []
-
-    # For each block
-    for block_text, entity_records in block_map.items():
-        if not entity_records:
-            continue
-
-        article_id = entity_records[0]["article_id"]
-        headline = entity_records[0]["headline"]
-        date_str = entity_records[0]["date"]
-
-        # 1) Let the LLM detect relationships from the entire block
-        block_relationships = extract_relationships_for_block(
-            block_text=block_text,
-            block_entities=entity_records,
-            headline=headline,
-            date=date_str,
-            model_name=model_name
-        )
-
-        if not block_relationships:
-            continue
-
-        # 2) Unify LLM mentions with known kb_ids using mention_text + evidence
-        for rel in block_relationships:
-            sub_text = rel.get("subject_text", "").strip()
-            obj_text = rel.get("object_text", "").strip()
-            rel_evidence = rel.get("evidence", "").strip()  # from LLM
-
-            # Use the unify_mention_to_kb_id function
-            subject_kb_id = unify_mention_to_kb_id(sub_text, rel_evidence, entity_records)
-            object_kb_id = unify_mention_to_kb_id(obj_text, rel_evidence, entity_records)
-
-            # Build final record
-            rel_record = {
-                "article_id": article_id,
-                "headline": headline,
-                "date": date_str,
-                "block_text": block_text,
-                "subject_text": sub_text,
-                "subject_kb_id": subject_kb_id,
-                "object_text": obj_text,
-                "object_kb_id": object_kb_id,
-                "relationship": rel.get("relationship", ""),
-                "confidence": rel.get("confidence", 0.0),
-                "evidence": rel_evidence
-            }
-            all_relationships.append(rel_record)
-            print(f"[INFO] Extracted {len(all_relationships)} relationships.")
-
-    return all_relationships
-
 def save_relationships_for_prodigy(relationships: List[Dict[str, Any]], output_file="relationships.jsonl"):
     """
     Create a Prodigy JSONL to verify these relationships. 
@@ -468,8 +322,7 @@ def save_relationships_for_prodigy(relationships: List[Dict[str, Any]], output_f
                 "date": rel["date"],
                 "subject_kb_id": rel["subject_kb_id"],
                 "object_kb_id": rel["object_kb_id"],
-                "relationship": rel["relationship"],
-                "confidence": rel["confidence"]
+                "relationship": rel["relationship"]
             }
         }
         data.append(record)
@@ -534,7 +387,7 @@ def process_article(article: Dict[str, Any], model_name: str) -> List[Dict[str, 
                 },
                 "spans": spans
             })
-    
+
     if not accepted_records:
         print(f"[INFO] No entities found for article {article['id']}.")
         return article_relationships
@@ -544,9 +397,15 @@ def process_article(article: Dict[str, Any], model_name: str) -> List[Dict[str, 
     # Consolidate entities with the KB (updates KB in place)
     updated_data = consolidate_entities_with_kb(final_data, KB)
 
+    # ✅ Print extracted entities - use to debug!
+    print("\n✅ Final Named Entities Stored in KB:")
+    for record in updated_data:
+        print(f"  - {record['canonical_name']} ({record['entity_label']}) -> {record['kb_id']}")
+
     # Group records by block_text for relationship extraction
     # (Assuming extract_relationships_block_by_block groups internally)
     relationships = extract_relationships_block_by_block(updated_data, model_name=model_name)
+
     
     # Add article-level metadata if needed
     for rel in relationships:
@@ -576,7 +435,7 @@ if __name__ == "__main__":
     # parse the archive & optionally limit to a few articles for testing
     sample_path = "BackgroundBuddy.json" 
     articles = parse_archive(sample_path)
-    articles = articles[:1]  # limited to 1 article for testing
+    articles = articles[:2]  # limited to 1 article for testing
 
     all_relationships = []
     model_name = "gpt-4o" 
