@@ -16,6 +16,12 @@ SAMPLE_RECORDS = [
         "kb_id": "Q47562",
         "description": "Daughter of Donald Trump, businesswoman, and former White House advisor."
     },
+    {
+        "name": "Democratic Party",
+        "aliases": ["Democrats", "Democrat"],
+        "kb_id": "Q196",
+        "description": "A major political party in the United States."
+    },
 ]
 
 @pytest.fixture
@@ -37,6 +43,10 @@ def test_context_disambiguation_politics(matcher):
 def test_context_disambiguation_business(matcher):
     result = matcher.match_entity("Trump", "Ivanka Trump launched a new fashion line")
     assert result == "Q47562"
+
+def test_context_disambiguation_politics(matcher):
+    result = matcher.match_entity("Democrats", "The Democratic Party is a major political party in the United States.")
+    assert result == "Q196"
 
 if __name__ == "__main__":
     unittest.main()
