@@ -1,40 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <title>Neo4j Knowledge Graph</title>
+    <title>Knowledge Graph Extension</title>
     <style>
       body {
-        width: 400px;
+        width: 300px;
         padding: 15px;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-          sans-serif;
+        font-family: Arial, sans-serif;
       }
-      h3 {
-        margin-top: 0;
-      }
-      input {
-        width: 100%;
-        padding: 8px;
-        margin-bottom: 10px;
-        box-sizing: border-box;
-      }
-      button {
-        width: 100%;
-        padding: 8px;
+      .demo-text {
+        line-height: 1.6;
         margin-bottom: 15px;
       }
-      #graph p {
-        margin: 8px 0;
-        font-size: 14px;
-        line-height: 1.4;
+      .highlight {
+        background-color: #f0f0f0;
+        padding: 2px 4px;
+        border-radius: 3px;
       }
     </style>
-    <script src="popup.js" defer></script>
   </head>
   <body>
-    <h3>Neo4j Knowledge Graph</h3>
-    <input type="text" id="queryInput" placeholder="Enter entity..." />
-    <button id="searchBtn">Search</button>
-    <div id="graph"></div>
+    <h3>Knowledge Graph Demo</h3>
+    <p class="demo-text">
+      Try highlighting these entities on any webpage:
+      <br /><span class="highlight">Jacob Frey</span> <br /><span
+        class="highlight"
+        >Omar Fateh</span
+      >
+      <br /><span class="highlight">Minneapolis</span>
+    </p>
+    <small>A popup will show their relationships!</small>
   </body>
 </html>
