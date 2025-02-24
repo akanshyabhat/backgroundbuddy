@@ -1,4 +1,4 @@
-# Project: Background Buddy – AI-powered Newsroom Knowledge Tool for Minnesota Star Tribunal
+# Project: Background Buddy – AI-powered Newsroom Knowledge Tool for Minnesota Star Tribune
 Developing an AI-powered tool to assist journalists in retrieving and verifying archival data, mitigating generational knowledge loss in newsrooms.
 - Engineered entity extraction and relationship modeling pipelines, improving accuracy from 42% (NLP) → 78% (LLM) through prompt engineering and knowledge graph integration.
 - Designed a browser extension enabling real-time knowledge retrieval and fact verification directly within web-based text editors.
