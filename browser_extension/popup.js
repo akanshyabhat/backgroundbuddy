@@ -1,49 +1,82 @@
-document.addEventListener("DOMContentLoaded", function () {
-  const input = document.getElementById("queryInput");
-  const searchBtn = document.getElementById("searchBtn");
-  const graph = document.getElementById("graph");
+// Define the same fakeGraph as in content.js to make the demo work in the popup
+const fakeGraph = {
+  "Jacob Frey": [
+    {
+      relationship: "PARTICIPATING_IN",
+      target: "Minneapolis Mayoral Election 2025",
+    },
+    { relationship: "LIVES_IN", target: "Minneapolis" },
+  ],
+  Minneapolis: [
+    { relationship: "IS_A_CITY_IN", target: "Minnesota" },
+    { relationship: "FAMOUS_FOR", target: "St Anthony Falls" },
+  ],
+  "Omar Fateh": [
+    { relationship: "LIVES_IN", target: "Minneapolis" },
+    {
+      relationship: "PARTICIPATING_IN",
+      target: "Minneapolis Mayoral Election 2025",
+    },
+    { relationship: "CHALLENGING", target: "Jacob Frey" },
+    { relationship: "MEMBER_OF", target: "Senate" },
+  ],
+};
 
-  // Listen for messages from content script
-  chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-    if (request.type === "searchEntity") {
-      input.value = request.entity;
-      // Trigger search automatically when text is selected
-      searchBtn.click();
+document.addEventListener("DOMContentLoaded", function () {
+  // Add mouseup event listener to the demo entities in the popup
+  document.querySelectorAll(".highlight").forEach((element) => {
+    element.addEventListener("mouseup", function () {
+      const selectedText = window.getSelection().toString().trim();
+      if (selectedText && fakeGraph[selectedText]) {
+        displayRelationships(selectedText);
+      }
+    });
+  });
+
+  // Report Relationship button functionality
+  document.getElementById("reportBtn").addEventListener("click", function () {
+    const selectedText = window.getSelection().toString().trim();
+    if (!selectedText) {
+      alert("Please highlight a relationship to report.");
+      return;
+    }
+
+    const report = prompt(
+      "Please describe the relationship you want to report:"
+    );
+    if (report) {
+      console.log(`Reported relationship for "${selectedText}": ${report}`);
+      document.getElementById("reportMessage").innerText =
+        "Thank you for your report!";
     }
   });
 
-  searchBtn.addEventListener("click", async () => {
-    const entity = input.value;
-    if (!entity) return;
+  function displayRelationships(entity) {
+    // Remove any existing relationship displays
+    const existingResults = document.querySelector(".relationships");
+    if (existingResults) {
+      existingResults.remove();
+    }
 
-    chrome.runtime.sendMessage({ type: "searchEntity", entity }, (response) => {
-      if (response && response.results && response.results[0].data) {
-        displayResults(response.results[0].data);
-      }
-    });
-  });
+    const relationships = fakeGraph[entity];
+    const resultsDiv = document.createElement("div");
+    resultsDiv.className = "relationships";
+    resultsDiv.style.marginTop = "15px";
+    resultsDiv.style.padding = "10px";
+    resultsDiv.style.backgroundColor = "#f8f9fa";
+    resultsDiv.style.borderRadius = "5px";
 
-  function displayResults(data) {
-    graph.innerHTML = ""; // Clear previous results
-
-    const relationships = {};
-    data.forEach((row) => {
-      const source = row.row[0].name;
-      const relationship = row.row[1].type;
-      const target = row.row[2].name;
-
-      if (!relationships[source]) {
-        relationships[source] = [];
-      }
-      relationships[source].push({ relationship, target });
-    });
-
-    Object.entries(relationships).forEach(([entity, rels]) => {
-      rels.forEach((rel) => {
-        const relText = document.createElement("p");
-        relText.innerHTML = `"${entity}" "${rel.relationship}" "${rel.target}"`;
-        graph.appendChild(relText);
+    if (relationships && relationships.length > 0) {
+      relationships.forEach((rel) => {
+        const relDiv = document.createElement("div");
+        relDiv.style.marginBottom = "8px";
+        relDiv.innerHTML = `<strong>${entity}</strong> <span style="color: #666;">(${rel.relationship})</span> → <strong>${rel.target}</strong>`;
+        resultsDiv.appendChild(relDiv);
       });
-    });
+    } else {
+      resultsDiv.innerHTML = `<div>No relationships found for "${entity}"</div>`;
+    }
+
+    document.body.appendChild(resultsDiv);
   }
 });
