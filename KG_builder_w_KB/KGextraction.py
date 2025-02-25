@@ -641,7 +641,7 @@ if __name__ == "__main__":
     articles = articles[:2]  # limited to 1 article for testing
 
     all_relationships = []
-    model_name = "gpt-4o" 
+    model_name = "o3-mini" 
 
     # process each article individually
     for article in articles:
