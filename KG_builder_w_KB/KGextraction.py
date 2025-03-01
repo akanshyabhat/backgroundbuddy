@@ -31,6 +31,8 @@ from consolidate_entities import consolidate_entities_with_kb
 import prodigy
 from prodigy.components.loaders import JSONL
 from entity_matcher import unify_mention_to_kb_id  # Import the function
+from relationship_validator import save_relationships_for_prodigy
+
 
 # For sentence segmentation:
 nlp = spacy.load("en_core_web_sm")
@@ -39,67 +41,6 @@ embedder = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2")
 
 dotenv.load_dotenv("API.env")
 
-'''
-BACKGROUND - SETTING UP PRODIGY TO WORK WITH RELATIONSHIPS
-'''
-
-def add_tokens(task):
-    """
-    Use spaCy to compute tokens for the task text and update spans with token indices.
-    """
-    doc = nlp(task["text"])
-    # Create a list of tokens with an id and their character offsets.
-    tokens = [
-        {"id": i, "text": token.text, "start": token.idx, "end": token.idx + len(token.text)}
-        for i, token in enumerate(doc)
-    ]
-    task["tokens"] = tokens
-
-    # Update each span with token_start and token_end computed from tokens.
-    for span in task.get("spans", []):
-        token_start = None
-        token_end = None
-        # Find the token index where the span starts.
-        for i, token in enumerate(tokens):
-            if token["start"] <= span["start"] < token["end"]:
-                token_start = i
-            if token["start"] < span["end"] <= token["end"]:
-                token_end = i + 1  # token_end is exclusive
-        span["token_start"] = token_start
-        span["token_end"] = token_end
-    return task
-
-@prodigy.recipe("test-jsonl")
-def my_rel_manual(dataset, source, label: str = ""):
-    """
-    Custom recipe for testing relation tasks from a JSONL file.
-    It adds token information to each task so the relations view can render properly.
-    Run it with:
-        prodigy -F KG_extraction.py test-jsonl my_test_dataset relationships.jsonl
-    """
-    stream = JSONL(source)
-    
-    # if no label string is provided, use the keys of RELATIONSHIP_TYPES
-    if not label:
-        labels = list(RELATIONSHIP_TYPES.keys())
-    else:
-        labels = [l.strip() for l in label.split(",")]
-
-    config = {
-        "wrap_relations": True,
-        "relations_span_labels": ["SUBJECT", "OBJECT"],
-        "labels": labels
-    }
-
-    # add tokens and token indices to each task.
-    transformed_stream = (add_tokens(task) for task in stream)
-
-    return {
-        "dataset": dataset,
-        "view_id": "relations",  # built-in relations view.
-        "stream": transformed_stream,
-        "config": config
-    }
 
 
 ''' 
@@ -287,69 +228,6 @@ note: right now this is being done content block by content block
 ------------------------------------------------------------
 '''
 
-def save_relationships_for_prodigy(relationships: List[Dict[str, Any]], output_file="relationships.jsonl"):
-    """
-    Create a Prodigy JSONL to verify these relationships. 
-    Each record has text = the 'evidence' (or block_text) plus meta fields for subject/object.
-    """
-    data = []
-    for rel in relationships:
-        # We'll pick the 'evidence' if not empty, else the block_text
-        text = rel["evidence"] if rel["evidence"] else rel["block_text"]
-        # Try to highlight subject/object if they appear in text:
-        spans = []
-        sub_idx = text.lower().find(rel["subject_text"].lower())
-        if sub_idx >= 0:
-            spans.append({
-                "start": sub_idx,
-                "end": sub_idx + len(rel["subject_text"]),
-                "label": "SUBJECT"
-            })
-        obj_idx = text.lower().find(rel["object_text"].lower())
-        if obj_idx >= 0:
-            spans.append({
-                "start": obj_idx,
-                "end": obj_idx + len(rel["object_text"]),
-                "label": "OBJECT"
-            })
-        
-        record = {
-            "text": text,
-            "spans": spans,
-            "meta": {
-                "article_id": rel["article_id"],
-                "headline": rel["headline"],
-                "date": rel["date"],
-                "subject_kb_id": rel["subject_kb_id"],
-                "object_kb_id": rel["object_kb_id"],
-                "relationship": rel["relationship"]
-            }
-        }
-        data.append(record)
-
-    with open(output_file, "w", encoding="utf-8") as f:
-        for d in data:
-            f.write(json.dumps(d) + "\n")
-
-    print(f"Saved {len(data)} relationships to {output_file}.")
-    print("You can verify them in Prodigy, e.g.:")
-    print(f"prodigy rel.manual my_relationships {output_file}")
-
-def main_relationship_extraction_pipeline(final_data, model_name):
-    """
-    final_data: the list of consolidated entity records from step 4 (with kb_id, canonical_name, etc.)
-    """
-    # 1) Extract relationships block by block
-    relationships = extract_relationships_block_by_block(final_data, model_name)
-
-    # 2) Save them for Prodigy verification
-    save_relationships_for_prodigy(relationships, output_file="relationships.jsonl")
-
-    print("Now run your Prodigy recipe to validate these relationships:")
-    print("prodigy rel.manual my_relationships relationships.jsonl")
-
-    return relationships
-
 import time
 
 def process_article(article: Dict[str, Any], model_name: str) -> List[Dict[str, Any]]:
@@ -435,7 +313,7 @@ if __name__ == "__main__":
     # parse the archive & optionally limit to a few articles for testing
     sample_path = "BackgroundBuddy.json" 
     articles = parse_archive(sample_path)
-    articles = articles[:2]  # limited to 1 article for testing
+    articles = articles[:2]  # limited to 2 articles for testing
 
     all_relationships = []
     model_name = "o3-mini" 
@@ -447,7 +325,5 @@ if __name__ == "__main__":
         all_relationships.extend(article_rels)
 
     # save the relationships to a JSONL file for verification in prodigy
-    save_relationships_for_prodigy(all_relationships, output_file="relationships.jsonl")
-    print("\n[INFO] All articles processed. Next step: verify relationships in 'relationships.jsonl' with Prodigy.")
-    print("\n[INFO] Run this command to verify relationships:")
-    print("prodigy -F KGextraction.py test-jsonl my_test_dataset relationships.jsonl")
+    save_relationships_for_prodigy(all_relationships, output_file="relationships.jsonl") # prints instructions for Prodigy
+

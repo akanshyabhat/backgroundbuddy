@@ -10,7 +10,7 @@ import prodigy
 from signal import SIGKILL
 import os
 from prodigy.components.loaders import JSONL
-from config import ENTITY_TYPES #, RELATIONSHIP_TYPES
+from config import ENTITY_TYPES, RELATIONSHIP_TYPES
 from typing import Dict, Any, List
 import json
 import random
