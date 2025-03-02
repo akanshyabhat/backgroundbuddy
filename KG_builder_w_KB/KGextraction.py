@@ -26,9 +26,9 @@ import numpy as np # for cosine similarity of embeddings
 from langchain_openai import ChatOpenAI
 from collections import defaultdict
 from consolidate_entities import consolidate_entities_with_kb
+from relationship_extractor import extract_relationships_block_by_block
 
 
-import prodigy
 from prodigy.components.loaders import JSONL
 from entity_matcher import unify_mention_to_kb_id  # Import the function
 
@@ -439,6 +439,8 @@ if __name__ == "__main__":
 
     all_relationships = []
     model_name = "o3-mini" 
+    # knowledge base (in memory)
+    KB = {}  # uuid -> {canonical_name, aliases, embeddings}
 
     # process each article individually
     for article in articles:

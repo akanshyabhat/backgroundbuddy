@@ -7,7 +7,6 @@ import numpy as np
 4. CONSOLIDATE OR CREATE NEW ENTITIES WITH KB
 ------------------------------------------------------------
 '''
-
 # knowledge base (in memory)
 KB = {}  # uuid -> {canonical_name, aliases, embeddings}
 
@@ -52,7 +51,7 @@ def create_new_kb_entry(entity_text: str, embedding: List[float], kb: Dict[str, 
     }
     return new_id
 
-def find_best_match(entity_text: str, embedding: List[float], kb: Dict[str, Any]) -> tuple[str | None, float]:
+def find_best_match(entity_text: str, embedding: List[float], kb: Dict[str, Any]) -> tuple[str or None, float]:
     """Find the best matching entity in the KB."""
     entity_text_lower = entity_text.lower()  # Normalize to lowercase
     best_match_id = None
