@@ -16,6 +16,8 @@ pip install openai python-dotenv spacy sentence-transformers prodigy neo4j numpy
 '''
 
 import dotenv
+import os
+from run_neo4j_update import run_neo4j_update
 import json
 from typing import Dict, Any, List, Optional, Set
 import spacy
@@ -335,11 +337,8 @@ if __name__ == "__main__":
 
     # save the relationships to a JSONL file for verification in prodigy
     save_relationships_for_prodigy(all_relationships, output_file="relationships.jsonl") # prints instructions for Prodigy
-
-    #update neo4j with these relationships
-    neo4j_handler = Neo4jHandler(uri, user, password)
-    load_relationships_to_neo4j(all_relationships, neo4j_handler)
-    neo4j_handler.close()
+    
+    
 
     
-    print(f"[INFO] Saved {len(all_relationships)} relationships to relationships.json")
+    
