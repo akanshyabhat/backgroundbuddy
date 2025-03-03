@@ -383,8 +383,14 @@ function displayGraphOverlay(selectedText, relationships) {
             data-target="${rel.target}">
             🔍 Report
           </button>
+          <button class="edit-btn" data-index="${index}" 
+            data-source="${rel.source}" 
+            data-relationship="${rel.relationship}" 
+            data-target="${rel.target}">
+            ✏️ Edit
+          </button>
         </div>
-        <div class="evidence-content" id="evidence-${index}">
+        <div class="evidence-content" id="evidence-${index}" style="display: none;">
           <strong>Evidence:</strong> ${rel.evidence} <br>
           <strong>Article ID:</strong> ${rel.articleID}
         </div>
@@ -396,6 +402,31 @@ function displayGraphOverlay(selectedText, relationships) {
                 placeholder="What's incorrect about this relationship?">
               <button class="report-submit" data-index="${index}">
                 Submit Report
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="edit-form" id="edit-form-${index}" style="display: none; width: 100%;">
+          <div class="edit-form-inner">
+            <div class="edit-form-title">Edit this relationship:</div>
+            <div class="edit-form-content">
+              <div class="edit-field">
+                <label for="edit-source-${index}">Source:</label>
+                <input type="text" class="edit-input" id="edit-source-${index}" 
+                  value="${rel.source}">
+              </div>
+              <div class="edit-field">
+                <label for="edit-relationship-${index}">Relationship:</label>
+                <input type="text" class="edit-input" id="edit-relationship-${index}" 
+                  value="${rel.relationship}">
+              </div>
+              <div class="edit-field">
+                <label for="edit-target-${index}">Target:</label>
+                <input type="text" class="edit-input" id="edit-target-${index}" 
+                  value="${rel.target}">
+              </div>
+              <button class="edit-submit" data-index="${index}" data-article-id="${rel.articleID}">
+                Submit Edit
               </button>
             </div>
           </div>
@@ -448,59 +479,137 @@ function displayGraphOverlay(selectedText, relationships) {
     });
   }
 
+  // Function to add event listeners for edit buttons
+  function addEditButtonListeners() {
+    document.querySelectorAll(".edit-btn").forEach((button) => {
+      button.addEventListener("click", function (e) {
+        const index = this.dataset.index;
+        const editForm = document.getElementById(`edit-form-${index}`);
+
+        // Hide all forms first
+        document.querySelectorAll(".report-form, .edit-form").forEach((f) => {
+          if (f !== editForm) {
+            f.style.display = "none"; // Hide other forms
+          }
+        });
+
+        // Toggle the current form's display
+        if (editForm.style.display === "block") {
+          editForm.style.display = "none"; // Close if already open
+        } else {
+          editForm.style.display = "block"; // Open the form
+          makeDraggable(editForm); // Make edit form draggable
+        }
+      });
+    });
+
+    // Add event listeners for edit submit buttons
+    document.querySelectorAll(".edit-submit").forEach((button) => {
+      button.addEventListener("click", function (e) {
+        const index = this.dataset.index;
+        const articleId = this.dataset.articleId;
+
+        // Get the edited values
+        const source = document.getElementById(`edit-source-${index}`).value;
+        const relationship = document.getElementById(
+          `edit-relationship-${index}`
+        ).value;
+        const target = document.getElementById(`edit-target-${index}`).value;
+
+        // Send the edit to the backend
+        submitEdit(source, relationship, target, articleId, index);
+      });
+    });
+  }
+
+  // Function to submit the edit to the backend
+  function submitEdit(source, relationship, target, articleId, index) {
+    // Create the data object to send
+    const editData = {
+      original: {
+        source: document.querySelector(`.edit-btn[data-index="${index}"]`)
+          .dataset.source,
+        relationship: document.querySelector(`.edit-btn[data-index="${index}"]`)
+          .dataset.relationship,
+        target: document.querySelector(`.edit-btn[data-index="${index}"]`)
+          .dataset.target,
+      },
+      updated: {
+        source: source,
+        relationship: relationship,
+        target: target,
+      },
+      articleId: articleId,
+      timestamp: new Date().toISOString(),
+    };
+
+    console.log("Submitting edit:", editData);
+
+    // Here you would typically send this data to your backend
+    // For example, using fetch:
+    /*
+    fetch('https://your-backend-api.com/edit-relationship', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(editData),
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Success:', data);
+      alert('Your edit has been submitted successfully!');
+      
+      // Update the UI to reflect the change
+      updateRelationshipDisplay(index, source, relationship, target);
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+      alert('There was an error submitting your edit. Please try again.');
+    });
+    */
+
+    // For now, just simulate a successful submission
+    alert("Your edit has been submitted successfully!");
+
+    // Update the UI to reflect the change
+    updateRelationshipDisplay(index, source, relationship, target);
+
+    // Close the edit form
+    document.getElementById(`edit-form-${index}`).style.display = "none";
+  }
+
+  // Function to update the relationship display after an edit
+  function updateRelationshipDisplay(index, source, relationship, target) {
+    const relationshipText =
+      document.querySelectorAll(".relationship-text")[index];
+    relationshipText.innerHTML = `
+      <strong>${source}</strong>
+      <span class="relationship-type">(${relationship})</span>
+      → <strong>${target}</strong>
+    `;
+
+    // Update the data attributes on the buttons
+    const reportBtn = document.querySelector(
+      `.report-btn[data-index="${index}"]`
+    );
+    const editBtn = document.querySelector(`.edit-btn[data-index="${index}"]`);
+
+    reportBtn.dataset.source = source;
+    reportBtn.dataset.relationship = relationship;
+    reportBtn.dataset.target = target;
+
+    editBtn.dataset.source = source;
+    editBtn.dataset.relationship = relationship;
+    editBtn.dataset.target = target;
+  }
+
   // Add event listeners for report buttons
   addReportButtonListeners();
   // Add event listeners for evidence buttons
   addEvidenceButtonListeners();
-
-  // Add event listeners for submit buttons
-  div.querySelectorAll(".report-submit").forEach((button) => {
-    button.addEventListener("click", function (e) {
-      const index = this.dataset.index;
-      const reportBtn = e.target
-        .closest(".relationship-item")
-        .querySelector(".report-btn");
-      const source = reportBtn.dataset.source;
-      const relationship = reportBtn.dataset.relationship;
-      const target = reportBtn.dataset.target;
-      const input = document.getElementById(`input-${index}`);
-      const report = input.value.trim();
-
-      if (report) {
-        console.log("Relationship Report:", {
-          source,
-          relationship,
-          target,
-          report,
-        });
-
-        // Find the relationship in the fakeGraph and update it
-        const relToUpdate = fakeGraph[source].find(
-          (rel) => rel.relationship === relationship && rel.target === target
-        );
-        if (relToUpdate) {
-          // Update the relationship with the report
-          relToUpdate.report = report; // You can store the report or handle it as needed
-        }
-
-        // Replace the entire relationship item with success message
-        const relItem = e.target.closest(".relationship-item");
-        const originalContent = relItem.innerHTML;
-        relItem.innerHTML = `
-          <div class="success-message">
-            ✅ Thank you for your report!
-          </div>
-        `;
-
-        // Remove the success message and restore the relationship after animation
-        setTimeout(() => {
-          relItem.innerHTML = originalContent;
-          // Reattach event listeners
-          addReportButtonListeners(); // Re-add listeners for all report buttons
-        }, 3000);
-      }
-    });
-  });
+  // Add event listeners for edit buttons
+  addEditButtonListeners();
 
   // Close overlay when clicking outside
   document.addEventListener("mousedown", function closeOverlay(e) {

@@ -1,3 +1,4 @@
+// The goal is to replace this with the real graph shown in Neo4j
 export const fakeGraph = {
   "Kyrees Darius Johnson": [
     {
