@@ -2,13 +2,8 @@ import os
 import dotenv
 from neo4j import GraphDatabase
 
-# Load environment variables from both possible locations
-if os.path.exists('NEO4J_KEY.env'):
-    dotenv.load_dotenv('NEO4J_KEY.env')
-elif os.path.exists('KG_v2/neo4jKey.env'):
-    dotenv.load_dotenv('KG_v2/neo4jKey.env')
-elif os.path.exists('.env'):
-    dotenv.load_dotenv('.env')
+
+dotenv.load_dotenv('.env')
 
 # Get credentials
 neo4j_uri = os.getenv("NEO4J_URI")

@@ -1,16 +1,12 @@
 // Function to fetch graph data from the API
 async function fetchGraphData() {
   try {
-    const response = await fetch("http://localhost:5000/api/graph-data");
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
+    const response = await fetch("http://localhost:3001/api/graph");
     const data = await response.json();
+    console.log("Graph Data:", data);
     return data;
   } catch (error) {
     console.error("Error fetching graph data:", error);
-    // Return the fake graph as fallback if API call fails
-    return fakeGraph;
   }
 }
 
