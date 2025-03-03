@@ -24,6 +24,7 @@ from sentence_transformers import SentenceTransformer # for embedding entities (
 import uuid # for unique ids in KB
 import numpy as np # for cosine similarity of embeddings
 from langchain_openai import ChatOpenAI
+import prodigy
 from collections import defaultdict
 from consolidate_entities import consolidate_entities_with_kb
 from relationship_extractor import extract_relationships_block_by_block

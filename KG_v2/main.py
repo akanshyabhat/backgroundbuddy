@@ -128,7 +128,7 @@ except OSError as e:
     raise
 
 # Initialize GPT-4 model
-llm = ChatOpenAI(model_name="gpt-4", temperature=0)
+llm = ChatOpenAI(model_name="o3-mini")
 
 
 # --- Entity & Relationship Extraction ---

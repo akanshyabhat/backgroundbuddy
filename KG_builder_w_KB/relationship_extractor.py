@@ -33,6 +33,13 @@ RELATIONSHIP_TYPES = {
     "INFORMED": ["individual", "organization"],
 }
 
+"""RELATIONSHIP_TYPES = {
+    "VETOED": ["date"], 
+    "PROPOSED": ["date"], 
+    "SUPPORTED": ["date"], 
+    "OPPOSED": ["date"]
+}"""
+
 def extract_relationships_for_block(block_text, block_entities, headline, date, model_name):
     """
     Extract relationships from each block of text using OpenAI's API via LangChain.
@@ -50,8 +57,12 @@ def extract_relationships_for_block(block_text, block_entities, headline, date, 
     prompt = f"""
     You are an expert in relationship extraction. Your task is to identify meaningful relationships only between the provided named entities listed below.
     Given the following block of text, extract relationships only between the named entities provided.
-    Do NOT infer relationships between non-entity words or general phrases.
-
+    Both subject and object must be named entities (person, organization, location) from the provided list. Ignore non-entity terms (e.g., dates, numbers) unless tied to an action.
+    Extract relationships that are meaningful and relevant to the context of the article.
+    Ensure relationships are not repeated. If the same relationship exists for a subject-object pair, include it only once.
+    Avoid using LOCATED_IN unless the location is significant or tied to an event. Do not use it for where a person is from.
+    Use the exact entity names as listed in the provided named entities. Do not alter or shorten the entity name in any way.
+    Do not extract relationships regarding author contributions (e.g., "Staff writer [name] contributed to this report").
     --- 
 
     Headline: "{headline}"
@@ -62,26 +73,11 @@ def extract_relationships_for_block(block_text, block_entities, headline, date, 
 
     The entity names can be accessed from the "canonical name" field.
 
-    **Important Instructions**:
-    - Both the **subject** and **object** must be **named entities** (person, organization, location) from the provided list. Ignore non-entity terms like numbers (e.g., "two", "three") or standalone dates (e.g., "2021", "2022") unless tied to an action.
-    - **Each relationship should have exactly one object**. Do not include relationships with multiple objects for a single subject.
-    - Relationships should **only exist between named entities** and should be **logically valid** and relevant within the **article’s context**.
-    - Avoid **repeating relationships**. If the same relationship is present multiple times, include it only once.
-    - If a relationship has already been extracted for a subject-object pair, do not include it again with a similar relationship type. Pick the relationship type that is the best fit for the relationship logically.
-    - Do not use LOCATED_IN unless the location is significant to the entity or the entity is an event.
-    - DO NOT add relationships between words that are not explicitly listed as named entities.
-    - Relationships must be directly stated in the text—do not infer unstated connections.
-    - The subject and object texts must be worded in the exact same way that the entities are provided.
-    - Do not include any relationships about how the author contributed to the report (i.e. "Staff writer Ryan Faircloth contributed to this report." should not have any relationships).
-    - Relationships must be clear and meaningful — avoid vague relationships and be as specific as you can.
-    - After you create a relationship, if you think it will not be useful and does not provide meaningful value to a journalist based on the article or it includes a subject or object that is not in the provided list of named entities, do NOT include it.
-
-
     **Possible Relationships**: 
     {RELATIONSHIP_TYPES}
 
 
-    Return the extracted relationships in this **exact format**:
+    Return the extracted relationships in this **exact format** without any additional information:
 
     [
         {{
@@ -92,8 +88,6 @@ def extract_relationships_for_block(block_text, block_entities, headline, date, 
         }},
         ...
     ]
-
-    Do NOT add any additional text that is not the information requested above about the relationships in the JSON format.
     """
 
 
