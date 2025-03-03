@@ -7,7 +7,7 @@ const fakeGraph = {
       evidence:
         "Kyrees Darius Johnson was sentenced to nearly eight years in prison as part of the investigation.",
       articleID: "600381433",
-    },
+    }, 
     {
       relationship: "IS_CHARGED_WITH",
       target: "Unlawful Possession of Machine Guns",
