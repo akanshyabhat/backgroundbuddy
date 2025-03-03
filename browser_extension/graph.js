@@ -1,3 +1,25 @@
+// Function to fetch graph data from the API
+async function fetchGraphData() {
+  try {
+    const response = await fetch("http://localhost:5000/api/graph-data");
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching graph data:", error);
+    // Return the fake graph as fallback if API call fails
+    return fakeGraph;
+  }
+}
+
+// Export the function to fetch graph data
+export const getGraphData = async () => {
+  const graphData = await fetchGraphData();
+  return graphData;
+};
+
 // The goal is to replace this with the real graph shown in Neo4j
 export const fakeGraph = {
   "Kyrees Darius Johnson": [

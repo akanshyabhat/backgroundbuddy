@@ -45,7 +45,7 @@ def extract_relationships_for_block(block_text, block_entities, headline, date, 
         for entity in block_entities
     ]
     
-    llm = ChatOpenAI(model_name=model_name, temperature=0, openai_api_key=os.getenv("OPENAI_API_KEY"))
+    llm = ChatOpenAI(model_name=model_name, openai_api_key=os.getenv("OPENAI_API_KEY"))
 
     prompt = f"""
     You are an expert in relationship extraction. Your task is to identify meaningful relationships only between the provided named entities listed below.

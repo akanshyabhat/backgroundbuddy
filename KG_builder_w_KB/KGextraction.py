@@ -32,7 +32,9 @@ from relationship_extractor import extract_relationships_block_by_block
 from prodigy.components.loaders import JSONL
 from entity_matcher import unify_mention_to_kb_id  # Import the function
 from relationship_validator import save_relationships_for_prodigy
+from neo4j_updater import Neo4jHandler, load_relationships_to_neo4j
 
+import os
 
 # For sentence segmentation:
 nlp = spacy.load("en_core_web_sm")
@@ -41,6 +43,11 @@ embedder = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2")
 
 dotenv.load_dotenv("API.env")
 
+uri = os.getenv("NEO4J_URI")
+user = os.getenv("NEO4J_USER")
+password = os.getenv("NEO4J_PASSWORD")
+
+openai_api_key = os.getenv("OPENAI_API_KEY")
 
 
 ''' 
@@ -329,3 +336,10 @@ if __name__ == "__main__":
     # save the relationships to a JSONL file for verification in prodigy
     save_relationships_for_prodigy(all_relationships, output_file="relationships.jsonl") # prints instructions for Prodigy
 
+    #update neo4j with these relationships
+    neo4j_handler = Neo4jHandler(uri, user, password)
+    load_relationships_to_neo4j(all_relationships, neo4j_handler)
+    neo4j_handler.close()
+
+    
+    print(f"[INFO] Saved {len(all_relationships)} relationships to relationships.json")
