@@ -17,7 +17,6 @@ pip install openai python-dotenv spacy sentence-transformers prodigy neo4j numpy
 
 import dotenv
 import os
-from run_neo4j_update import run_neo4j_update
 import json
 from typing import Dict, Any, List, Optional, Set
 import spacy
@@ -341,5 +340,5 @@ if __name__ == "__main__":
     
     
 
-    
+
     
