@@ -1,788 +1,788 @@
 [
-  {
-    "subject_text": "undercover federal investigation",
-    "relationship": "HAS_DATE",
-    "object_text": "this week",
-    "evidence": "A lengthy undercover federal investigation into a Snapchat-based gun ring selling illegal \u201cswitches\u201d and ghost guns around the Twin Cities metro concluded this week with the third and final sentence from a trio of young men arrested last year."
-  },
-  {
-    "subject_text": "trio of young men",
-    "relationship": "HAS_DATE",
-    "object_text": "last year",
-    "evidence": "A lengthy undercover federal investigation into a Snapchat-based gun ring selling illegal \u201cswitches\u201d and ghost guns around the Twin Cities metro concluded this week with the third and final sentence from a trio of young men arrested last year."
-  },
-  {
-    "subject_text": "trio of young men",
-    "relationship": "IS_ACCUSED_OF",
-    "object_text": "selling illegal \u201cswitches\u201d and ghost guns",
-    "evidence": "A lengthy undercover federal investigation into a Snapchat-based gun ring selling illegal \u201cswitches\u201d and ghost guns around the Twin Cities metro concluded this week with the third and final sentence from a trio of young men arrested last year."
-  },
-  {
-    "subject_text": "Donovan Frank",
-    "relationship": "HAS_PARTICIPANT",
-    "object_text": "Kyrees Darius Johnson",
-    "evidence": "U.S. District Judge Donovan Frank on Tuesday sentenced Kyrees Darius Johnson, 22, of Minneapolis, to nearly eight years in prison to wrap up the case \u2014 by far the longest prison term given to any of the three charged and owing to Johnson\u2019s lengthier criminal record."
-  },
-  {
-    "subject_text": "Kyrees Darius Johnson",
-    "relationship": "HAS_LOCATION",
-    "object_text": "Minneapolis",
-    "evidence": "U.S. District Judge Donovan Frank on Tuesday sentenced Kyrees Darius Johnson, 22, of Minneapolis, to nearly eight years in prison to wrap up the case \u2014 by far the longest prison term given to any of the three charged and owing to Johnson\u2019s lengthier criminal record."
-  },
-  {
-    "subject_text": "Kyrees Darius Johnson",
-    "relationship": "HAS_DATE",
-    "object_text": "nearly eight years",
-    "evidence": "U.S. District Judge Donovan Frank on Tuesday sentenced Kyrees Darius Johnson, 22, of Minneapolis, to nearly eight years in prison to wrap up the case \u2014 by far the longest prison term given to any of the three charged and owing to Johnson\u2019s lengthier criminal record."
-  },
-  {
-    "subject_text": "Kyrees Darius Johnson",
-    "relationship": "IS_CHARGED_WITH",
-    "object_text": "lengthier criminal record",
-    "evidence": "U.S. District Judge Donovan Frank on Tuesday sentenced Kyrees Darius Johnson, 22, of Minneapolis, to nearly eight years in prison to wrap up the case \u2014 by far the longest prison term given to any of the three charged and owing to Johnson\u2019s lengthier criminal record."
-  },
-  {
-    "subject_text": "the Central Minnesota Violent Offender Task Force",
-    "relationship": "MENTIONS",
-    "object_text": "Bureau of Alcohol, Tobacco, Firearms and Explosives",
-    "evidence": "According to court records, an investigator from the Central Minnesota Violent Offender Task Force notified the federal Bureau of Alcohol, Tobacco, Firearms and Explosives in March 2023 of a Snapchat group called \u201cBLICCS&amp;STICCS3\u2033 that was suspected of being used to help traffic machine guns, other firearms and illicit drugs in the Twin Cities and outside the metro."
-  },
-  {
-    "subject_text": "the Central Minnesota Violent Offender Task Force",
-    "relationship": "MENTIONS",
-    "object_text": "BLICCS&amp;STICCS3\u2033",
-    "evidence": "According to court records, an investigator from the Central Minnesota Violent Offender Task Force notified the federal Bureau of Alcohol, Tobacco, Firearms and Explosives in March 2023 of a Snapchat group called \u201cBLICCS&amp;STICCS3\u2033 that was suspected of being used to help traffic machine guns, other firearms and illicit drugs in the Twin Cities and outside the metro."
-  },
-  {
-    "subject_text": "Bureau of Alcohol, Tobacco, Firearms and Explosives",
-    "relationship": "MENTIONS",
-    "object_text": "BLICCS&amp;STICCS3\u2033",
-    "evidence": "According to court records, an investigator from the Central Minnesota Violent Offender Task Force notified the federal Bureau of Alcohol, Tobacco, Firearms and Explosives in March 2023 of a Snapchat group called \u201cBLICCS&amp;STICCS3\u2033 that was suspected of being used to help traffic machine guns, other firearms and illicit drugs in the Twin Cities and outside the metro."
-  },
-  {
-    "subject_text": "BLICCS&amp;STICCS3\u2033",
-    "relationship": "HAS_LOCATION",
-    "object_text": "Twin Cities",
-    "evidence": "According to court records, an investigator from the Central Minnesota Violent Offender Task Force notified the federal Bureau of Alcohol, Tobacco, Firearms and Explosives in March 2023 of a Snapchat group called \u201cBLICCS&amp;STICCS3\u2033 that was suspected of being used to help traffic machine guns, other firearms and illicit drugs in the Twin Cities and outside the metro."
-  },
-  {
-    "subject_text": "BLICCS&amp;STICCS3\u2033",
-    "relationship": "HAS_LOCATION",
-    "object_text": "metro",
-    "evidence": "According to court records, an investigator from the Central Minnesota Violent Offender Task Force notified the federal Bureau of Alcohol, Tobacco, Firearms and Explosives in March 2023 of a Snapchat group called \u201cBLICCS&amp;STICCS3\u2033 that was suspected of being used to help traffic machine guns, other firearms and illicit drugs in the Twin Cities and outside the metro."
-  },
-  {
-    "subject_text": "Undercover officers",
-    "relationship": "HAS_PARTICIPANT",
-    "object_text": "controlled buys",
-    "evidence": "Undercover officers then carried out about six controlled buys with various members of the group between March and June 2023."
-  },
-  {
-    "subject_text": "controlled buys",
-    "relationship": "HAS_DATE",
-    "object_text": "between March and June 2023",
-    "evidence": "Undercover officers then carried out about six controlled buys with various members of the group between March and June 2023."
-  },
-  {
-    "subject_text": "deals",
-    "relationship": "HAS_PARTICIPANT",
-    "object_text": "conversion devices",
-    "evidence": "These deals yielded eight conversion devices, a \u201cghost gun\u201d and one Glock already equipped with a switch."
-  },
-  {
-    "subject_text": "deals",
-    "relationship": "HAS_PARTICIPANT",
-    "object_text": "ghost gun",
-    "evidence": "These deals yielded eight conversion devices, a \u201cghost gun\u201d and one Glock already equipped with a switch."
-  },
-  {
-    "subject_text": "deals",
-    "relationship": "HAS_PARTICIPANT",
-    "object_text": "Glock",
-    "evidence": "These deals yielded eight conversion devices, a \u201cghost gun\u201d and one Glock already equipped with a switch."
-  },
-  {
-    "subject_text": "The three were",
-    "relationship": "IS_CHARGED_WITH",
-    "object_text": "unlawful possession of machine guns",
-    "evidence": "The three were first charged in September 2023 and each pleaded guilty to one count of unlawful possession of machine guns."
-  },
-  {
-    "subject_text": "Frank",
-    "relationship": "HAS_PARTICIPANT",
-    "object_text": "week and imposed",
-    "evidence": "Frank sentenced Wesley to 14 months in prison last week and imposed a two-year sentence on Drayton in April."
-  },
-  {
-    "subject_text": "Snapchat-based gun ring",
-    "relationship": "HAS_LOCATION",
-    "object_text": "Twin Cities",
-    "evidence": "A lengthy undercover federal investigation into a Snapchat-based gun ring selling illegal \u201cswitches\u201d and ghost guns around the Twin Cities metro concluded this week with the third and final sentence from a trio of young men arrested last year."
-  },
-  {
-    "subject_text": "All three men",
-    "relationship": "IS_PAROLE_ELIGIBLE",
-    "object_text": "three years",
-    "evidence": "All three men will also be under supervised release for three years upon leaving prison."
-  },
-  {
-    "subject_text": "Wesley",
-    "relationship": "IS_ACCUSED_OF",
-    "object_text": "to buy a",
-    "evidence": "During one of the deals, Wesley arranged for undercover officers to meet Drayton to buy a 3D-printed drop-in machinegun conversion device for an AR-style rifle for $550."
-  },
-  {
-    "subject_text": "Wesley",
-    "relationship": "HAS_PARTICIPANT",
-    "object_text": "Drayton",
-    "evidence": "During one of the deals, Wesley arranged for undercover officers to meet Drayton to buy a 3D-printed drop-in machinegun conversion device for an AR-style rifle for $550."
-  },
-  {
-    "subject_text": "Wesley",
-    "relationship": "IS_CHARGED_WITH",
-    "object_text": "possession of a ghost gun and drugs",
-    "evidence": "Wesley had no prior convictions but did have two pending felony cases involving his possession of a ghost gun and drugs."
-  },
-  {
-    "subject_text": "Drayton",
-    "relationship": "HAS_DATE",
-    "object_text": "2021",
-    "evidence": "Drayton had been convicted of two gross misdemeanors: property damage in 2021 after pursuing a victim in his vehicle and ramming it twice."
-  },
-  {
-    "subject_text": "Drayton",
-    "relationship": "HAS_DATE",
-    "object_text": "2022",
-    "evidence": "Drayton had been convicted of two gross misdemeanors: property damage in 2021 after pursuing a victim in his vehicle and ramming it twice and in 2022 for possessing a loaded gun without a permit."
-  },
-  {
-    "subject_text": "Drayton",
-    "relationship": "IS_ACCUSED_OF",
-    "object_text": "to buy a",
-    "evidence": "During one of the deals, Wesley arranged for undercover officers to meet Drayton to buy a 3D-printed drop-in machinegun conversion device for an AR-style rifle for $550."
-  },
-  {
-    "subject_text": "Drayton",
-    "relationship": "IS_CHARGED_WITH",
-    "object_text": "property damage",
-    "evidence": "Drayton had been convicted of two gross misdemeanors: property damage in 2021 after pursuing a victim in his vehicle and ramming it twice."
-  },
-  {
-    "subject_text": "Drayton",
-    "relationship": "IS_CHARGED_WITH",
-    "object_text": "possessing a loaded gun without a permit",
-    "evidence": "Drayton had been convicted of two gross misdemeanors: property damage in 2021 after pursuing a victim in his vehicle and ramming it twice and in 2022 for possessing a loaded gun without a permit."
-  },
-  {
-    "subject_text": "Drayton",
-    "relationship": "MENTIONED_IN",
-    "object_text": "video on his phone",
-    "evidence": "Drayton showed the undercover officers a video on his phone of himself shooting a gun with the drop-in device inserted."
-  },
-  {
-    "subject_text": "Johnson",
-    "relationship": "HAS_DATE",
-    "object_text": "August 2023",
-    "evidence": "Johnson, who was sentenced this week, now needs a wheelchair since being shot 14 times during what prosecutors alleged to be an attempted carjacking in August 2023."
-  },
-  {
-    "subject_text": "Johnson",
-    "relationship": "IS_ACCUSED_OF",
-    "object_text": "attempted carjacking",
-    "evidence": "Johnson, who was sentenced this week, now needs a wheelchair since being shot 14 times during what prosecutors alleged to be an attempted carjacking in August 2023."
-  },
-  {
-    "subject_text": "Johnson",
-    "relationship": "IS_ACCUSED_OF",
-    "object_text": "assault",
-    "evidence": "Turner said Johnson first procured a gun after returning home from a prior prison stint for assault and amid exposure to \u201csketchy strangers\u201d in his girlfriend\u2019s life and tumult surrounding his family."
-  },
-  {
-    "subject_text": "Johnson",
-    "relationship": "IS_ACCUSED_OF",
-    "object_text": "felony drug convictions",
-    "evidence": "Johnson\u2019s criminal history includes two felony drug convictions, a gross misdemeanor for carrying a pistol without a permit after brandishing a firearm during a public altercation, second-degree assault for chasing down his ex-girlfriend\u2019s car and ramming it with his own, and fleeing a police officer."
-  },
-  {
-    "subject_text": "Johnson",
-    "relationship": "IS_ACCUSED_OF",
-    "object_text": "carrying a pistol without a permit",
-    "evidence": "Johnson\u2019s criminal history includes two felony drug convictions, a gross misdemeanor for carrying a pistol without a permit after brandishing a firearm during a public altercation, second-degree assault for chasing down his ex-girlfriend\u2019s car and ramming it with his own, and fleeing a police officer."
-  },
-  {
-    "subject_text": "Johnson",
-    "relationship": "IS_ACCUSED_OF",
-    "object_text": "second-degree assault",
-    "evidence": "Johnson\u2019s criminal history includes two felony drug convictions, a gross misdemeanor for carrying a pistol without a permit after brandishing a firearm during a public altercation, second-degree assault for chasing down his ex-girlfriend\u2019s car and ramming it with his own, and fleeing a police officer."
-  },
-  {
-    "subject_text": "Johnson",
-    "relationship": "IS_ACCUSED_OF",
-    "object_text": "fleeing a police officer",
-    "evidence": "Johnson\u2019s criminal history includes two felony drug convictions, a gross misdemeanor for carrying a pistol without a permit after brandishing a firearm during a public altercation, second-degree assault for chasing down his ex-girlfriend\u2019s car and ramming it with his own, and fleeing a police officer."
-  },
-  {
-    "subject_text": "Johnson",
-    "relationship": "IS_ACCUSED_OF",
-    "object_text": "firing a gun into the air after street racing",
-    "evidence": "Before the federal charges, Johnson also had pending felony cases including allegedly firing a gun into the air after street racing and one for aggravated robbery and carjacking related to his August 2023 shooting."
-  },
-  {
-    "subject_text": "Johnson",
-    "relationship": "IS_ACCUSED_OF",
-    "object_text": "aggravated robbery and carjacking",
-    "evidence": "Before the federal charges, Johnson also had pending felony cases including allegedly firing a gun into the air after street racing and one for aggravated robbery and carjacking related to his August 2023 shooting."
-  },
-  {
-    "subject_text": "Johnson",
-    "relationship": "IS_ACCUSED_OF",
-    "object_text": "by selling guns",
-    "evidence": "\u201cJohnson was a trafficker \u2014 he chose to support himself by selling guns and drugs \u2014 plain and simple,\u201d Shnider wrote."
-  },
-  {
-    "subject_text": "Johnson",
-    "relationship": "WORKS_FOR",
-    "object_text": "Catherine Turner",
-    "evidence": "Johnson\u2019s attorney, Catherine Turner, described the altercation as a violent dispute between Johnson and another man linked to Johnson\u2019s occasional girlfriend."
-  },
-  {
-    "subject_text": "Turner",
-    "relationship": "MENTIONS",
-    "object_text": "Johnson",
-    "evidence": "Turner said Johnson first procured a gun after returning home from a prior prison stint for assault and amid exposure to \u201csketchy strangers\u201d in his girlfriend\u2019s life and tumult surrounding his family."
-  },
-  {
-    "subject_text": "She added that",
-    "relationship": "MENTIONS",
-    "object_text": "gun ownership",
-    "evidence": "She added that his gun ownership introduced him to enthusiasts \u201cwith whom he went shooting and started trading and selling, providing him income.\u201d"
-  },
-  {
-    "subject_text": "She added that",
-    "relationship": "MENTIONS",
-    "object_text": "enthusiasts",
-    "evidence": "She added that his gun ownership introduced him to enthusiasts \u201cwith whom he went shooting and started trading and selling, providing him income.\u201d"
-  },
-  {
-    "subject_text": "But, she said",
-    "relationship": "MENTIONS",
-    "object_text": "street racing",
-    "evidence": "But, she said, he made most of his money from street racing and modifying cars."
-  },
-  {
-    "subject_text": "But, she said",
-    "relationship": "MENTIONS",
-    "object_text": "modifying cars",
-    "evidence": "But, she said, he made most of his money from street racing and modifying cars."
-  },
-  {
-    "subject_text": "Ruth Shnider",
-    "relationship": "MENTIONS",
-    "object_text": "Frank",
-    "evidence": "Assistant U.S. Attorney Ruth Shnider countered in her own arguments to Frank that Johnson\u2019s Snapchat posts were \u201cnot the actions of a young man merely curious about guns or concerned for his personal safety.\u201d"
-  },
-  {
-    "subject_text": "Ruth Shnider",
-    "relationship": "MENTIONS",
-    "object_text": "Johnson",
-    "evidence": "Assistant U.S. Attorney Ruth Shnider countered in her own arguments to Frank that Johnson\u2019s Snapchat posts were \u201cnot the actions of a young man merely curious about guns or concerned for his personal safety.\u201d"
-  },
-  {
-    "subject_text": "Ruth Shnider",
-    "relationship": "WORKS_FOR",
-    "object_text": "U.S.",
-    "evidence": "Assistant U.S. Attorney Ruth Shnider countered in her own arguments to Frank that Johnson\u2019s Snapchat posts were \u201cnot the actions of a young man merely curious about guns or concerned for his personal safety.\u201d"
-  },
-  {
-    "subject_text": "Subject in IS_ACCUSED_OF relationship",
-    "relationship": "IS_ACCUSED_OF",
-    "object_text": "market and sell",
-    "evidence": "\u201cHe knew that switches were a hot commodity, and he knew how to market and sell them throughout the state at the highest profit to himself.\u201d"
-  },
-  {
-    "subject_text": "Shnider",
-    "relationship": "MENTIONS",
-    "object_text": "Johnson",
-    "evidence": "\u201cJohnson was a trafficker \u2014 he chose to support himself by selling guns and drugs \u2014 plain and simple,\u201d Shnider wrote."
-  },
-  {
-    "subject_text": "Snapchat-based gun ring",
-    "relationship": "HAS_LOCATION",
-    "object_text": "Twin Cities",
-    "evidence": "A lengthy undercover federal investigation into a Snapchat-based gun ring selling illegal \u201cswitches\u201d and ghost guns around the Twin Cities metro concluded this week with the third and final sentence from a trio of young men arrested last year."
-  },
-  {
-    "subject_text": "undercover federal investigation",
-    "relationship": "HAS_DATE",
-    "object_text": "this week",
-    "evidence": "A lengthy undercover federal investigation into a Snapchat-based gun ring selling illegal \u201cswitches\u201d and ghost guns around the Twin Cities metro concluded this week with the third and final sentence from a trio of young men arrested last year."
-  },
-  {
-    "subject_text": "trio of young men",
-    "relationship": "HAS_DATE",
-    "object_text": "last year",
-    "evidence": "A lengthy undercover federal investigation into a Snapchat-based gun ring selling illegal \u201cswitches\u201d and ghost guns around the Twin Cities metro concluded this week with the third and final sentence from a trio of young men arrested last year."
-  },
-  {
-    "subject_text": "trio of young men",
-    "relationship": "IS_ACCUSED_OF",
-    "object_text": "selling illegal \u201cswitches\u201d and ghost guns",
-    "evidence": "A lengthy undercover federal investigation into a Snapchat-based gun ring selling illegal \u201cswitches\u201d and ghost guns around the Twin Cities metro concluded this week with the third and final sentence from a trio of young men arrested last year."
-  },
-  {
-    "subject_text": "Donovan Frank",
-    "relationship": "HAS_PARTICIPANT",
-    "object_text": "Kyrees Darius Johnson",
-    "evidence": "U.S. District Judge Donovan Frank on Tuesday sentenced Kyrees Darius Johnson, 22, of Minneapolis, to nearly eight years in prison to wrap up the case \u2014 by far the longest prison term given to any of the three charged and owing to Johnson\u2019s lengthier criminal record."
-  },
-  {
-    "subject_text": "Kyrees Darius Johnson",
-    "relationship": "HAS_LOCATION",
-    "object_text": "Minneapolis",
-    "evidence": "U.S. District Judge Donovan Frank on Tuesday sentenced Kyrees Darius Johnson, 22, of Minneapolis, to nearly eight years in prison to wrap up the case \u2014 by far the longest prison term given to any of the three charged and owing to Johnson\u2019s lengthier criminal record."
-  },
-  {
-    "subject_text": "Kyrees Darius Johnson",
-    "relationship": "HAS_DATE",
-    "object_text": "nearly eight years",
-    "evidence": "U.S. District Judge Donovan Frank on Tuesday sentenced Kyrees Darius Johnson, 22, of Minneapolis, to nearly eight years in prison to wrap up the case \u2014 by far the longest prison term given to any of the three charged and owing to Johnson\u2019s lengthier criminal record."
-  },
-  {
-    "subject_text": "Kyrees Darius Johnson",
-    "relationship": "IS_CHARGED_WITH",
-    "object_text": "lengthier criminal record",
-    "evidence": "U.S. District Judge Donovan Frank on Tuesday sentenced Kyrees Darius Johnson, 22, of Minneapolis, to nearly eight years in prison to wrap up the case \u2014 by far the longest prison term given to any of the three charged and owing to Johnson\u2019s lengthier criminal record."
-  },
-  {
-    "subject_text": "the Central Minnesota Violent Offender Task Force",
-    "relationship": "MENTIONS",
-    "object_text": "Bureau of Alcohol, Tobacco, Firearms and Explosives",
-    "evidence": "According to court records, an investigator from the Central Minnesota Violent Offender Task Force notified the federal Bureau of Alcohol, Tobacco, Firearms and Explosives in March 2023 of a Snapchat group called \u201cBLICCS&amp;STICCS3\u2033 that was suspected of being used to help traffic machine guns, other firearms and illicit drugs in the Twin Cities and outside the metro."
-  },
-  {
-    "subject_text": "the Central Minnesota Violent Offender Task Force",
-    "relationship": "MENTIONS",
-    "object_text": "BLICCS&amp;STICCS3\u2033",
-    "evidence": "According to court records, an investigator from the Central Minnesota Violent Offender Task Force notified the federal Bureau of Alcohol, Tobacco, Firearms and Explosives in March 2023 of a Snapchat group called \u201cBLICCS&amp;STICCS3\u2033 that was suspected of being used to help traffic machine guns, other firearms and illicit drugs in the Twin Cities and outside the metro."
-  },
-  {
-    "subject_text": "Bureau of Alcohol, Tobacco, Firearms and Explosives",
-    "relationship": "MENTIONS",
-    "object_text": "BLICCS&amp;STICCS3\u2033",
-    "evidence": "According to court records, an investigator from the Central Minnesota Violent Offender Task Force notified the federal Bureau of Alcohol, Tobacco, Firearms and Explosives in March 2023 of a Snapchat group called \u201cBLICCS&amp;STICCS3\u2033 that was suspected of being used to help traffic machine guns, other firearms and illicit drugs in the Twin Cities and outside the metro."
-  },
-  {
-    "subject_text": "BLICCS&amp;STICCS3\u2033",
-    "relationship": "HAS_LOCATION",
-    "object_text": "Twin Cities",
-    "evidence": "According to court records, an investigator from the Central Minnesota Violent Offender Task Force notified the federal Bureau of Alcohol, Tobacco, Firearms and Explosives in March 2023 of a Snapchat group called \u201cBLICCS&amp;STICCS3\u2033 that was suspected of being used to help traffic machine guns, other firearms and illicit drugs in the Twin Cities and outside the metro."
-  },
-  {
-    "subject_text": "BLICCS&amp;STICCS3\u2033",
-    "relationship": "HAS_LOCATION",
-    "object_text": "metro",
-    "evidence": "According to court records, an investigator from the Central Minnesota Violent Offender Task Force notified the federal Bureau of Alcohol, Tobacco, Firearms and Explosives in March 2023 of a Snapchat group called \u201cBLICCS&amp;STICCS3\u2033 that was suspected of being used to help traffic machine guns, other firearms and illicit drugs in the Twin Cities and outside the metro."
-  },
-  {
-    "subject_text": "Undercover officers",
-    "relationship": "HAS_PARTICIPANT",
-    "object_text": "controlled buys",
-    "evidence": "Undercover officers then carried out about six controlled buys with various members of the group between March and June 2023."
-  },
-  {
-    "subject_text": "controlled buys",
-    "relationship": "HAS_DATE",
-    "object_text": "between March and June 2023",
-    "evidence": "Undercover officers then carried out about six controlled buys with various members of the group between March and June 2023."
-  },
-  {
-    "subject_text": "deals",
-    "relationship": "HAS_PARTICIPANT",
-    "object_text": "conversion devices",
-    "evidence": "These deals yielded eight conversion devices, a \u201cghost gun\u201d and one Glock already equipped with a switch."
-  },
-  {
-    "subject_text": "deals",
-    "relationship": "HAS_PARTICIPANT",
-    "object_text": "ghost gun",
-    "evidence": "These deals yielded eight conversion devices, a \u201cghost gun\u201d and one Glock already equipped with a switch."
-  },
-  {
-    "subject_text": "deals",
-    "relationship": "HAS_PARTICIPANT",
-    "object_text": "Glock",
-    "evidence": "These deals yielded eight conversion devices, a \u201cghost gun\u201d and one Glock already equipped with a switch."
-  },
-  {
-    "subject_text": "Wesley",
-    "relationship": "HAS_PARTICIPANT",
-    "object_text": "Drayton",
-    "evidence": "During one of the deals, Wesley arranged for undercover officers to meet Drayton to buy a 3D-printed drop-in machinegun conversion device for an AR-style rifle for $550."
-  },
-  {
-    "subject_text": "Wesley",
-    "relationship": "IS_CHARGED_WITH",
-    "object_text": "possession of a ghost gun and drugs",
-    "evidence": "Wesley had no prior convictions but did have two pending felony cases involving his possession of a ghost gun and drugs."
-  },
-  {
-    "subject_text": "Drayton",
-    "relationship": "HAS_DATE",
-    "object_text": "2021",
-    "evidence": "Drayton had been convicted of two gross misdemeanors: property damage in 2021 after pursuing a victim in his vehicle and ramming it twice."
-  },
-  {
-    "subject_text": "Drayton",
-    "relationship": "HAS_DATE",
-    "object_text": "2022",
-    "evidence": "Drayton had been convicted of two gross misdemeanors: property damage in 2021 after pursuing a victim in his vehicle and ramming it twice and in 2022 for possessing a loaded gun without a permit."
-  },
-  {
-    "subject_text": "Drayton",
-    "relationship": "IS_CHARGED_WITH",
-    "object_text": "property damage",
-    "evidence": "Drayton had been convicted of two gross misdemeanors: property damage in 2021 after pursuing a victim in his vehicle and ramming it twice."
-  },
-  {
-    "subject_text": "Drayton",
-    "relationship": "IS_CHARGED_WITH",
-    "object_text": "possessing a loaded gun without a permit",
-    "evidence": "Drayton had been convicted of two gross misdemeanors: property damage in 2021 after pursuing a victim in his vehicle and ramming it twice and in 2022 for possessing a loaded gun without a permit."
-  },
-  {
-    "subject_text": "Drayton",
-    "relationship": "MENTIONED_IN",
-    "object_text": "video on his phone",
-    "evidence": "Drayton showed the undercover officers a video on his phone of himself shooting a gun with the drop-in device inserted."
-  },
-  {
-    "subject_text": "Johnson",
-    "relationship": "HAS_DATE",
-    "object_text": "August 2023",
-    "evidence": "Johnson, who was sentenced this week, now needs a wheelchair since being shot 14 times during what prosecutors alleged to be an attempted carjacking in August 2023."
-  },
-  {
-    "subject_text": "Johnson",
-    "relationship": "IS_ACCUSED_OF",
-    "object_text": "attempted carjacking",
-    "evidence": "Johnson, who was sentenced this week, now needs a wheelchair since being shot 14 times during what prosecutors alleged to be an attempted carjacking in August 2023."
-  },
-  {
-    "subject_text": "Johnson",
-    "relationship": "IS_ACCUSED_OF",
-    "object_text": "assault",
-    "evidence": "Turner said Johnson first procured a gun after returning home from a prior prison stint for assault and amid exposure to \u201csketchy strangers\u201d in his girlfriend\u2019s life and tumult surrounding his family."
-  },
-  {
-    "subject_text": "Johnson",
-    "relationship": "IS_ACCUSED_OF",
-    "object_text": "felony drug convictions",
-    "evidence": "Johnson\u2019s criminal history includes two felony drug convictions, a gross misdemeanor for carrying a pistol without a permit after brandishing a firearm during a public altercation, second-degree assault for chasing down his ex-girlfriend\u2019s car and ramming it with his own, and fleeing a police officer."
-  },
-  {
-    "subject_text": "Johnson",
-    "relationship": "IS_ACCUSED_OF",
-    "object_text": "carrying a pistol without a permit",
-    "evidence": "Johnson\u2019s criminal history includes two felony drug convictions, a gross misdemeanor for carrying a pistol without a permit after brandishing a firearm during a public altercation, second-degree assault for chasing down his ex-girlfriend\u2019s car and ramming it with his own, and fleeing a police officer."
-  },
-  {
-    "subject_text": "Johnson",
-    "relationship": "IS_ACCUSED_OF",
-    "object_text": "second-degree assault",
-    "evidence": "Johnson\u2019s criminal history includes two felony drug convictions, a gross misdemeanor for carrying a pistol without a permit after brandishing a firearm during a public altercation, second-degree assault for chasing down his ex-girlfriend\u2019s car and ramming it with his own, and fleeing a police officer."
-  },
-  {
-    "subject_text": "Johnson",
-    "relationship": "IS_ACCUSED_OF",
-    "object_text": "fleeing a police officer",
-    "evidence": "Johnson\u2019s criminal history includes two felony drug convictions, a gross misdemeanor for carrying a pistol without a permit after brandishing a firearm during a public altercation, second-degree assault for chasing down his ex-girlfriend\u2019s car and ramming it with his own, and fleeing a police officer."
-  },
-  {
-    "subject_text": "Johnson",
-    "relationship": "IS_ACCUSED_OF",
-    "object_text": "firing a gun into the air after street racing",
-    "evidence": "Before the federal charges, Johnson also had pending felony cases including allegedly firing a gun into the air after street racing and one for aggravated robbery and carjacking related to his August 2023 shooting."
-  },
-  {
-    "subject_text": "Johnson",
-    "relationship": "IS_ACCUSED_OF",
-    "object_text": "aggravated robbery and carjacking",
-    "evidence": "Before the federal charges, Johnson also had pending felony cases including allegedly firing a gun into the air after street racing and one for aggravated robbery and carjacking related to his August 2023 shooting."
-  },
-  {
-    "subject_text": "Johnson",
-    "relationship": "WORKS_FOR",
-    "object_text": "Catherine Turner",
-    "evidence": "Johnson\u2019s attorney, Catherine Turner, described the altercation as a violent dispute between Johnson and another man linked to Johnson\u2019s occasional girlfriend."
-  },
-  {
-    "subject_text": "Turner",
-    "relationship": "MENTIONS",
-    "object_text": "Johnson",
-    "evidence": "Turner said Johnson first procured a gun after returning home from a prior prison stint for assault and amid exposure to \u201csketchy strangers\u201d in his girlfriend\u2019s life and tumult surrounding his family."
-  },
-  {
-    "subject_text": "Ruth Shnider",
-    "relationship": "MENTIONS",
-    "object_text": "Frank",
-    "evidence": "Assistant U.S. Attorney Ruth Shnider countered in her own arguments to Frank that Johnson\u2019s Snapchat posts were \u201cnot the actions of a young man merely curious about guns or concerned for his personal safety.\u201d"
-  },
-  {
-    "subject_text": "Ruth Shnider",
-    "relationship": "MENTIONS",
-    "object_text": "Johnson",
-    "evidence": "Assistant U.S. Attorney Ruth Shnider countered in her own arguments to Frank that Johnson\u2019s Snapchat posts were \u201cnot the actions of a young man merely curious about guns or concerned for his personal safety.\u201d"
-  },
-  {
-    "subject_text": "Ruth Shnider",
-    "relationship": "WORKS_FOR",
-    "object_text": "U.S.",
-    "evidence": "Assistant U.S. Attorney Ruth Shnider countered in her own arguments to Frank that Johnson\u2019s Snapchat posts were \u201cnot the actions of a young man merely curious about guns or concerned for his personal safety.\u201d"
-  },
-  {
-    "subject_text": "Shnider",
-    "relationship": "MENTIONS",
-    "object_text": "Johnson",
-    "evidence": "\u201cJohnson was a trafficker \u2014 he chose to support himself by selling guns and drugs \u2014 plain and simple,\u201d Shnider wrote."
-  },
-  {
-    "subject_text": "Snapchat-based gun ring",
-    "relationship": "HAS_LOCATION",
-    "object_text": "Twin Cities",
-    "evidence": "A lengthy undercover federal investigation into a Snapchat-based gun ring selling illegal \u201cswitches\u201d and ghost guns around the Twin Cities metro concluded this week with the third and final sentence from a trio of young men arrested last year."
-  },
-  {
-    "subject_text": "undercover federal investigation",
-    "relationship": "HAS_DATE",
-    "object_text": "this week",
-    "evidence": "A lengthy undercover federal investigation into a Snapchat-based gun ring selling illegal \u201cswitches\u201d and ghost guns around the Twin Cities metro concluded this week with the third and final sentence from a trio of young men arrested last year."
-  },
-  {
-    "subject_text": "trio of young men",
-    "relationship": "HAS_DATE",
-    "object_text": "last year",
-    "evidence": "A lengthy undercover federal investigation into a Snapchat-based gun ring selling illegal \u201cswitches\u201d and ghost guns around the Twin Cities metro concluded this week with the third and final sentence from a trio of young men arrested last year."
-  },
-  {
-    "subject_text": "trio of young men",
-    "relationship": "IS_ACCUSED_OF",
-    "object_text": "selling illegal \u201cswitches\u201d and ghost guns",
-    "evidence": "A lengthy undercover federal investigation into a Snapchat-based gun ring selling illegal \u201cswitches\u201d and ghost guns around the Twin Cities metro concluded this week with the third and final sentence from a trio of young men arrested last year."
-  },
-  {
-    "subject_text": "Donovan Frank",
-    "relationship": "HAS_PARTICIPANT",
-    "object_text": "Kyrees Darius Johnson",
-    "evidence": "U.S. District Judge Donovan Frank on Tuesday sentenced Kyrees Darius Johnson, 22, of Minneapolis, to nearly eight years in prison to wrap up the case \u2014 by far the longest prison term given to any of the three charged and owing to Johnson\u2019s lengthier criminal record."
-  },
-  {
-    "subject_text": "Kyrees Darius Johnson",
-    "relationship": "HAS_LOCATION",
-    "object_text": "Minneapolis",
-    "evidence": "U.S. District Judge Donovan Frank on Tuesday sentenced Kyrees Darius Johnson, 22, of Minneapolis, to nearly eight years in prison to wrap up the case \u2014 by far the longest prison term given to any of the three charged and owing to Johnson\u2019s lengthier criminal record."
-  },
-  {
-    "subject_text": "Kyrees Darius Johnson",
-    "relationship": "HAS_DATE",
-    "object_text": "nearly eight years",
-    "evidence": "U.S. District Judge Donovan Frank on Tuesday sentenced Kyrees Darius Johnson, 22, of Minneapolis, to nearly eight years in prison to wrap up the case \u2014 by far the longest prison term given to any of the three charged and owing to Johnson\u2019s lengthier criminal record."
-  },
-  {
-    "subject_text": "Kyrees Darius Johnson",
-    "relationship": "IS_CHARGED_WITH",
-    "object_text": "lengthier criminal record",
-    "evidence": "U.S. District Judge Donovan Frank on Tuesday sentenced Kyrees Darius Johnson, 22, of Minneapolis, to nearly eight years in prison to wrap up the case \u2014 by far the longest prison term given to any of the three charged and owing to Johnson\u2019s lengthier criminal record."
-  },
-  {
-    "subject_text": "the Central Minnesota Violent Offender Task Force",
-    "relationship": "MENTIONS",
-    "object_text": "Bureau of Alcohol, Tobacco, Firearms and Explosives",
-    "evidence": "According to court records, an investigator from the Central Minnesota Violent Offender Task Force notified the federal Bureau of Alcohol, Tobacco, Firearms and Explosives in March 2023 of a Snapchat group called \u201cBLICCS&amp;STICCS3\u2033 that was suspected of being used to help traffic machine guns, other firearms and illicit drugs in the Twin Cities and outside the metro."
-  },
-  {
-    "subject_text": "the Central Minnesota Violent Offender Task Force",
-    "relationship": "MENTIONS",
-    "object_text": "BLICCS&amp;STICCS3\u2033",
-    "evidence": "According to court records, an investigator from the Central Minnesota Violent Offender Task Force notified the federal Bureau of Alcohol, Tobacco, Firearms and Explosives in March 2023 of a Snapchat group called \u201cBLICCS&amp;STICCS3\u2033 that was suspected of being used to help traffic machine guns, other firearms and illicit drugs in the Twin Cities and outside the metro."
-  },
-  {
-    "subject_text": "Bureau of Alcohol, Tobacco, Firearms and Explosives",
-    "relationship": "MENTIONS",
-    "object_text": "BLICCS&amp;STICCS3\u2033",
-    "evidence": "According to court records, an investigator from the Central Minnesota Violent Offender Task Force notified the federal Bureau of Alcohol, Tobacco, Firearms and Explosives in March 2023 of a Snapchat group called \u201cBLICCS&amp;STICCS3\u2033 that was suspected of being used to help traffic machine guns, other firearms and illicit drugs in the Twin Cities and outside the metro."
-  },
-  {
-    "subject_text": "BLICCS&amp;STICCS3\u2033",
-    "relationship": "HAS_LOCATION",
-    "object_text": "Twin Cities",
-    "evidence": "According to court records, an investigator from the Central Minnesota Violent Offender Task Force notified the federal Bureau of Alcohol, Tobacco, Firearms and Explosives in March 2023 of a Snapchat group called \u201cBLICCS&amp;STICCS3\u2033 that was suspected of being used to help traffic machine guns, other firearms and illicit drugs in the Twin Cities and outside the metro."
-  },
-  {
-    "subject_text": "BLICCS&amp;STICCS3\u2033",
-    "relationship": "HAS_LOCATION",
-    "object_text": "metro",
-    "evidence": "According to court records, an investigator from the Central Minnesota Violent Offender Task Force notified the federal Bureau of Alcohol, Tobacco, Firearms and Explosives in March 2023 of a Snapchat group called \u201cBLICCS&amp;STICCS3\u2033 that was suspected of being used to help traffic machine guns, other firearms and illicit drugs in the Twin Cities and outside the metro."
-  },
-  {
-    "subject_text": "Undercover officers",
-    "relationship": "HAS_PARTICIPANT",
-    "object_text": "controlled buys",
-    "evidence": "Undercover officers then carried out about six controlled buys with various members of the group between March and June 2023."
-  },
-  {
-    "subject_text": "controlled buys",
-    "relationship": "HAS_DATE",
-    "object_text": "between March and June 2023",
-    "evidence": "Undercover officers then carried out about six controlled buys with various members of the group between March and June 2023."
-  },
-  {
-    "subject_text": "deals",
-    "relationship": "HAS_PARTICIPANT",
-    "object_text": "conversion devices",
-    "evidence": "These deals yielded eight conversion devices, a \u201cghost gun\u201d and one Glock already equipped with a switch."
-  },
-  {
-    "subject_text": "deals",
-    "relationship": "HAS_PARTICIPANT",
-    "object_text": "ghost gun",
-    "evidence": "These deals yielded eight conversion devices, a \u201cghost gun\u201d and one Glock already equipped with a switch."
-  },
-  {
-    "subject_text": "deals",
-    "relationship": "HAS_PARTICIPANT",
-    "object_text": "Glock",
-    "evidence": "These deals yielded eight conversion devices, a \u201cghost gun\u201d and one Glock already equipped with a switch."
-  },
-  {
-    "subject_text": "Wesley",
-    "relationship": "HAS_PARTICIPANT",
-    "object_text": "Drayton",
-    "evidence": "During one of the deals, Wesley arranged for undercover officers to meet Drayton to buy a 3D-printed drop-in machinegun conversion device for an AR-style rifle for $550."
-  },
-  {
-    "subject_text": "Wesley",
-    "relationship": "IS_CHARGED_WITH",
-    "object_text": "possession of a ghost gun and drugs",
-    "evidence": "Wesley had no prior convictions but did have two pending felony cases involving his possession of a ghost gun and drugs."
-  },
-  {
-    "subject_text": "Drayton",
-    "relationship": "HAS_DATE",
-    "object_text": "2021",
-    "evidence": "Drayton had been convicted of two gross misdemeanors: property damage in 2021 after pursuing a victim in his vehicle and ramming it twice."
-  },
-  {
-    "subject_text": "Drayton",
-    "relationship": "HAS_DATE",
-    "object_text": "2022",
-    "evidence": "Drayton had been convicted of two gross misdemeanors: property damage in 2021 after pursuing a victim in his vehicle and ramming it twice and in 2022 for possessing a loaded gun without a permit."
-  },
-  {
-    "subject_text": "Drayton",
-    "relationship": "IS_CHARGED_WITH",
-    "object_text": "property damage",
-    "evidence": "Drayton had been convicted of two gross misdemeanors: property damage in 2021 after pursuing a victim in his vehicle and ramming it twice."
-  },
-  {
-    "subject_text": "Drayton",
-    "relationship": "IS_CHARGED_WITH",
-    "object_text": "possessing a loaded gun without a permit",
-    "evidence": "Drayton had been convicted of two gross misdemeanors: property damage in 2021 after pursuing a victim in his vehicle and ramming it twice and in 2022 for possessing a loaded gun without a permit."
-  },
-  {
-    "subject_text": "Drayton",
-    "relationship": "MENTIONED_IN",
-    "object_text": "video on his phone",
-    "evidence": "Drayton showed the undercover officers a video on his phone of himself shooting a gun with the drop-in device inserted."
-  },
-  {
-    "subject_text": "Johnson",
-    "relationship": "HAS_DATE",
-    "object_text": "August 2023",
-    "evidence": "Johnson, who was sentenced this week, now needs a wheelchair since being shot 14 times during what prosecutors alleged to be an attempted carjacking in August 2023."
-  },
-  {
-    "subject_text": "Johnson",
-    "relationship": "IS_ACCUSED_OF",
-    "object_text": "attempted carjacking",
-    "evidence": "Johnson, who was sentenced this week, now needs a wheelchair since being shot 14 times during what prosecutors alleged to be an attempted carjacking in August 2023."
-  },
-  {
-    "subject_text": "Johnson",
-    "relationship": "IS_ACCUSED_OF",
-    "object_text": "assault",
-    "evidence": "Turner said Johnson first procured a gun after returning home from a prior prison stint for assault and amid exposure to \u201csketchy strangers\u201d in his girlfriend\u2019s life and tumult surrounding his family."
-  },
-  {
-    "subject_text": "Johnson",
-    "relationship": "IS_ACCUSED_OF",
-    "object_text": "felony drug convictions",
-    "evidence": "Johnson\u2019s criminal history includes two felony drug convictions, a gross misdemeanor for carrying a pistol without a permit after brandishing a firearm during a public altercation, second-degree assault for chasing down his ex-girlfriend\u2019s car and ramming it with his own, and fleeing a police officer."
-  },
-  {
-    "subject_text": "Johnson",
-    "relationship": "IS_ACCUSED_OF",
-    "object_text": "carrying a pistol without a permit",
-    "evidence": "Johnson\u2019s criminal history includes two felony drug convictions, a gross misdemeanor for carrying a pistol without a permit after brandishing a firearm during a public altercation, second-degree assault for chasing down his ex-girlfriend\u2019s car and ramming it with his own, and fleeing a police officer."
-  },
-  {
-    "subject_text": "Johnson",
-    "relationship": "IS_ACCUSED_OF",
-    "object_text": "second-degree assault",
-    "evidence": "Johnson\u2019s criminal history includes two felony drug convictions, a gross misdemeanor for carrying a pistol without a permit after brandishing a firearm during a public altercation, second-degree assault for chasing down his ex-girlfriend\u2019s car and ramming it with his own, and fleeing a police officer."
-  },
-  {
-    "subject_text": "Johnson",
-    "relationship": "IS_ACCUSED_OF",
-    "object_text": "fleeing a police officer",
-    "evidence": "Johnson\u2019s criminal history includes two felony drug convictions, a gross misdemeanor for carrying a pistol without a permit after brandishing a firearm during a public altercation, second-degree assault for chasing down his ex-girlfriend\u2019s car and ramming it with his own, and fleeing a police officer."
-  },
-  {
-    "subject_text": "Johnson",
-    "relationship": "IS_ACCUSED_OF",
-    "object_text": "firing a gun into the air after street racing",
-    "evidence": "Before the federal charges, Johnson also had pending felony cases including allegedly firing a gun into the air after street racing and one for aggravated robbery and carjacking related to his August 2023 shooting."
-  },
-  {
-    "subject_text": "Johnson",
-    "relationship": "IS_ACCUSED_OF",
-    "object_text": "aggravated robbery and carjacking",
-    "evidence": "Before the federal charges, Johnson also had pending felony cases including allegedly firing a gun into the air after street racing and one for aggravated robbery and carjacking related to his August 2023 shooting."
-  },
-  {
-    "subject_text": "Johnson",
-    "relationship": "WORKS_FOR",
-    "object_text": "Catherine Turner",
-    "evidence": "Johnson\u2019s attorney, Catherine Turner, described the altercation as a violent dispute between Johnson and another man linked to Johnson\u2019s occasional girlfriend."
-  },
-  {
-    "subject_text": "Turner",
-    "relationship": "MENTIONS",
-    "object_text": "Johnson",
-    "evidence": "Turner said Johnson first procured a gun after returning home from a prior prison stint for assault and amid exposure to \u201csketchy strangers\u201d in his girlfriend\u2019s life and tumult surrounding his family."
-  },
-  {
-    "subject_text": "Ruth Shnider",
-    "relationship": "MENTIONS",
-    "object_text": "Frank",
-    "evidence": "Assistant U.S. Attorney Ruth Shnider countered in her own arguments to Frank that Johnson\u2019s Snapchat posts were \u201cnot the actions of a young man merely curious about guns or concerned for his personal safety.\u201d"
-  },
-  {
-    "subject_text": "Ruth Shnider",
-    "relationship": "MENTIONS",
-    "object_text": "Johnson",
-    "evidence": "Assistant U.S. Attorney Ruth Shnider countered in her own arguments to Frank that Johnson\u2019s Snapchat posts were \u201cnot the actions of a young man merely curious about guns or concerned for his personal safety.\u201d"
-  },
-  {
-    "subject_text": "Ruth Shnider",
-    "relationship": "WORKS_FOR",
-    "object_text": "U.S.",
-    "evidence": "Assistant U.S. Attorney Ruth Shnider countered in her own arguments to Frank that Johnson\u2019s Snapchat posts were \u201cnot the actions of a young man merely curious about guns or concerned for his personal safety.\u201d"
-  },
-  {
-    "subject_text": "Shnider",
-    "relationship": "MENTIONS",
-    "object_text": "Johnson",
-    "evidence": "\u201cJohnson was a trafficker \u2014 he chose to support himself by selling guns and drugs \u2014 plain and simple,\u201d Shnider wrote."
-  }
+    {
+        "subject_text": "undercover federal investigation",
+        "relationship": "HAS_DATE",
+        "object_text": "this week",
+        "evidence": "A lengthy undercover federal investigation into a Snapchat-based gun ring selling illegal \u201cswitches\u201d and ghost guns around the Twin Cities metro concluded this week with the third and final sentence from a trio of young men arrested last year."
+    },
+    {
+        "subject_text": "trio of young men",
+        "relationship": "HAS_DATE",
+        "object_text": "last year",
+        "evidence": "A lengthy undercover federal investigation into a Snapchat-based gun ring selling illegal \u201cswitches\u201d and ghost guns around the Twin Cities metro concluded this week with the third and final sentence from a trio of young men arrested last year."
+    },
+    {
+        "subject_text": "trio of young men",
+        "relationship": "IS_ACCUSED_OF",
+        "object_text": "selling illegal \u201cswitches\u201d and ghost guns",
+        "evidence": "A lengthy undercover federal investigation into a Snapchat-based gun ring selling illegal \u201cswitches\u201d and ghost guns around the Twin Cities metro concluded this week with the third and final sentence from a trio of young men arrested last year."
+    },
+    {
+        "subject_text": "Donovan Frank",
+        "relationship": "HAS_PARTICIPANT",
+        "object_text": "Kyrees Darius Johnson",
+        "evidence": "U.S. District Judge Donovan Frank on Tuesday sentenced Kyrees Darius Johnson, 22, of Minneapolis, to nearly eight years in prison to wrap up the case \u2014 by far the longest prison term given to any of the three charged and owing to Johnson\u2019s lengthier criminal record."
+    },
+    {
+        "subject_text": "Kyrees Darius Johnson",
+        "relationship": "HAS_LOCATION",
+        "object_text": "Minneapolis",
+        "evidence": "U.S. District Judge Donovan Frank on Tuesday sentenced Kyrees Darius Johnson, 22, of Minneapolis, to nearly eight years in prison to wrap up the case \u2014 by far the longest prison term given to any of the three charged and owing to Johnson\u2019s lengthier criminal record."
+    },
+    {
+        "subject_text": "Kyrees Darius Johnson",
+        "relationship": "HAS_DATE",
+        "object_text": "nearly eight years",
+        "evidence": "U.S. District Judge Donovan Frank on Tuesday sentenced Kyrees Darius Johnson, 22, of Minneapolis, to nearly eight years in prison to wrap up the case \u2014 by far the longest prison term given to any of the three charged and owing to Johnson\u2019s lengthier criminal record."
+    },
+    {
+        "subject_text": "Kyrees Darius Johnson",
+        "relationship": "IS_CHARGED_WITH",
+        "object_text": "lengthier criminal record",
+        "evidence": "U.S. District Judge Donovan Frank on Tuesday sentenced Kyrees Darius Johnson, 22, of Minneapolis, to nearly eight years in prison to wrap up the case \u2014 by far the longest prison term given to any of the three charged and owing to Johnson\u2019s lengthier criminal record."
+    },
+    {
+        "subject_text": "the Central Minnesota Violent Offender Task Force",
+        "relationship": "MENTIONS",
+        "object_text": "Bureau of Alcohol, Tobacco, Firearms and Explosives",
+        "evidence": "According to court records, an investigator from the Central Minnesota Violent Offender Task Force notified the federal Bureau of Alcohol, Tobacco, Firearms and Explosives in March 2023 of a Snapchat group called \u201cBLICCS&amp;STICCS3\u2033 that was suspected of being used to help traffic machine guns, other firearms and illicit drugs in the Twin Cities and outside the metro."
+    },
+    {
+        "subject_text": "the Central Minnesota Violent Offender Task Force",
+        "relationship": "MENTIONS",
+        "object_text": "BLICCS&amp;STICCS3\u2033",
+        "evidence": "According to court records, an investigator from the Central Minnesota Violent Offender Task Force notified the federal Bureau of Alcohol, Tobacco, Firearms and Explosives in March 2023 of a Snapchat group called \u201cBLICCS&amp;STICCS3\u2033 that was suspected of being used to help traffic machine guns, other firearms and illicit drugs in the Twin Cities and outside the metro."
+    },
+    {
+        "subject_text": "Bureau of Alcohol, Tobacco, Firearms and Explosives",
+        "relationship": "MENTIONS",
+        "object_text": "BLICCS&amp;STICCS3\u2033",
+        "evidence": "According to court records, an investigator from the Central Minnesota Violent Offender Task Force notified the federal Bureau of Alcohol, Tobacco, Firearms and Explosives in March 2023 of a Snapchat group called \u201cBLICCS&amp;STICCS3\u2033 that was suspected of being used to help traffic machine guns, other firearms and illicit drugs in the Twin Cities and outside the metro."
+    },
+    {
+        "subject_text": "BLICCS&amp;STICCS3\u2033",
+        "relationship": "HAS_LOCATION",
+        "object_text": "Twin Cities",
+        "evidence": "According to court records, an investigator from the Central Minnesota Violent Offender Task Force notified the federal Bureau of Alcohol, Tobacco, Firearms and Explosives in March 2023 of a Snapchat group called \u201cBLICCS&amp;STICCS3\u2033 that was suspected of being used to help traffic machine guns, other firearms and illicit drugs in the Twin Cities and outside the metro."
+    },
+    {
+        "subject_text": "BLICCS&amp;STICCS3\u2033",
+        "relationship": "HAS_LOCATION",
+        "object_text": "metro",
+        "evidence": "According to court records, an investigator from the Central Minnesota Violent Offender Task Force notified the federal Bureau of Alcohol, Tobacco, Firearms and Explosives in March 2023 of a Snapchat group called \u201cBLICCS&amp;STICCS3\u2033 that was suspected of being used to help traffic machine guns, other firearms and illicit drugs in the Twin Cities and outside the metro."
+    },
+    {
+        "subject_text": "Undercover officers",
+        "relationship": "HAS_PARTICIPANT",
+        "object_text": "controlled buys",
+        "evidence": "Undercover officers then carried out about six controlled buys with various members of the group between March and June 2023."
+    },
+    {
+        "subject_text": "controlled buys",
+        "relationship": "HAS_DATE",
+        "object_text": "between March and June 2023",
+        "evidence": "Undercover officers then carried out about six controlled buys with various members of the group between March and June 2023."
+    },
+    {
+        "subject_text": "deals",
+        "relationship": "HAS_PARTICIPANT",
+        "object_text": "conversion devices",
+        "evidence": "These deals yielded eight conversion devices, a \u201cghost gun\u201d and one Glock already equipped with a switch."
+    },
+    {
+        "subject_text": "deals",
+        "relationship": "HAS_PARTICIPANT",
+        "object_text": "ghost gun",
+        "evidence": "These deals yielded eight conversion devices, a \u201cghost gun\u201d and one Glock already equipped with a switch."
+    },
+    {
+        "subject_text": "deals",
+        "relationship": "HAS_PARTICIPANT",
+        "object_text": "Glock",
+        "evidence": "These deals yielded eight conversion devices, a \u201cghost gun\u201d and one Glock already equipped with a switch."
+    },
+    {
+        "subject_text": "The three were",
+        "relationship": "IS_CHARGED_WITH",
+        "object_text": "unlawful possession of machine guns",
+        "evidence": "The three were first charged in September 2023 and each pleaded guilty to one count of unlawful possession of machine guns."
+    },
+    {
+        "subject_text": "Frank",
+        "relationship": "HAS_PARTICIPANT",
+        "object_text": "week and imposed",
+        "evidence": "Frank sentenced Wesley to 14 months in prison last week and imposed a two-year sentence on Drayton in April."
+    },
+    {
+        "subject_text": "Snapchat-based gun ring",
+        "relationship": "HAS_LOCATION",
+        "object_text": "Twin Cities",
+        "evidence": "A lengthy undercover federal investigation into a Snapchat-based gun ring selling illegal \u201cswitches\u201d and ghost guns around the Twin Cities metro concluded this week with the third and final sentence from a trio of young men arrested last year."
+    },
+    {
+        "subject_text": "All three men",
+        "relationship": "IS_PAROLE_ELIGIBLE",
+        "object_text": "three years",
+        "evidence": "All three men will also be under supervised release for three years upon leaving prison."
+    },
+    {
+        "subject_text": "Wesley",
+        "relationship": "IS_ACCUSED_OF",
+        "object_text": "to buy a",
+        "evidence": "During one of the deals, Wesley arranged for undercover officers to meet Drayton to buy a 3D-printed drop-in machinegun conversion device for an AR-style rifle for $550."
+    },
+    {
+        "subject_text": "Wesley",
+        "relationship": "HAS_PARTICIPANT",
+        "object_text": "Drayton",
+        "evidence": "During one of the deals, Wesley arranged for undercover officers to meet Drayton to buy a 3D-printed drop-in machinegun conversion device for an AR-style rifle for $550."
+    },
+    {
+        "subject_text": "Wesley",
+        "relationship": "IS_CHARGED_WITH",
+        "object_text": "possession of a ghost gun and drugs",
+        "evidence": "Wesley had no prior convictions but did have two pending felony cases involving his possession of a ghost gun and drugs."
+    },
+    {
+        "subject_text": "Drayton",
+        "relationship": "HAS_DATE",
+        "object_text": "2021",
+        "evidence": "Drayton had been convicted of two gross misdemeanors: property damage in 2021 after pursuing a victim in his vehicle and ramming it twice."
+    },
+    {
+        "subject_text": "Drayton",
+        "relationship": "HAS_DATE",
+        "object_text": "2022",
+        "evidence": "Drayton had been convicted of two gross misdemeanors: property damage in 2021 after pursuing a victim in his vehicle and ramming it twice and in 2022 for possessing a loaded gun without a permit."
+    },
+    {
+        "subject_text": "Drayton",
+        "relationship": "IS_ACCUSED_OF",
+        "object_text": "to buy a",
+        "evidence": "During one of the deals, Wesley arranged for undercover officers to meet Drayton to buy a 3D-printed drop-in machinegun conversion device for an AR-style rifle for $550."
+    },
+    {
+        "subject_text": "Drayton",
+        "relationship": "IS_CHARGED_WITH",
+        "object_text": "property damage",
+        "evidence": "Drayton had been convicted of two gross misdemeanors: property damage in 2021 after pursuing a victim in his vehicle and ramming it twice."
+    },
+    {
+        "subject_text": "Drayton",
+        "relationship": "IS_CHARGED_WITH",
+        "object_text": "possessing a loaded gun without a permit",
+        "evidence": "Drayton had been convicted of two gross misdemeanors: property damage in 2021 after pursuing a victim in his vehicle and ramming it twice and in 2022 for possessing a loaded gun without a permit."
+    },
+    {
+        "subject_text": "Drayton",
+        "relationship": "MENTIONED_IN",
+        "object_text": "video on his phone",
+        "evidence": "Drayton showed the undercover officers a video on his phone of himself shooting a gun with the drop-in device inserted."
+    },
+    {
+        "subject_text": "Johnson",
+        "relationship": "HAS_DATE",
+        "object_text": "August 2023",
+        "evidence": "Johnson, who was sentenced this week, now needs a wheelchair since being shot 14 times during what prosecutors alleged to be an attempted carjacking in August 2023."
+    },
+    {
+        "subject_text": "Johnson",
+        "relationship": "IS_ACCUSED_OF",
+        "object_text": "attempted carjacking",
+        "evidence": "Johnson, who was sentenced this week, now needs a wheelchair since being shot 14 times during what prosecutors alleged to be an attempted carjacking in August 2023."
+    },
+    {
+        "subject_text": "Johnson",
+        "relationship": "IS_ACCUSED_OF",
+        "object_text": "assault",
+        "evidence": "Turner said Johnson first procured a gun after returning home from a prior prison stint for assault and amid exposure to \u201csketchy strangers\u201d in his girlfriend\u2019s life and tumult surrounding his family."
+    },
+    {
+        "subject_text": "Johnson",
+        "relationship": "IS_ACCUSED_OF",
+        "object_text": "felony drug convictions",
+        "evidence": "Johnson\u2019s criminal history includes two felony drug convictions, a gross misdemeanor for carrying a pistol without a permit after brandishing a firearm during a public altercation, second-degree assault for chasing down his ex-girlfriend\u2019s car and ramming it with his own, and fleeing a police officer."
+    },
+    {
+        "subject_text": "Johnson",
+        "relationship": "IS_ACCUSED_OF",
+        "object_text": "carrying a pistol without a permit",
+        "evidence": "Johnson\u2019s criminal history includes two felony drug convictions, a gross misdemeanor for carrying a pistol without a permit after brandishing a firearm during a public altercation, second-degree assault for chasing down his ex-girlfriend\u2019s car and ramming it with his own, and fleeing a police officer."
+    },
+    {
+        "subject_text": "Johnson",
+        "relationship": "IS_ACCUSED_OF",
+        "object_text": "second-degree assault",
+        "evidence": "Johnson\u2019s criminal history includes two felony drug convictions, a gross misdemeanor for carrying a pistol without a permit after brandishing a firearm during a public altercation, second-degree assault for chasing down his ex-girlfriend\u2019s car and ramming it with his own, and fleeing a police officer."
+    },
+    {
+        "subject_text": "Johnson",
+        "relationship": "IS_ACCUSED_OF",
+        "object_text": "fleeing a police officer",
+        "evidence": "Johnson\u2019s criminal history includes two felony drug convictions, a gross misdemeanor for carrying a pistol without a permit after brandishing a firearm during a public altercation, second-degree assault for chasing down his ex-girlfriend\u2019s car and ramming it with his own, and fleeing a police officer."
+    },
+    {
+        "subject_text": "Johnson",
+        "relationship": "IS_ACCUSED_OF",
+        "object_text": "firing a gun into the air after street racing",
+        "evidence": "Before the federal charges, Johnson also had pending felony cases including allegedly firing a gun into the air after street racing and one for aggravated robbery and carjacking related to his August 2023 shooting."
+    },
+    {
+        "subject_text": "Johnson",
+        "relationship": "IS_ACCUSED_OF",
+        "object_text": "aggravated robbery and carjacking",
+        "evidence": "Before the federal charges, Johnson also had pending felony cases including allegedly firing a gun into the air after street racing and one for aggravated robbery and carjacking related to his August 2023 shooting."
+    },
+    {
+        "subject_text": "Johnson",
+        "relationship": "IS_ACCUSED_OF",
+        "object_text": "by selling guns",
+        "evidence": "\u201cJohnson was a trafficker \u2014 he chose to support himself by selling guns and drugs \u2014 plain and simple,\u201d Shnider wrote."
+    },
+    {
+        "subject_text": "Johnson",
+        "relationship": "WORKS_FOR",
+        "object_text": "Catherine Turner",
+        "evidence": "Johnson\u2019s attorney, Catherine Turner, described the altercation as a violent dispute between Johnson and another man linked to Johnson\u2019s occasional girlfriend."
+    },
+    {
+        "subject_text": "Turner",
+        "relationship": "MENTIONS",
+        "object_text": "Johnson",
+        "evidence": "Turner said Johnson first procured a gun after returning home from a prior prison stint for assault and amid exposure to \u201csketchy strangers\u201d in his girlfriend\u2019s life and tumult surrounding his family."
+    },
+    {
+        "subject_text": "She added that",
+        "relationship": "MENTIONS",
+        "object_text": "gun ownership",
+        "evidence": "She added that his gun ownership introduced him to enthusiasts \u201cwith whom he went shooting and started trading and selling, providing him income.\u201d"
+    },
+    {
+        "subject_text": "She added that",
+        "relationship": "MENTIONS",
+        "object_text": "enthusiasts",
+        "evidence": "She added that his gun ownership introduced him to enthusiasts \u201cwith whom he went shooting and started trading and selling, providing him income.\u201d"
+    },
+    {
+        "subject_text": "But, she said",
+        "relationship": "MENTIONS",
+        "object_text": "street racing",
+        "evidence": "But, she said, he made most of his money from street racing and modifying cars."
+    },
+    {
+        "subject_text": "But, she said",
+        "relationship": "MENTIONS",
+        "object_text": "modifying cars",
+        "evidence": "But, she said, he made most of his money from street racing and modifying cars."
+    },
+    {
+        "subject_text": "Ruth Shnider",
+        "relationship": "MENTIONS",
+        "object_text": "Frank",
+        "evidence": "Assistant U.S. Attorney Ruth Shnider countered in her own arguments to Frank that Johnson\u2019s Snapchat posts were \u201cnot the actions of a young man merely curious about guns or concerned for his personal safety.\u201d"
+    },
+    {
+        "subject_text": "Ruth Shnider",
+        "relationship": "MENTIONS",
+        "object_text": "Johnson",
+        "evidence": "Assistant U.S. Attorney Ruth Shnider countered in her own arguments to Frank that Johnson\u2019s Snapchat posts were \u201cnot the actions of a young man merely curious about guns or concerned for his personal safety.\u201d"
+    },
+    {
+        "subject_text": "Ruth Shnider",
+        "relationship": "WORKS_FOR",
+        "object_text": "U.S.",
+        "evidence": "Assistant U.S. Attorney Ruth Shnider countered in her own arguments to Frank that Johnson\u2019s Snapchat posts were \u201cnot the actions of a young man merely curious about guns or concerned for his personal safety.\u201d"
+    },
+    {
+        "subject_text": "Subject in IS_ACCUSED_OF relationship",
+        "relationship": "IS_ACCUSED_OF",
+        "object_text": "market and sell",
+        "evidence": "\u201cHe knew that switches were a hot commodity, and he knew how to market and sell them throughout the state at the highest profit to himself.\u201d"
+    },
+    {
+        "subject_text": "Shnider",
+        "relationship": "MENTIONS",
+        "object_text": "Johnson",
+        "evidence": "\u201cJohnson was a trafficker \u2014 he chose to support himself by selling guns and drugs \u2014 plain and simple,\u201d Shnider wrote."
+    },
+    {
+        "subject_text": "Snapchat-based gun ring",
+        "relationship": "HAS_LOCATION",
+        "object_text": "Twin Cities",
+        "evidence": "A lengthy undercover federal investigation into a Snapchat-based gun ring selling illegal \u201cswitches\u201d and ghost guns around the Twin Cities metro concluded this week with the third and final sentence from a trio of young men arrested last year."
+    },
+    {
+        "subject_text": "undercover federal investigation",
+        "relationship": "HAS_DATE",
+        "object_text": "this week",
+        "evidence": "A lengthy undercover federal investigation into a Snapchat-based gun ring selling illegal \u201cswitches\u201d and ghost guns around the Twin Cities metro concluded this week with the third and final sentence from a trio of young men arrested last year."
+    },
+    {
+        "subject_text": "trio of young men",
+        "relationship": "HAS_DATE",
+        "object_text": "last year",
+        "evidence": "A lengthy undercover federal investigation into a Snapchat-based gun ring selling illegal \u201cswitches\u201d and ghost guns around the Twin Cities metro concluded this week with the third and final sentence from a trio of young men arrested last year."
+    },
+    {
+        "subject_text": "trio of young men",
+        "relationship": "IS_ACCUSED_OF",
+        "object_text": "selling illegal \u201cswitches\u201d and ghost guns",
+        "evidence": "A lengthy undercover federal investigation into a Snapchat-based gun ring selling illegal \u201cswitches\u201d and ghost guns around the Twin Cities metro concluded this week with the third and final sentence from a trio of young men arrested last year."
+    },
+    {
+        "subject_text": "Donovan Frank",
+        "relationship": "HAS_PARTICIPANT",
+        "object_text": "Kyrees Darius Johnson",
+        "evidence": "U.S. District Judge Donovan Frank on Tuesday sentenced Kyrees Darius Johnson, 22, of Minneapolis, to nearly eight years in prison to wrap up the case \u2014 by far the longest prison term given to any of the three charged and owing to Johnson\u2019s lengthier criminal record."
+    },
+    {
+        "subject_text": "Kyrees Darius Johnson",
+        "relationship": "HAS_LOCATION",
+        "object_text": "Minneapolis",
+        "evidence": "U.S. District Judge Donovan Frank on Tuesday sentenced Kyrees Darius Johnson, 22, of Minneapolis, to nearly eight years in prison to wrap up the case \u2014 by far the longest prison term given to any of the three charged and owing to Johnson\u2019s lengthier criminal record."
+    },
+    {
+        "subject_text": "Kyrees Darius Johnson",
+        "relationship": "HAS_DATE",
+        "object_text": "nearly eight years",
+        "evidence": "U.S. District Judge Donovan Frank on Tuesday sentenced Kyrees Darius Johnson, 22, of Minneapolis, to nearly eight years in prison to wrap up the case \u2014 by far the longest prison term given to any of the three charged and owing to Johnson\u2019s lengthier criminal record."
+    },
+    {
+        "subject_text": "Kyrees Darius Johnson",
+        "relationship": "IS_CHARGED_WITH",
+        "object_text": "lengthier criminal record",
+        "evidence": "U.S. District Judge Donovan Frank on Tuesday sentenced Kyrees Darius Johnson, 22, of Minneapolis, to nearly eight years in prison to wrap up the case \u2014 by far the longest prison term given to any of the three charged and owing to Johnson\u2019s lengthier criminal record."
+    },
+    {
+        "subject_text": "the Central Minnesota Violent Offender Task Force",
+        "relationship": "MENTIONS",
+        "object_text": "Bureau of Alcohol, Tobacco, Firearms and Explosives",
+        "evidence": "According to court records, an investigator from the Central Minnesota Violent Offender Task Force notified the federal Bureau of Alcohol, Tobacco, Firearms and Explosives in March 2023 of a Snapchat group called \u201cBLICCS&amp;STICCS3\u2033 that was suspected of being used to help traffic machine guns, other firearms and illicit drugs in the Twin Cities and outside the metro."
+    },
+    {
+        "subject_text": "the Central Minnesota Violent Offender Task Force",
+        "relationship": "MENTIONS",
+        "object_text": "BLICCS&amp;STICCS3\u2033",
+        "evidence": "According to court records, an investigator from the Central Minnesota Violent Offender Task Force notified the federal Bureau of Alcohol, Tobacco, Firearms and Explosives in March 2023 of a Snapchat group called \u201cBLICCS&amp;STICCS3\u2033 that was suspected of being used to help traffic machine guns, other firearms and illicit drugs in the Twin Cities and outside the metro."
+    },
+    {
+        "subject_text": "Bureau of Alcohol, Tobacco, Firearms and Explosives",
+        "relationship": "MENTIONS",
+        "object_text": "BLICCS&amp;STICCS3\u2033",
+        "evidence": "According to court records, an investigator from the Central Minnesota Violent Offender Task Force notified the federal Bureau of Alcohol, Tobacco, Firearms and Explosives in March 2023 of a Snapchat group called \u201cBLICCS&amp;STICCS3\u2033 that was suspected of being used to help traffic machine guns, other firearms and illicit drugs in the Twin Cities and outside the metro."
+    },
+    {
+        "subject_text": "BLICCS&amp;STICCS3\u2033",
+        "relationship": "HAS_LOCATION",
+        "object_text": "Twin Cities",
+        "evidence": "According to court records, an investigator from the Central Minnesota Violent Offender Task Force notified the federal Bureau of Alcohol, Tobacco, Firearms and Explosives in March 2023 of a Snapchat group called \u201cBLICCS&amp;STICCS3\u2033 that was suspected of being used to help traffic machine guns, other firearms and illicit drugs in the Twin Cities and outside the metro."
+    },
+    {
+        "subject_text": "BLICCS&amp;STICCS3\u2033",
+        "relationship": "HAS_LOCATION",
+        "object_text": "metro",
+        "evidence": "According to court records, an investigator from the Central Minnesota Violent Offender Task Force notified the federal Bureau of Alcohol, Tobacco, Firearms and Explosives in March 2023 of a Snapchat group called \u201cBLICCS&amp;STICCS3\u2033 that was suspected of being used to help traffic machine guns, other firearms and illicit drugs in the Twin Cities and outside the metro."
+    },
+    {
+        "subject_text": "Undercover officers",
+        "relationship": "HAS_PARTICIPANT",
+        "object_text": "controlled buys",
+        "evidence": "Undercover officers then carried out about six controlled buys with various members of the group between March and June 2023."
+    },
+    {
+        "subject_text": "controlled buys",
+        "relationship": "HAS_DATE",
+        "object_text": "between March and June 2023",
+        "evidence": "Undercover officers then carried out about six controlled buys with various members of the group between March and June 2023."
+    },
+    {
+        "subject_text": "deals",
+        "relationship": "HAS_PARTICIPANT",
+        "object_text": "conversion devices",
+        "evidence": "These deals yielded eight conversion devices, a \u201cghost gun\u201d and one Glock already equipped with a switch."
+    },
+    {
+        "subject_text": "deals",
+        "relationship": "HAS_PARTICIPANT",
+        "object_text": "ghost gun",
+        "evidence": "These deals yielded eight conversion devices, a \u201cghost gun\u201d and one Glock already equipped with a switch."
+    },
+    {
+        "subject_text": "deals",
+        "relationship": "HAS_PARTICIPANT",
+        "object_text": "Glock",
+        "evidence": "These deals yielded eight conversion devices, a \u201cghost gun\u201d and one Glock already equipped with a switch."
+    },
+    {
+        "subject_text": "Wesley",
+        "relationship": "HAS_PARTICIPANT",
+        "object_text": "Drayton",
+        "evidence": "During one of the deals, Wesley arranged for undercover officers to meet Drayton to buy a 3D-printed drop-in machinegun conversion device for an AR-style rifle for $550."
+    },
+    {
+        "subject_text": "Wesley",
+        "relationship": "IS_CHARGED_WITH",
+        "object_text": "possession of a ghost gun and drugs",
+        "evidence": "Wesley had no prior convictions but did have two pending felony cases involving his possession of a ghost gun and drugs."
+    },
+    {
+        "subject_text": "Drayton",
+        "relationship": "HAS_DATE",
+        "object_text": "2021",
+        "evidence": "Drayton had been convicted of two gross misdemeanors: property damage in 2021 after pursuing a victim in his vehicle and ramming it twice."
+    },
+    {
+        "subject_text": "Drayton",
+        "relationship": "HAS_DATE",
+        "object_text": "2022",
+        "evidence": "Drayton had been convicted of two gross misdemeanors: property damage in 2021 after pursuing a victim in his vehicle and ramming it twice and in 2022 for possessing a loaded gun without a permit."
+    },
+    {
+        "subject_text": "Drayton",
+        "relationship": "IS_CHARGED_WITH",
+        "object_text": "property damage",
+        "evidence": "Drayton had been convicted of two gross misdemeanors: property damage in 2021 after pursuing a victim in his vehicle and ramming it twice."
+    },
+    {
+        "subject_text": "Drayton",
+        "relationship": "IS_CHARGED_WITH",
+        "object_text": "possessing a loaded gun without a permit",
+        "evidence": "Drayton had been convicted of two gross misdemeanors: property damage in 2021 after pursuing a victim in his vehicle and ramming it twice and in 2022 for possessing a loaded gun without a permit."
+    },
+    {
+        "subject_text": "Drayton",
+        "relationship": "MENTIONED_IN",
+        "object_text": "video on his phone",
+        "evidence": "Drayton showed the undercover officers a video on his phone of himself shooting a gun with the drop-in device inserted."
+    },
+    {
+        "subject_text": "Johnson",
+        "relationship": "HAS_DATE",
+        "object_text": "August 2023",
+        "evidence": "Johnson, who was sentenced this week, now needs a wheelchair since being shot 14 times during what prosecutors alleged to be an attempted carjacking in August 2023."
+    },
+    {
+        "subject_text": "Johnson",
+        "relationship": "IS_ACCUSED_OF",
+        "object_text": "attempted carjacking",
+        "evidence": "Johnson, who was sentenced this week, now needs a wheelchair since being shot 14 times during what prosecutors alleged to be an attempted carjacking in August 2023."
+    },
+    {
+        "subject_text": "Johnson",
+        "relationship": "IS_ACCUSED_OF",
+        "object_text": "assault",
+        "evidence": "Turner said Johnson first procured a gun after returning home from a prior prison stint for assault and amid exposure to \u201csketchy strangers\u201d in his girlfriend\u2019s life and tumult surrounding his family."
+    },
+    {
+        "subject_text": "Johnson",
+        "relationship": "IS_ACCUSED_OF",
+        "object_text": "felony drug convictions",
+        "evidence": "Johnson\u2019s criminal history includes two felony drug convictions, a gross misdemeanor for carrying a pistol without a permit after brandishing a firearm during a public altercation, second-degree assault for chasing down his ex-girlfriend\u2019s car and ramming it with his own, and fleeing a police officer."
+    },
+    {
+        "subject_text": "Johnson",
+        "relationship": "IS_ACCUSED_OF",
+        "object_text": "carrying a pistol without a permit",
+        "evidence": "Johnson\u2019s criminal history includes two felony drug convictions, a gross misdemeanor for carrying a pistol without a permit after brandishing a firearm during a public altercation, second-degree assault for chasing down his ex-girlfriend\u2019s car and ramming it with his own, and fleeing a police officer."
+    },
+    {
+        "subject_text": "Johnson",
+        "relationship": "IS_ACCUSED_OF",
+        "object_text": "second-degree assault",
+        "evidence": "Johnson\u2019s criminal history includes two felony drug convictions, a gross misdemeanor for carrying a pistol without a permit after brandishing a firearm during a public altercation, second-degree assault for chasing down his ex-girlfriend\u2019s car and ramming it with his own, and fleeing a police officer."
+    },
+    {
+        "subject_text": "Johnson",
+        "relationship": "IS_ACCUSED_OF",
+        "object_text": "fleeing a police officer",
+        "evidence": "Johnson\u2019s criminal history includes two felony drug convictions, a gross misdemeanor for carrying a pistol without a permit after brandishing a firearm during a public altercation, second-degree assault for chasing down his ex-girlfriend\u2019s car and ramming it with his own, and fleeing a police officer."
+    },
+    {
+        "subject_text": "Johnson",
+        "relationship": "IS_ACCUSED_OF",
+        "object_text": "firing a gun into the air after street racing",
+        "evidence": "Before the federal charges, Johnson also had pending felony cases including allegedly firing a gun into the air after street racing and one for aggravated robbery and carjacking related to his August 2023 shooting."
+    },
+    {
+        "subject_text": "Johnson",
+        "relationship": "IS_ACCUSED_OF",
+        "object_text": "aggravated robbery and carjacking",
+        "evidence": "Before the federal charges, Johnson also had pending felony cases including allegedly firing a gun into the air after street racing and one for aggravated robbery and carjacking related to his August 2023 shooting."
+    },
+    {
+        "subject_text": "Johnson",
+        "relationship": "WORKS_FOR",
+        "object_text": "Catherine Turner",
+        "evidence": "Johnson\u2019s attorney, Catherine Turner, described the altercation as a violent dispute between Johnson and another man linked to Johnson\u2019s occasional girlfriend."
+    },
+    {
+        "subject_text": "Turner",
+        "relationship": "MENTIONS",
+        "object_text": "Johnson",
+        "evidence": "Turner said Johnson first procured a gun after returning home from a prior prison stint for assault and amid exposure to \u201csketchy strangers\u201d in his girlfriend\u2019s life and tumult surrounding his family."
+    },
+    {
+        "subject_text": "Ruth Shnider",
+        "relationship": "MENTIONS",
+        "object_text": "Frank",
+        "evidence": "Assistant U.S. Attorney Ruth Shnider countered in her own arguments to Frank that Johnson\u2019s Snapchat posts were \u201cnot the actions of a young man merely curious about guns or concerned for his personal safety.\u201d"
+    },
+    {
+        "subject_text": "Ruth Shnider",
+        "relationship": "MENTIONS",
+        "object_text": "Johnson",
+        "evidence": "Assistant U.S. Attorney Ruth Shnider countered in her own arguments to Frank that Johnson\u2019s Snapchat posts were \u201cnot the actions of a young man merely curious about guns or concerned for his personal safety.\u201d"
+    },
+    {
+        "subject_text": "Ruth Shnider",
+        "relationship": "WORKS_FOR",
+        "object_text": "U.S.",
+        "evidence": "Assistant U.S. Attorney Ruth Shnider countered in her own arguments to Frank that Johnson\u2019s Snapchat posts were \u201cnot the actions of a young man merely curious about guns or concerned for his personal safety.\u201d"
+    },
+    {
+        "subject_text": "Shnider",
+        "relationship": "MENTIONS",
+        "object_text": "Johnson",
+        "evidence": "\u201cJohnson was a trafficker \u2014 he chose to support himself by selling guns and drugs \u2014 plain and simple,\u201d Shnider wrote."
+    },
+    {
+        "subject_text": "Snapchat-based gun ring",
+        "relationship": "HAS_LOCATION",
+        "object_text": "Twin Cities",
+        "evidence": "A lengthy undercover federal investigation into a Snapchat-based gun ring selling illegal \u201cswitches\u201d and ghost guns around the Twin Cities metro concluded this week with the third and final sentence from a trio of young men arrested last year."
+    },
+    {
+        "subject_text": "undercover federal investigation",
+        "relationship": "HAS_DATE",
+        "object_text": "this week",
+        "evidence": "A lengthy undercover federal investigation into a Snapchat-based gun ring selling illegal \u201cswitches\u201d and ghost guns around the Twin Cities metro concluded this week with the third and final sentence from a trio of young men arrested last year."
+    },
+    {
+        "subject_text": "trio of young men",
+        "relationship": "HAS_DATE",
+        "object_text": "last year",
+        "evidence": "A lengthy undercover federal investigation into a Snapchat-based gun ring selling illegal \u201cswitches\u201d and ghost guns around the Twin Cities metro concluded this week with the third and final sentence from a trio of young men arrested last year."
+    },
+    {
+        "subject_text": "trio of young men",
+        "relationship": "IS_ACCUSED_OF",
+        "object_text": "selling illegal \u201cswitches\u201d and ghost guns",
+        "evidence": "A lengthy undercover federal investigation into a Snapchat-based gun ring selling illegal \u201cswitches\u201d and ghost guns around the Twin Cities metro concluded this week with the third and final sentence from a trio of young men arrested last year."
+    },
+    {
+        "subject_text": "Donovan Frank",
+        "relationship": "HAS_PARTICIPANT",
+        "object_text": "Kyrees Darius Johnson",
+        "evidence": "U.S. District Judge Donovan Frank on Tuesday sentenced Kyrees Darius Johnson, 22, of Minneapolis, to nearly eight years in prison to wrap up the case \u2014 by far the longest prison term given to any of the three charged and owing to Johnson\u2019s lengthier criminal record."
+    },
+    {
+        "subject_text": "Kyrees Darius Johnson",
+        "relationship": "HAS_LOCATION",
+        "object_text": "Minneapolis",
+        "evidence": "U.S. District Judge Donovan Frank on Tuesday sentenced Kyrees Darius Johnson, 22, of Minneapolis, to nearly eight years in prison to wrap up the case \u2014 by far the longest prison term given to any of the three charged and owing to Johnson\u2019s lengthier criminal record."
+    },
+    {
+        "subject_text": "Kyrees Darius Johnson",
+        "relationship": "HAS_DATE",
+        "object_text": "nearly eight years",
+        "evidence": "U.S. District Judge Donovan Frank on Tuesday sentenced Kyrees Darius Johnson, 22, of Minneapolis, to nearly eight years in prison to wrap up the case \u2014 by far the longest prison term given to any of the three charged and owing to Johnson\u2019s lengthier criminal record."
+    },
+    {
+        "subject_text": "Kyrees Darius Johnson",
+        "relationship": "IS_CHARGED_WITH",
+        "object_text": "lengthier criminal record",
+        "evidence": "U.S. District Judge Donovan Frank on Tuesday sentenced Kyrees Darius Johnson, 22, of Minneapolis, to nearly eight years in prison to wrap up the case \u2014 by far the longest prison term given to any of the three charged and owing to Johnson\u2019s lengthier criminal record."
+    },
+    {
+        "subject_text": "the Central Minnesota Violent Offender Task Force",
+        "relationship": "MENTIONS",
+        "object_text": "Bureau of Alcohol, Tobacco, Firearms and Explosives",
+        "evidence": "According to court records, an investigator from the Central Minnesota Violent Offender Task Force notified the federal Bureau of Alcohol, Tobacco, Firearms and Explosives in March 2023 of a Snapchat group called \u201cBLICCS&amp;STICCS3\u2033 that was suspected of being used to help traffic machine guns, other firearms and illicit drugs in the Twin Cities and outside the metro."
+    },
+    {
+        "subject_text": "the Central Minnesota Violent Offender Task Force",
+        "relationship": "MENTIONS",
+        "object_text": "BLICCS&amp;STICCS3\u2033",
+        "evidence": "According to court records, an investigator from the Central Minnesota Violent Offender Task Force notified the federal Bureau of Alcohol, Tobacco, Firearms and Explosives in March 2023 of a Snapchat group called \u201cBLICCS&amp;STICCS3\u2033 that was suspected of being used to help traffic machine guns, other firearms and illicit drugs in the Twin Cities and outside the metro."
+    },
+    {
+        "subject_text": "Bureau of Alcohol, Tobacco, Firearms and Explosives",
+        "relationship": "MENTIONS",
+        "object_text": "BLICCS&amp;STICCS3\u2033",
+        "evidence": "According to court records, an investigator from the Central Minnesota Violent Offender Task Force notified the federal Bureau of Alcohol, Tobacco, Firearms and Explosives in March 2023 of a Snapchat group called \u201cBLICCS&amp;STICCS3\u2033 that was suspected of being used to help traffic machine guns, other firearms and illicit drugs in the Twin Cities and outside the metro."
+    },
+    {
+        "subject_text": "BLICCS&amp;STICCS3\u2033",
+        "relationship": "HAS_LOCATION",
+        "object_text": "Twin Cities",
+        "evidence": "According to court records, an investigator from the Central Minnesota Violent Offender Task Force notified the federal Bureau of Alcohol, Tobacco, Firearms and Explosives in March 2023 of a Snapchat group called \u201cBLICCS&amp;STICCS3\u2033 that was suspected of being used to help traffic machine guns, other firearms and illicit drugs in the Twin Cities and outside the metro."
+    },
+    {
+        "subject_text": "BLICCS&amp;STICCS3\u2033",
+        "relationship": "HAS_LOCATION",
+        "object_text": "metro",
+        "evidence": "According to court records, an investigator from the Central Minnesota Violent Offender Task Force notified the federal Bureau of Alcohol, Tobacco, Firearms and Explosives in March 2023 of a Snapchat group called \u201cBLICCS&amp;STICCS3\u2033 that was suspected of being used to help traffic machine guns, other firearms and illicit drugs in the Twin Cities and outside the metro."
+    },
+    {
+        "subject_text": "Undercover officers",
+        "relationship": "HAS_PARTICIPANT",
+        "object_text": "controlled buys",
+        "evidence": "Undercover officers then carried out about six controlled buys with various members of the group between March and June 2023."
+    },
+    {
+        "subject_text": "controlled buys",
+        "relationship": "HAS_DATE",
+        "object_text": "between March and June 2023",
+        "evidence": "Undercover officers then carried out about six controlled buys with various members of the group between March and June 2023."
+    },
+    {
+        "subject_text": "deals",
+        "relationship": "HAS_PARTICIPANT",
+        "object_text": "conversion devices",
+        "evidence": "These deals yielded eight conversion devices, a \u201cghost gun\u201d and one Glock already equipped with a switch."
+    },
+    {
+        "subject_text": "deals",
+        "relationship": "HAS_PARTICIPANT",
+        "object_text": "ghost gun",
+        "evidence": "These deals yielded eight conversion devices, a \u201cghost gun\u201d and one Glock already equipped with a switch."
+    },
+    {
+        "subject_text": "deals",
+        "relationship": "HAS_PARTICIPANT",
+        "object_text": "Glock",
+        "evidence": "These deals yielded eight conversion devices, a \u201cghost gun\u201d and one Glock already equipped with a switch."
+    },
+    {
+        "subject_text": "Wesley",
+        "relationship": "HAS_PARTICIPANT",
+        "object_text": "Drayton",
+        "evidence": "During one of the deals, Wesley arranged for undercover officers to meet Drayton to buy a 3D-printed drop-in machinegun conversion device for an AR-style rifle for $550."
+    },
+    {
+        "subject_text": "Wesley",
+        "relationship": "IS_CHARGED_WITH",
+        "object_text": "possession of a ghost gun and drugs",
+        "evidence": "Wesley had no prior convictions but did have two pending felony cases involving his possession of a ghost gun and drugs."
+    },
+    {
+        "subject_text": "Drayton",
+        "relationship": "HAS_DATE",
+        "object_text": "2021",
+        "evidence": "Drayton had been convicted of two gross misdemeanors: property damage in 2021 after pursuing a victim in his vehicle and ramming it twice."
+    },
+    {
+        "subject_text": "Drayton",
+        "relationship": "HAS_DATE",
+        "object_text": "2022",
+        "evidence": "Drayton had been convicted of two gross misdemeanors: property damage in 2021 after pursuing a victim in his vehicle and ramming it twice and in 2022 for possessing a loaded gun without a permit."
+    },
+    {
+        "subject_text": "Drayton",
+        "relationship": "IS_CHARGED_WITH",
+        "object_text": "property damage",
+        "evidence": "Drayton had been convicted of two gross misdemeanors: property damage in 2021 after pursuing a victim in his vehicle and ramming it twice."
+    },
+    {
+        "subject_text": "Drayton",
+        "relationship": "IS_CHARGED_WITH",
+        "object_text": "possessing a loaded gun without a permit",
+        "evidence": "Drayton had been convicted of two gross misdemeanors: property damage in 2021 after pursuing a victim in his vehicle and ramming it twice and in 2022 for possessing a loaded gun without a permit."
+    },
+    {
+        "subject_text": "Drayton",
+        "relationship": "MENTIONED_IN",
+        "object_text": "video on his phone",
+        "evidence": "Drayton showed the undercover officers a video on his phone of himself shooting a gun with the drop-in device inserted."
+    },
+    {
+        "subject_text": "Johnson",
+        "relationship": "HAS_DATE",
+        "object_text": "August 2023",
+        "evidence": "Johnson, who was sentenced this week, now needs a wheelchair since being shot 14 times during what prosecutors alleged to be an attempted carjacking in August 2023."
+    },
+    {
+        "subject_text": "Johnson",
+        "relationship": "IS_ACCUSED_OF",
+        "object_text": "attempted carjacking",
+        "evidence": "Johnson, who was sentenced this week, now needs a wheelchair since being shot 14 times during what prosecutors alleged to be an attempted carjacking in August 2023."
+    },
+    {
+        "subject_text": "Johnson",
+        "relationship": "IS_ACCUSED_OF",
+        "object_text": "assault",
+        "evidence": "Turner said Johnson first procured a gun after returning home from a prior prison stint for assault and amid exposure to \u201csketchy strangers\u201d in his girlfriend\u2019s life and tumult surrounding his family."
+    },
+    {
+        "subject_text": "Johnson",
+        "relationship": "IS_ACCUSED_OF",
+        "object_text": "felony drug convictions",
+        "evidence": "Johnson\u2019s criminal history includes two felony drug convictions, a gross misdemeanor for carrying a pistol without a permit after brandishing a firearm during a public altercation, second-degree assault for chasing down his ex-girlfriend\u2019s car and ramming it with his own, and fleeing a police officer."
+    },
+    {
+        "subject_text": "Johnson",
+        "relationship": "IS_ACCUSED_OF",
+        "object_text": "carrying a pistol without a permit",
+        "evidence": "Johnson\u2019s criminal history includes two felony drug convictions, a gross misdemeanor for carrying a pistol without a permit after brandishing a firearm during a public altercation, second-degree assault for chasing down his ex-girlfriend\u2019s car and ramming it with his own, and fleeing a police officer."
+    },
+    {
+        "subject_text": "Johnson",
+        "relationship": "IS_ACCUSED_OF",
+        "object_text": "second-degree assault",
+        "evidence": "Johnson\u2019s criminal history includes two felony drug convictions, a gross misdemeanor for carrying a pistol without a permit after brandishing a firearm during a public altercation, second-degree assault for chasing down his ex-girlfriend\u2019s car and ramming it with his own, and fleeing a police officer."
+    },
+    {
+        "subject_text": "Johnson",
+        "relationship": "IS_ACCUSED_OF",
+        "object_text": "fleeing a police officer",
+        "evidence": "Johnson\u2019s criminal history includes two felony drug convictions, a gross misdemeanor for carrying a pistol without a permit after brandishing a firearm during a public altercation, second-degree assault for chasing down his ex-girlfriend\u2019s car and ramming it with his own, and fleeing a police officer."
+    },
+    {
+        "subject_text": "Johnson",
+        "relationship": "IS_ACCUSED_OF",
+        "object_text": "firing a gun into the air after street racing",
+        "evidence": "Before the federal charges, Johnson also had pending felony cases including allegedly firing a gun into the air after street racing and one for aggravated robbery and carjacking related to his August 2023 shooting."
+    },
+    {
+        "subject_text": "Johnson",
+        "relationship": "IS_ACCUSED_OF",
+        "object_text": "aggravated robbery and carjacking",
+        "evidence": "Before the federal charges, Johnson also had pending felony cases including allegedly firing a gun into the air after street racing and one for aggravated robbery and carjacking related to his August 2023 shooting."
+    },
+    {
+        "subject_text": "Johnson",
+        "relationship": "WORKS_FOR",
+        "object_text": "Catherine Turner",
+        "evidence": "Johnson\u2019s attorney, Catherine Turner, described the altercation as a violent dispute between Johnson and another man linked to Johnson\u2019s occasional girlfriend."
+    },
+    {
+        "subject_text": "Turner",
+        "relationship": "MENTIONS",
+        "object_text": "Johnson",
+        "evidence": "Turner said Johnson first procured a gun after returning home from a prior prison stint for assault and amid exposure to \u201csketchy strangers\u201d in his girlfriend\u2019s life and tumult surrounding his family."
+    },
+    {
+        "subject_text": "Ruth Shnider",
+        "relationship": "MENTIONS",
+        "object_text": "Frank",
+        "evidence": "Assistant U.S. Attorney Ruth Shnider countered in her own arguments to Frank that Johnson\u2019s Snapchat posts were \u201cnot the actions of a young man merely curious about guns or concerned for his personal safety.\u201d"
+    },
+    {
+        "subject_text": "Ruth Shnider",
+        "relationship": "MENTIONS",
+        "object_text": "Johnson",
+        "evidence": "Assistant U.S. Attorney Ruth Shnider countered in her own arguments to Frank that Johnson\u2019s Snapchat posts were \u201cnot the actions of a young man merely curious about guns or concerned for his personal safety.\u201d"
+    },
+    {
+        "subject_text": "Ruth Shnider",
+        "relationship": "WORKS_FOR",
+        "object_text": "U.S.",
+        "evidence": "Assistant U.S. Attorney Ruth Shnider countered in her own arguments to Frank that Johnson\u2019s Snapchat posts were \u201cnot the actions of a young man merely curious about guns or concerned for his personal safety.\u201d"
+    },
+    {
+        "subject_text": "Shnider",
+        "relationship": "MENTIONS",
+        "object_text": "Johnson",
+        "evidence": "\u201cJohnson was a trafficker \u2014 he chose to support himself by selling guns and drugs \u2014 plain and simple,\u201d Shnider wrote."
+    }
 ]
