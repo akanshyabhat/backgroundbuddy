@@ -6,7 +6,7 @@ CONFIGURATION FILE INCLUDING:
 '''
 
 # Entity types
-ENTITY_TYPES = ["EVENT", "FAC","GPE", "LANGUAGE", "LAW", "LOC", "NORP", "ORG", "PERSON", "PRODUCT"]
+ENTITY_TYPES = ["EVENT", "FAC", "GPE", "LANGUAGE", "LAW", "LOC", "NORP", "ORG", "PERSON", "PRODUCT"]
 
 # Relationship types and their properties
 RELATIONSHIP_TYPES = {
