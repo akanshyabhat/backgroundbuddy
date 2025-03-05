@@ -284,11 +284,6 @@ def process_article(article: Dict[str, Any], model_name: str) -> List[Dict[str, 
     # Consolidate entities with the KB (updates KB in place)
     updated_data = consolidate_entities_with_kb(final_data, KB)
 
-    # ✅ Print extracted entities - use to debug!
-    print("\n✅ Final Named Entities Stored in KB:")
-    for record in updated_data:
-        print(f"  - {record['canonical_name']} ({record['entity_label']}) -> {record['kb_id']}")
-
     # Group records by block_text for relationship extraction
     # (Assuming extract_relationships_block_by_block groups internally)
     relationships = extract_relationships_block_by_block(updated_data, model_name=model_name)
@@ -320,9 +315,9 @@ def parse_archive(archive_path: str) -> List[Dict[str, Any]]:
 
 if __name__ == "__main__":
     # parse the archive & optionally limit to a few articles for testing
-    sample_path = "BackgroundBuddy.json" 
+    sample_path = "filtered_articles.json" 
     articles = parse_archive(sample_path)
-    articles = articles[:2]  # limited to 2 articles for testing
+    articles = articles[21:22]  # limited to 2 articles for testing
 
     all_relationships = []
     model_name = "o3-mini" 
@@ -333,6 +328,12 @@ if __name__ == "__main__":
     for article in articles:
         print(f"[INFO] Processing article: {article['id']}")
         article_rels = process_article(article, model_name=model_name)
+        print("AFTER")
+        for entity_id, entity_data in KB.items():
+            print(f"ID: {entity_id}")
+            print(f"Canonical Name: {entity_data['canonical_name']}")
+            print(f"Aliases: {entity_data['aliases']}")
+            print("-" * 40)  # Separator for clarity
         all_relationships.extend(article_rels)
 
     # save the relationships to a JSONL file for verification in prodigy
