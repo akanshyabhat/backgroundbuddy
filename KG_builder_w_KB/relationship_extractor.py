@@ -11,7 +11,7 @@ from langchain_openai import ChatOpenAI
 from typing import Dict, Any, List
 
 # Restricting relationship types and their properties
-RELATIONSHIP_TYPES = {
+"""RELATIONSHIP_TYPES = {
     "WORKS_FOR": ["since"],
     "LOCATED_IN": ["region", "country"],
     "AFFILIATED_WITH": ["start_date", "end_date"],
@@ -31,14 +31,14 @@ RELATIONSHIP_TYPES = {
     "INVOLVED_IN": ["crime", "incident"], 
     "ASSOCIATED_WITH": ["individual", "case", "incident"],
     "INFORMED": ["individual", "organization"],
-}
-
-"""RELATIONSHIP_TYPES = {
-    "VETOED": ["date"], 
-    "PROPOSED": ["date"], 
-    "SUPPORTED": ["date"], 
-    "OPPOSED": ["date"]
 }"""
+
+RELATIONSHIP_TYPES = {
+    "VETOED": ["bill", "ordinance", "policy", "resolution"],  
+    "PROPOSED": ["bill", "policy", "initiative", "amendment"],  
+    "SUPPORTED": ["candidate", "policy", "bill", "resolution", "initiative"],  
+    "OPPOSED": ["candidate", "bill", "policy", "amendment", "initiative"]
+}
 
 def extract_relationships_for_block(block_text, block_entities, headline, date, model_name):
     """
@@ -55,7 +55,7 @@ def extract_relationships_for_block(block_text, block_entities, headline, date, 
     llm = ChatOpenAI(model_name=model_name, openai_api_key=os.getenv("OPENAI_API_KEY"))
 
     prompt = f"""
-    You are an expert in relationship extraction. Your task is to identify meaningful relationships only between the provided named entities listed below.
+    You are an expert in Minneapolis local political relationship extraction. Your task is to identify meaningful relationships about local politics in Minneapolis only between the provided named entities listed below.
     Given the following block of text, extract relationships only between the named entities provided.
     Both subject and object must be named entities (person, organization, location) from the provided list. Ignore non-entity terms (e.g., dates, numbers) unless tied to an action.
     Extract relationships that are meaningful and relevant to the context of the article.
@@ -131,36 +131,46 @@ def unify_mention_to_kb_id(
     """
     if not mention_text:
         return None
-
+    # print("mention_text", mention_text)
+    # print("mention_evidence", mention_evidence)
     best_kb_id = None
     best_score = 0.0
-
     for record in entity_records:
         # The text we got from the dataset
         ent_text = record["entity_text"]
         ent_evidence = record["evidence"]
+        # print("ent_text", ent_text)
+        # print("ent_evidence", ent_evidence)
+        # print("ent_kb_id", record["kb_id"])
 
         # 1) Compare mention_text to ent_text
         text_sim = sequence_similarity(mention_text, ent_text)
+        # print(mention_text, ent_text)
+        # print("text_sim", text_sim)
 
-        # 2) Compare mention_evidence to ent_evidence
+        """# 2) Compare mention_evidence to ent_evidence
         # (We can do partial match or ratio – up to you.)
         # E.g. see how much of mention_evidence is found in ent_evidence
         overlap_ratio = overlap_coefficient(mention_evidence, ent_evidence)
+        print("overlap_ratio", overlap_ratio)
 
         # Combine or weigh these
         # For example, we might do a simple average
-        combined_score = (text_sim + overlap_ratio) / 2.0
+        combined_score = (text_sim * 3 + overlap_ratio) / 4
+        print("combined_score", combined_score)"""
 
-        if combined_score > best_score:
-            best_score = combined_score
+        if text_sim > best_score:
+            best_score = text_sim
             best_kb_id = record["kb_id"]
 
     # If we consider ~0.5 or 0.6 a good overall threshold, tune as needed:
-    if best_score > 0.5:
+    # WILL NEED IF WE OBSERVE LLM HALLUCINATING
+    """if best_score >= 0.5:
         return best_kb_id
     else:
-        return None
+        print(best_score)
+        return None"""
+    return best_kb_id
 
 
 def sequence_similarity(a: str, b: str) -> float:
@@ -233,6 +243,7 @@ def extract_relationships_block_by_block(
 
             subject_kb_id = unify_mention_to_kb_id(sub_text, rel_evidence, entity_records)
             object_kb_id = unify_mention_to_kb_id(obj_text, rel_evidence, entity_records)
+            
 
             # Build final record
             rel_record = {

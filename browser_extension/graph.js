@@ -2,18 +2,27 @@
 async function fetchGraphData() {
   try {
     const response = await fetch("http://localhost:3001/api/graph");
+    if (!response.ok) {
+      throw new Error(`API responded with status: ${response.status}`);
+    }
     const data = await response.json();
-    console.log("Graph Data:", data);
+    console.log("Graph Data fetched successfully");
     return data;
   } catch (error) {
     console.error("Error fetching graph data:", error);
+    return null;
   }
 }
 
 // Export the function to fetch graph data
 export const getGraphData = async () => {
-  const graphData = await fetchGraphData();
-  return graphData;
+  try {
+    const graphData = await fetchGraphData();
+    return graphData || fakeGraph; // Fall back to fake data if API fails
+  } catch (error) {
+    console.error("Error in getGraphData:", error);
+    return fakeGraph;
+  }
 };
 
 // The goal is to replace this with the real graph shown in Neo4j

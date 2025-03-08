@@ -36,6 +36,7 @@ async function getGraphData() {
       RETURN source.name AS source, type(r) AS relationship, 
              target.name AS target, r.evidence AS evidence, 
              r.article_id AS articleID
+      LIMIT 100
     `);
 
     console.log(`Found ${result.records.length} relationships`);
