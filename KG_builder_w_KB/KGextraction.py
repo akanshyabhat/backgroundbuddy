@@ -22,10 +22,8 @@ from typing import Dict, Any, List, Optional, Set
 import spacy
 from spacy.tokens import Span
 from sentence_transformers import SentenceTransformer # for embedding entities (consolidation)
-import uuid # for unique ids in KB
 import numpy as np # for cosine similarity of embeddings
 from langchain_openai import ChatOpenAI
-import prodigy
 from collections import defaultdict
 from consolidate_entities import consolidate_entities_with_kb
 from relationship_extractor import extract_relationships_block_by_block
@@ -36,10 +34,7 @@ from bs4 import BeautifulSoup
 
 
 
-from prodigy.components.loaders import JSONL
-from entity_matcher import unify_mention_to_kb_id  # Import the function
 from relationship_validator import save_relationships_for_prodigy
-from neo4j_updater import Neo4jHandler, load_relationships_to_neo4j
 
 import os
 
@@ -55,18 +50,64 @@ user = os.getenv("NEO4J_USER")
 password = os.getenv("NEO4J_PASSWORD")
 
 openai_api_key = os.getenv("OPENAI_API_KEY")
+VALID_ENTITY_TYPES = ["PERSON", "ORG", "GPE", "LOC", "PRODUCT", "EVENT", "LAW", "NORP", "FAC"]
 
+
+def is_valid_entity(text: str) -> bool:
+    """Check if an entity text is valid"""
+    # Skip if text contains invalid characters or patterns
+    invalid_patterns = [
+        '/',  # URLs or file paths
+        '>',  # HTML tags
+        '<',  # HTML tags
+        'css_',  # CSS classes
+        'px',  # CSS units
+        '.com',  # URLs
+        'http',  # URLs
+        '"',  # Quotes from HTML
+        '-3rd-',  # Malformed text
+        '="',  # HTML attributes
+        '_',   # Underscores from markup
+        ']',  # Markdown/markup
+        '[',  # Markdown/markup
+    ]
+    
+    # Check for invalid patterns
+    if any(pattern in text for pattern in invalid_patterns):
+        return False
+        
+    # Check if it's mostly alphanumeric (allow spaces and some punctuation)
+    valid_chars = re.match(r'^[\w\s\'-,.]+$', text)
+    if not valid_chars:
+        return False
+        
+    # Ensure it's not just numbers or special characters
+    if re.match(r'^[\d\W]+$', text):
+        return False
+    
+    return True
 
 def clean_text(text: str) -> str:
-    """Clean text by removing HTML tags, CSS attributes, and extra whitespace"""
-    # Remove HTML tags and attributes
+    """Clean text by removing HTML tags, URLs, and other markup"""
+    # Remove HTML tags
     text = BeautifulSoup(text, "html.parser").get_text()
-    # Remove any remaining HTML/CSS artifacts
+    
+    # Remove URLs
+    text = re.sub(r'http\S+', '', text)
+    text = re.sub(r'www\.\S+', '', text)
+    
+    # Remove HTML/CSS artifacts
     text = re.sub(r'css_[a-zA-Z_]+="[^"]*"', '', text)
     text = re.sub(r'<[^>]+>', '', text)
+    
+    # Remove file paths and similar patterns
+    text = re.sub(r'\S+/\S+', '', text)
+    
     # Clean up whitespace
     text = re.sub(r'\s+', ' ', text)
+    
     return text.strip()
+
 ''' 
 ------------------------------------------------------------
 1. EXTRACT RELEVANT TEXT FROM ARTICLES
@@ -223,8 +264,7 @@ def piecewise_extraction_to_records(accepted_records: List[Dict[str, Any]]) -> L
             start = span["start"]
             end = span["end"]
             entity_text = block_text[start:end]
-            entity_label = span["label"]
-
+            entity_type = span["entity_type"]
             # find the sentence in which this entity occurs
             evidence_sentence = get_sentence_for_span(block_text, start, end)
 
@@ -235,7 +275,7 @@ def piecewise_extraction_to_records(accepted_records: List[Dict[str, Any]]) -> L
                 "article_id": article_id,
                 "headline": headline,
                 "date": date_str,
-                "entity_label": entity_label,
+                "entity_type": entity_type,
                 "entity_text": entity_text,
                 "evidence": evidence_sentence,
                 "embedding": embedding_vec, #embedding_vec
@@ -270,29 +310,39 @@ def process_article(article: Dict[str, Any], model_name: str) -> List[Dict[str, 
     
     # Process each text block in the article
     for block_index, block_text in enumerate(article["contentBlocks"]):
-        # use trained model to extract entities
+        # Clean the text before processing
         cleaned_text = clean_text(block_text)
-
+        
+        # use trained model to extract entities
         trained_model = "trained-models"
         use_trained_model = load_trained_model(trained_model)
         doc = use_trained_model(cleaned_text)
         spans = []
+        
+        # Only accept valid entities
         for ent in doc.ents:
-            spans.append({
-                "start": ent.start_char,
-                "end": ent.end_char,
-                "text": ent.text,
-                "label": ent.label_,
-            })
+            if (ent.label_ in VALID_ENTITY_TYPES and 
+                is_valid_entity(ent.text)):
+                
+                spans.append({
+                    "start": ent.start_char,
+                    "end": ent.end_char,
+                    "text": ent.text,
+                    "entity_type": ent.label_,
+                })
+                print(f"Accepted entity: {ent.text} ({ent.label_})")
+            else:
+                print(f"Rejected entity: {ent.text} ({ent.label_})")
+        
         if spans:  # Only keep blocks with found entities
             accepted_records.append({
-                "text": block_text,
+                "text": cleaned_text,
                 "meta": {
                     "article_id": article["id"],
                     "headline": article["headline"],
                     "date": article["date"],
                     "block_index": block_index,
-
+                                            
                 },
                 "spans": spans
             })

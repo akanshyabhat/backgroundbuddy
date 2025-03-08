@@ -127,7 +127,9 @@ def save_relationships_for_prodigy(relationships: List[Dict[str, Any]], output_f
                 "date": rel["date"],
                 "subject_kb_id": rel["subject_kb_id"],
                 "object_kb_id": rel["object_kb_id"],
-                "relationship": rel["relationship"]
+                "relationship": rel["relationship"],
+                "subject_type": rel["subject_type"],
+                "object_type": rel["object_type"]
             }
         }
         data.append(record)

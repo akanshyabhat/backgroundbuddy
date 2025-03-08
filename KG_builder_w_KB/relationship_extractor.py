@@ -71,7 +71,7 @@ def extract_relationships_for_block(block_text, block_entities, headline, date, 
 
     Named Entities (from the text): {filtered_entities}
 
-    The entity names can be accessed from the "canonical name" field.
+    The entity names can be accessed from the "canonical name" field. The entity type can be accessed from the "entity type" field.
 
     **Possible Relationships**: 
     {RELATIONSHIP_TYPES}
@@ -84,6 +84,8 @@ def extract_relationships_for_block(block_text, block_entities, headline, date, 
             "subject_text": "<subject entity>",
             "relationship": "<relationship>",
             "object_text": "<object entity>",
+            "subject_type": "<subject entity type>",
+            "object_type": "<object entity type>",
             "evidence": "<sentence containing the relationship>"
         }},
         ...
@@ -197,7 +199,6 @@ def overlap_coefficient(text_a: str, text_b: str) -> float:
     overlap = len(intersection)
     denom = min(len(tokens_a), len(tokens_b))
     return overlap / denom if denom else 0.0
-### END SHIT PART   
 
 
     
@@ -218,12 +219,16 @@ def extract_relationships_block_by_block(
     for block_text, entity_records in block_map.items():
         if not entity_records:
             continue
-
+        for record in entity_records:
+            print("--------------------------------")
+            print("This is the entity records in extract_relationships_block_by_block:")
+            print("entity_text", record["entity_text"])
+            print("entity_type", record["entity_type"])
+            print("kb_id", record["kb_id"])
+            print("evidence", record["evidence"])
         article_id = entity_records[0]["article_id"]
         headline = entity_records[0]["headline"]
         date_str = entity_records[0]["date"]
-        entity_type = entity_records[0]["entity_label"]
-
         # 1) Let the LLM detect relationships from the entire block
         block_relationships = extract_relationships_for_block(
             block_text=block_text,
@@ -240,6 +245,8 @@ def extract_relationships_block_by_block(
         for rel in block_relationships:
             sub_text = rel.get("subject_text", "").strip()
             obj_text = rel.get("object_text", "").strip()
+            sub_type = rel.get("subject_type", "").strip()
+            obj_type = rel.get("object_type", "").strip()
             rel_evidence = rel.get("evidence", "").strip()  # from LLM
 
             subject_kb_id = unify_mention_to_kb_id(sub_text, rel_evidence, entity_records)
@@ -258,10 +265,12 @@ def extract_relationships_block_by_block(
                 "object_kb_id": object_kb_id,
                 "relationship": rel.get("relationship", ""),
                 #"properties": rel.get("properties", {}),
-                "entity_type": entity_type,
+                "object_type": obj_type,
+                "subject_type": sub_type,
                 "evidence": rel_evidence
             }
             all_relationships.append(rel_record)
+            print("--------------------------------")
             print(f"[INFO] Extracted {len(all_relationships)} relationships.")
 
     return all_relationships

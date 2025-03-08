@@ -52,19 +52,23 @@ class Neo4jHandler:
         self.driver.close()
 
     def add_entity(self, entity_id, entity_name, entity_type="Unknown"):
-        """Create or update an entity in Neo4j with its type."""
+        """Create or update an entity in Neo4j using its type as the label."""
         if not entity_name:
             print(f"⚠️ Skipping entity with empty name (ID: {entity_id})")
             return
             
+        # Ensure entity_type is valid for Neo4j (no spaces, alphanumeric)
+        label = entity_type.replace(" ", "_").upper() if entity_type else "UNKNOWN"
+        
         query = """
-        MERGE (n:Entity {id: $id})
-        SET n.name = $name, n.type = $type
-        """
+        MERGE (n:`%s` {id: $id})
+        SET n.name = $name
+        """ % label
+        
         try:
             with self.driver.session() as session:
-                session.run(query, {"id": entity_id, "name": entity_name, "type": entity_type})
-                print(f"✅ Added/Updated entity: {entity_name} (ID: {entity_id}) with type {entity_type}")
+                session.run(query, {"id": entity_id, "name": entity_name})
+                print(f"✅ Added/Updated {label}: {entity_name} (ID: {entity_id})")
         except Exception as e:
             print(f"❌ Error adding entity {entity_name}: {str(e)}")
 
@@ -81,9 +85,13 @@ class Neo4jHandler:
         if not sanitized_rel:
             sanitized_rel = "RELATED_TO"  
 
+        # Get the entity types from metadata
+        subject_type = metadata.get("subject_type", "UNKNOWN").replace(" ", "_").upper()
+        object_type = metadata.get("object_type", "UNKNOWN").replace(" ", "_").upper()
+
         query = f"""
-        MATCH (a:Entity {{id: $subject_id}})
-        MATCH (b:Entity {{id: $object_id}})
+        MATCH (a:`{subject_type}` {{id: $subject_id}})
+        MATCH (b:`{object_type}` {{id: $object_id}})
         MERGE (a)-[r:{sanitized_rel}]->(b)
         SET r.evidence = $evidence,
             r.article_id = $article_id,
@@ -150,48 +158,58 @@ class Neo4jHandler:
                     article_id = meta.get("article_id")
                     headline = meta.get("headline")
                     date = meta.get("date")
+                    subject_type = meta.get("subject_type")
+                    object_type = meta.get("object_type")
+                    
+                    # Load KB
                     KB = load_kb()
                     
-                    subject_text, object_text = None, None
-                    subject_type, object_type = "Unknown", "Unknown"
-
-                    # Extract entity names & their real types (not just "SUBJECT"/"OBJECT")
+                    # Extract entity texts from spans
+                    subject_text = None
+                    object_text = None
                     for span in data.get("spans", []):
-                        start, end = span["start"], span["end"]
-                        extracted_text = data["text"][start:end]
+                        if span["label"] == "SUBJECT":
+                            subject_text = data["text"][span["start"]:span["end"]]
+                        elif span["label"] == "OBJECT":
+                            object_text = data["text"][span["start"]:span["end"]]
 
-                        # Check if the span is an entity and contains type info
-                        if "label" in span:
-                            entity_type = span["label"]  # "PERSON", "ORG", etc.
-
-                            if span["label"] == "SUBJECT":
-                                subject_text = extracted_text
-                                subject_type = entity_type  # Assign actual entity type - NOTE: not working rn bc smth wrong with how types are not being passed
-                            elif span["label"] == "OBJECT":
-                                object_text = extracted_text
-                                object_type = entity_type  # Assign actual entity type
-
-                    # Handle missing entity names
+                    # Fallback to KB if spans don't provide the text
                     if not subject_text:
                         subject_text = get_entity_name_from_kb(subject_id, KB)
-                        if not subject_text:
-                            subject_text = f"Unidentified Entity {subject_id}"
                     if not object_text:
                         object_text = get_entity_name_from_kb(object_id, KB)
-                        if not object_text:
-                            object_text = f"Unidentified Entity {object_id}"
 
-                    if subject_id and object_id and relationship:
-                        self.add_entity(subject_id, subject_text, subject_type)
-                        self.add_entity(object_id, object_text, object_type)
+                    # Verify we have all required data
+                    if not all([subject_id, object_id, relationship]):
+                        print(f"Missing required fields in relationship", data)
+                        continue
 
-                        metadata = {"article_id": article_id, "headline": headline, "date": date}
-                        self.add_relationship(subject_id, subject_text, relationship, object_id, object_text, data["text"], metadata)
-                    else:
-                        print(f"⚠️ Skipping record due to missing required fields: {data}")
+                    # Add entities and relationship to Neo4j
+                    self.add_entity(subject_id, subject_text, subject_type)
+                    self.add_entity(object_id, object_text, object_type)
+
+                    metadata = {
+                        "article_id": article_id,
+                        "headline": headline,
+                        "date": date,
+                        "subject_type": subject_type,
+                        "object_type": object_type
+                    }
+                    
+                    self.add_relationship(
+                        subject_id, 
+                        subject_text, 
+                        relationship, 
+                        object_id, 
+                        object_text, 
+                        data["text"], 
+                        metadata
+                    )
+                    
+                    print(f"✅ Processed relationship: {subject_text} -[{relationship}]-> {object_text}")
 
         except Exception as e:
-            print(f"❌ Error reading JSONL file: {str(e)}")
+            print(f"❌ Error reading JSONL file {file_path}: {str(e)}")
 
 def load_kb() -> Dict:
      """Load the knowledge base from KB.json"""
@@ -227,8 +245,8 @@ if __name__ == "__main__":
             raise ValueError("Failed to connect to Neo4j database")
 
         # Import relationships from JSONL
-        print("\n📥 Importing relationships from relationships.jsonl...")
-        handler.import_relationships_from_jsonl("relationships.jsonl")
+        print("\n📥 Importing relationships from validated_relationships.jsonl...")
+        handler.import_relationships_from_jsonl("validated_relationships.jsonl")
 
         # Export relationships to JSON file
         print("\n📤 Exporting relationships to output.json...")
