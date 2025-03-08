@@ -222,6 +222,7 @@ def extract_relationships_block_by_block(
         article_id = entity_records[0]["article_id"]
         headline = entity_records[0]["headline"]
         date_str = entity_records[0]["date"]
+        entity_type = entity_records[0]["entity_label"]
 
         # 1) Let the LLM detect relationships from the entire block
         block_relationships = extract_relationships_for_block(
@@ -257,6 +258,7 @@ def extract_relationships_block_by_block(
                 "object_kb_id": object_kb_id,
                 "relationship": rel.get("relationship", ""),
                 #"properties": rel.get("properties", {}),
+                "entity_type": entity_type,
                 "evidence": rel_evidence
             }
             all_relationships.append(rel_record)
