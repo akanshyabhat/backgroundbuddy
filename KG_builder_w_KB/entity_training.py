@@ -11,6 +11,7 @@ import json
 import random
 import spacy
 import subprocess
+from entity_annotation import parse_archive
 
 TRAINING_EPOCHS = 20 # number of epochs to train the model
 
@@ -52,7 +53,55 @@ def load_trained_model(model_path: str):
         print(f"Error loading model: {e}")
         raise
 
-
+def extract_entities_from_archive(nlp_model, articles: List[Dict[str, Any]], output_file: str = "extracted_entities.jsonl"):
+    """
+    Extract entities from all articles using the trained model.
+    """
+    extracted_data = []
+    
+    for article in articles:
+        article_id = article["id"]
+        headline = article["headline"]
+        date_str = article["date"]
+        
+        # Process each content block
+        for block in article["contentBlocks"]:
+            # Process the text with our trained model
+            doc = nlp_model(block)
+            
+            # Extract entities
+            entities = []
+            for ent in doc.ents:
+                if ent.label_ in ENTITY_TYPES:
+                    entity_data = {
+                        "text": ent.text,
+                        "label": ent.label_,
+                        "start": ent.start_char,
+                        "end": ent.end_char,
+                        "kb_id": None  # Will be filled in during entity consolidation
+                    }
+                    entities.append(entity_data)
+            
+            if entities:
+                # Store the extracted entities with metadata
+                record = {
+                    "text": block,
+                    "entities": entities,
+                    "meta": {
+                        "article_id": article_id,
+                        "headline": headline,
+                        "date": date_str
+                    }
+                }
+                extracted_data.append(record)
+    
+    # Save to JSONL file
+    with open(output_file, "w", encoding="utf-8") as f:
+        for record in extracted_data:
+            f.write(json.dumps(record) + "\n")
+    
+    print(f"\n✅ Extracted entities saved to {output_file}")
+    return extracted_data
 
 if __name__ == "__main__":
     dataset = "my_dataset"
@@ -62,7 +111,14 @@ if __name__ == "__main__":
     print("\nTraining model...")
     train_model(dataset, base_model, output_dir)
     
-    print("\nLoading trained model... from trained-models/model-last")
+    print("\nLoading trained model...")
     nlp_model = load_trained_model(output_dir)
-    print("\nModel trained and loaded. Now extracting entities from the entire archive...")
-    # And now extract entities from the entire archive (haven't implemented this yet)
+    
+    print("\nLoading articles from archive...")
+    articles = parse_archive("BackgroundBuddy.json")
+    
+    print("\nExtracting entities from all articles...")
+    extracted_data = extract_entities_from_archive(nlp_model, articles)
+    
+    print(f"\nProcessed {len(articles)} articles")
+    print(f"Extracted data saved to extracted_entities.jsonl")
