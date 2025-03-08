@@ -42,13 +42,14 @@ def clean_canonical_name(name: str) -> str:
 def create_new_kb_entry(entity_text: str, embedding: List[float], kb: Dict[str, Any]) -> str:
     """Helper function to create a new KB entry with a cleaned canonical name."""
     canonical_name = clean_canonical_name(entity_text)
-    new_id = str(uuid.uuid4())
-    kb[new_id] = {
-        "canonical_name": canonical_name,
-        "aliases": [canonical_name],  # Store in lowercase
-        "embeddings": [embedding]
-    }
-    return new_id
+    if canonical_name != "":
+        new_id = str(uuid.uuid4())
+        kb[new_id] = {
+            "canonical_name": canonical_name,
+            "aliases": [canonical_name],  # Store in lowercase
+            "embeddings": [embedding]
+        }
+        return new_id
 
 def find_best_match(entity_text: str, embedding: List[float], kb: Dict[str, Any]) -> tuple[str or None, float]:
     entity_text_lower = entity_text.lower()  # Normalize to lowercase
@@ -67,7 +68,8 @@ def find_best_match(entity_text: str, embedding: List[float], kb: Dict[str, Any]
         # Compare with all embeddings for this entity
         for existing_emb in info["embeddings"]:
             # sim = cosine_similarity(embedding, existing_emb)
-            sim = difflib.SequenceMatcher(None, entity_text.lower(), existing_canonical_name.lower()).ratio()
+            sim = difflib.SequenceMatcher(None, entity_text_lower, existing_canonical_name.lower()).ratio()
+            print(entity_text_lower, existing_canonical_name, sim)
             if sim > best_score:
                 best_score = sim
                 best_match_id = kb_id
@@ -81,11 +83,11 @@ def consolidate_entities_with_kb(final_data: List[Dict[str, Any]], kb: Dict[str,
     for record in final_data:
         entity_text = record["entity_text"].lower()  # Normalize to lowercase
         embedding = record["embedding"]
-        # print("entity_text", entity_text)
+        print("entity_text", entity_text)
         
-        # Find best matching entity in KB
+        #Find best matching entity in KB
         best_match_id, similarity = find_best_match(entity_text, embedding, kb)
-        # print("best_match_id, similarity", best_match_id, similarity)
+        print("best_match_id, similarity", best_match_id, similarity)
 
         
         if similarity >= SIMILARITY_THRESHOLD and best_match_id is not None:
@@ -103,7 +105,7 @@ def consolidate_entities_with_kb(final_data: List[Dict[str, Any]], kb: Dict[str,
             new_id = create_new_kb_entry(entity_text, embedding, kb)
             record["kb_id"] = new_id
             record["canonical_name"] = clean_canonical_name(entity_text)
-            # print("new_id, new_name", record["kb_id"], record["canonical_name"])
+            print("new_id, new_name", record["kb_id"], record["canonical_name"])
             
         updated_data.append(record)
     
