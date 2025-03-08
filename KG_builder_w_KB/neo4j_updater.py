@@ -4,7 +4,7 @@ import json
 import re
 import uuid  # To generate unique IDs
 from neo4j import GraphDatabase
-
+from typing import Dict
 # Try to load environment variables from multiple possible locations
 if os.path.exists('NEO4J_KEY.env'):
     dotenv.load_dotenv('NEO4J_KEY.env')
@@ -122,6 +122,22 @@ def extract_span_text(text, spans, label):
                 return text[start:end].strip()
     return None
 
+def load_kb() -> Dict:
+    """Load the knowledge base from KB.json"""
+    try:
+        with open("KB.json", 'r', encoding='utf-8') as f:
+            return json.load(f)
+    except FileNotFoundError:
+        print("Warning: KB.json not found")
+        return {}
+
+def get_entity_name_from_kb(kb_id: str, KB: Dict) -> str:
+    """Get entity's canonical name from KB using its ID"""
+    if kb_id and kb_id in KB:
+        return KB[kb_id].get('canonical_name', '')
+    print(f"❌ Entity not found in KB: {kb_id}")
+    return ''
+
 def load_relationships_to_neo4j(file_path, neo4j_handler):
     """Load relationships from JSONL file into Neo4j."""
     
@@ -136,6 +152,9 @@ def load_relationships_to_neo4j(file_path, neo4j_handler):
 
     relationship_count = 0
     entity_mapping = {}  # To track entities we've already added
+
+    # Load the knowledge base
+    KB = load_kb()
 
     try:
         with open(file_path, "r", encoding="utf-8") as f:
@@ -152,6 +171,16 @@ def load_relationships_to_neo4j(file_path, neo4j_handler):
                     # Extract subject and object from spans
                     subject_text = extract_span_text(text, spans, "SUBJECT")
                     object_text = extract_span_text(text, spans, "OBJECT")
+                    
+                    # Get the object text from KB if not directly available
+                    if object_text is None:
+                        object_kb_id = meta.get("object_kb_id")
+                        object_text = get_entity_name_from_kb(object_kb_id, KB)
+                    
+                    # Get the subject text from KB if not directly available
+                    if subject_text is None:
+                        subject_kb_id = meta.get("subject_kb_id")
+                        subject_text = get_entity_name_from_kb(subject_kb_id, KB)
                     
                     # Get relationship type from meta
                     relationship_type = meta.get("relationship")
