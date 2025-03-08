@@ -3,6 +3,8 @@ import dotenv
 import json
 import re
 from neo4j import GraphDatabase
+from typing import Dict
+
 
 # Load environment variables from multiple possible locations
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -87,7 +89,9 @@ class Neo4jHandler:
             r.article_id = $article_id,
             r.headline = $headline,
             r.date = $date,
-            r.confidence = $confidence
+            r.confidence = $confidence,
+            r.subject_type = $subject_type,
+            r.object_type = $object_type
         """
         try:
             with self.driver.session() as session:
@@ -98,7 +102,9 @@ class Neo4jHandler:
                     "article_id": metadata.get("article_id"),
                     "headline": metadata.get("headline"),
                     "date": metadata.get("date"),
-                    "confidence": metadata.get("confidence", 0.0)
+                    "confidence": metadata.get("confidence", 0.0),
+                    "subject_type": metadata.get("subject_type"),
+                    "object_type": metadata.get("object_type")
                 })
                 print(f"✅ Added relationship: {subject_name} -[{relationship}]-> {object_name}")
         except Exception as e:
@@ -130,7 +136,7 @@ class Neo4jHandler:
         except Exception as e:
             print(f"❌ Error exporting relationships: {str(e)}")
 
-    def import_relationships_from_jsonl(self, file_path="relationships.jsonl"):
+    def import_relationships_from_jsonl(self, file_path="validated_relationships.jsonl"):
         """Read relationships from JSONL and store them in Neo4j with proper entity types."""
         try:
             with open(file_path, "r", encoding="utf-8") as f:
@@ -144,7 +150,8 @@ class Neo4jHandler:
                     article_id = meta.get("article_id")
                     headline = meta.get("headline")
                     date = meta.get("date")
-
+                    KB = load_kb()
+                    
                     subject_text, object_text = None, None
                     subject_type, object_type = "Unknown", "Unknown"
 
@@ -166,10 +173,13 @@ class Neo4jHandler:
 
                     # Handle missing entity names
                     if not subject_text:
-                        subject_text = f"Unidentified Entity {subject_id}"
-
+                        subject_text = get_entity_name_from_kb(subject_id, KB)
+                        if not subject_text:
+                            subject_text = f"Unidentified Entity {subject_id}"
                     if not object_text:
-                        object_text = f"Unidentified Entity {object_id}"
+                        object_text = get_entity_name_from_kb(object_id, KB)
+                        if not object_text:
+                            object_text = f"Unidentified Entity {object_id}"
 
                     if subject_id and object_id and relationship:
                         self.add_entity(subject_id, subject_text, subject_type)
@@ -182,6 +192,22 @@ class Neo4jHandler:
 
         except Exception as e:
             print(f"❌ Error reading JSONL file: {str(e)}")
+
+def load_kb() -> Dict:
+     """Load the knowledge base from KB.json"""
+     try:
+         with open("KB.json", 'r', encoding='utf-8') as f:
+             return json.load(f)
+     except FileNotFoundError:
+         print("Warning: KB.json not found")
+         return {}
+ 
+def get_entity_name_from_kb(kb_id: str, KB: Dict) -> str:
+     """Get entity's canonical name from KB using its ID"""
+     if kb_id and kb_id in KB:
+         return KB[kb_id].get('canonical_name', '')
+     print(f"❌ Entity not found in KB: {kb_id}")
+     return ''
 
 if __name__ == "__main__":
     try:
