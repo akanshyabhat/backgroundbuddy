@@ -133,13 +133,13 @@ class Neo4jHandler:
                 results = session.run(query)
                 
                 # Option 1: Include all entries 
-                #data = [record.data() for record in results]
+                data = [record.data() for record in results]
 
                 # Option 2: Filter out entries where subject_text or object_text is None (null in JSON)
-                data = [
-                    record.data() for record in results
-                    if record["subject_text"] is not None and record["object_text"] is not None
-                ]
+                #data = [
+                   # record.data() for record in results
+                   # if record["subject_text"] is not None and record["object_text"] is not None
+                #]
 
                 with open(output_file, "w", encoding="utf-8") as f:
                     json.dump(data, f, indent=4)

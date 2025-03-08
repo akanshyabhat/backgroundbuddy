@@ -414,6 +414,60 @@
         "evidence": "These deals yielded eight conversion devices, a \u201cghost gun\u201d and one Glock already equipped with a switch."
     },
     {
+        "subject_text": null,
+        "relationship": "IS_ACCUSED_OF",
+        "object_text": null,
+        "evidence": "\u201cHe knew that switches were a hot commodity, and he knew how to market and sell them throughout the state at the highest profit to himself.\u201d"
+    },
+    {
+        "subject_text": null,
+        "relationship": "IS_CHARGED_WITH",
+        "object_text": "unlawful possession of machine guns",
+        "evidence": "The three were first charged in September 2023 and each pleaded guilty to one count of unlawful possession of machine guns."
+    },
+    {
+        "subject_text": null,
+        "relationship": "MENTIONS",
+        "object_text": "gun ownership",
+        "evidence": "She added that his gun ownership introduced him to enthusiasts \u201cwith whom he went shooting and started trading and selling, providing him income.\u201d"
+    },
+    {
+        "subject_text": null,
+        "relationship": "MENTIONS",
+        "object_text": "enthusiasts",
+        "evidence": "She added that his gun ownership introduced him to enthusiasts \u201cwith whom he went shooting and started trading and selling, providing him income.\u201d"
+    },
+    {
+        "subject_text": null,
+        "relationship": "MENTIONS",
+        "object_text": "street racing",
+        "evidence": "But, she said, he made most of his money from street racing and modifying cars."
+    },
+    {
+        "subject_text": null,
+        "relationship": "MENTIONS",
+        "object_text": "modifying cars",
+        "evidence": "But, she said, he made most of his money from street racing and modifying cars."
+    },
+    {
+        "subject_text": null,
+        "relationship": "IS_PAROLE_ELIGIBLE",
+        "object_text": "three years",
+        "evidence": "All three men will also be under supervised release for three years upon leaving prison."
+    },
+    {
+        "subject_text": "Frank",
+        "relationship": "HAS_PARTICIPANT",
+        "object_text": null,
+        "evidence": "Frank sentenced Wesley to 14 months in prison last week and imposed a two-year sentence on Drayton in April."
+    },
+    {
+        "subject_text": "Wesley",
+        "relationship": "IS_ACCUSED_OF",
+        "object_text": null,
+        "evidence": "During one of the deals, Wesley arranged for undercover officers to meet Drayton to buy a 3D-printed drop-in machinegun conversion device for an AR-style rifle for $550."
+    },
+    {
         "subject_text": "Wesley",
         "relationship": "HAS_PARTICIPANT",
         "object_text": "Drayton",
@@ -439,6 +493,12 @@
     },
     {
         "subject_text": "Drayton",
+        "relationship": "IS_ACCUSED_OF",
+        "object_text": null,
+        "evidence": "During one of the deals, Wesley arranged for undercover officers to meet Drayton to buy a 3D-printed drop-in machinegun conversion device for an AR-style rifle for $550."
+    },
+    {
+        "subject_text": "Drayton",
         "relationship": "IS_CHARGED_WITH",
         "object_text": "property damage",
         "evidence": "Drayton had been convicted of two gross misdemeanors: property damage in 2021 after pursuing a victim in his vehicle and ramming it twice."
@@ -460,6 +520,12 @@
         "relationship": "HAS_DATE",
         "object_text": "August 2023",
         "evidence": "Johnson, who was sentenced this week, now needs a wheelchair since being shot 14 times during what prosecutors alleged to be an attempted carjacking in August 2023."
+    },
+    {
+        "subject_text": "Johnson",
+        "relationship": "IS_ACCUSED_OF",
+        "object_text": null,
+        "evidence": "\u201cJohnson was a trafficker \u2014 he chose to support himself by selling guns and drugs \u2014 plain and simple,\u201d Shnider wrote."
     },
     {
         "subject_text": "Johnson",
@@ -654,6 +720,60 @@
         "evidence": "These deals yielded eight conversion devices, a \u201cghost gun\u201d and one Glock already equipped with a switch."
     },
     {
+        "subject_text": null,
+        "relationship": "IS_ACCUSED_OF",
+        "object_text": null,
+        "evidence": "\u201cHe knew that switches were a hot commodity, and he knew how to market and sell them throughout the state at the highest profit to himself.\u201d"
+    },
+    {
+        "subject_text": null,
+        "relationship": "IS_CHARGED_WITH",
+        "object_text": "unlawful possession of machine guns",
+        "evidence": "The three were first charged in September 2023 and each pleaded guilty to one count of unlawful possession of machine guns."
+    },
+    {
+        "subject_text": null,
+        "relationship": "MENTIONS",
+        "object_text": "gun ownership",
+        "evidence": "She added that his gun ownership introduced him to enthusiasts \u201cwith whom he went shooting and started trading and selling, providing him income.\u201d"
+    },
+    {
+        "subject_text": null,
+        "relationship": "MENTIONS",
+        "object_text": "enthusiasts",
+        "evidence": "She added that his gun ownership introduced him to enthusiasts \u201cwith whom he went shooting and started trading and selling, providing him income.\u201d"
+    },
+    {
+        "subject_text": null,
+        "relationship": "MENTIONS",
+        "object_text": "street racing",
+        "evidence": "But, she said, he made most of his money from street racing and modifying cars."
+    },
+    {
+        "subject_text": null,
+        "relationship": "MENTIONS",
+        "object_text": "modifying cars",
+        "evidence": "But, she said, he made most of his money from street racing and modifying cars."
+    },
+    {
+        "subject_text": null,
+        "relationship": "IS_PAROLE_ELIGIBLE",
+        "object_text": "three years",
+        "evidence": "All three men will also be under supervised release for three years upon leaving prison."
+    },
+    {
+        "subject_text": "Frank",
+        "relationship": "HAS_PARTICIPANT",
+        "object_text": null,
+        "evidence": "Frank sentenced Wesley to 14 months in prison last week and imposed a two-year sentence on Drayton in April."
+    },
+    {
+        "subject_text": "Wesley",
+        "relationship": "IS_ACCUSED_OF",
+        "object_text": null,
+        "evidence": "During one of the deals, Wesley arranged for undercover officers to meet Drayton to buy a 3D-printed drop-in machinegun conversion device for an AR-style rifle for $550."
+    },
+    {
         "subject_text": "Wesley",
         "relationship": "HAS_PARTICIPANT",
         "object_text": "Drayton",
@@ -679,6 +799,12 @@
     },
     {
         "subject_text": "Drayton",
+        "relationship": "IS_ACCUSED_OF",
+        "object_text": null,
+        "evidence": "During one of the deals, Wesley arranged for undercover officers to meet Drayton to buy a 3D-printed drop-in machinegun conversion device for an AR-style rifle for $550."
+    },
+    {
+        "subject_text": "Drayton",
         "relationship": "IS_CHARGED_WITH",
         "object_text": "property damage",
         "evidence": "Drayton had been convicted of two gross misdemeanors: property damage in 2021 after pursuing a victim in his vehicle and ramming it twice."
@@ -700,6 +826,12 @@
         "relationship": "HAS_DATE",
         "object_text": "August 2023",
         "evidence": "Johnson, who was sentenced this week, now needs a wheelchair since being shot 14 times during what prosecutors alleged to be an attempted carjacking in August 2023."
+    },
+    {
+        "subject_text": "Johnson",
+        "relationship": "IS_ACCUSED_OF",
+        "object_text": null,
+        "evidence": "\u201cJohnson was a trafficker \u2014 he chose to support himself by selling guns and drugs \u2014 plain and simple,\u201d Shnider wrote."
     },
     {
         "subject_text": "Johnson",
