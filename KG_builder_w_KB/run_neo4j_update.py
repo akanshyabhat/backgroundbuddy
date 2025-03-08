@@ -24,6 +24,8 @@ try:
         file_path = "relationships.jsonl"
         print(f"\n📂 Processing file: {file_path}")
         load_relationships_to_neo4j(file_path, handler)
+        print("✅ Relationships loaded successfully.")
+        print("running locally at http://localhost:7474/browser/")
     else:
         print("❌ Cannot proceed due to connection issues.")
         
