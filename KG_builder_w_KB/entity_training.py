@@ -66,8 +66,11 @@ def extract_entities_from_archive(nlp_model, articles: List[Dict[str, Any]], out
         
         # Process each content block
         for block in article["contentBlocks"]:
+            #load trained model
+            use_trained_model = load_trained_model(nlp_model)
             # Process the text with our trained model
-            doc = nlp_model(block)
+            
+            doc = use_trained_model(block)
             
             # Extract entities
             entities = []
@@ -90,10 +93,13 @@ def extract_entities_from_archive(nlp_model, articles: List[Dict[str, Any]], out
                     "meta": {
                         "article_id": article_id,
                         "headline": headline,
-                        "date": date_str
+                        "date": date_str,
+                        "entity_type": ent.label_
                     }
                 }
                 extracted_data.append(record)
+
+                
     
     # Save to JSONL file
     with open(output_file, "w", encoding="utf-8") as f:
@@ -114,11 +120,11 @@ if __name__ == "__main__":
     print("\nLoading trained model...")
     nlp_model = load_trained_model(output_dir)
     
-    print("\nLoading articles from archive...")
-    articles = parse_archive("BackgroundBuddy.json")
+    #print("\nLoading articles from archive...")
+    #articles = parse_archive("filtered_articles.json")
     
-    print("\nExtracting entities from all articles...")
-    extracted_data = extract_entities_from_archive(nlp_model, articles)
+    #print("\nExtracting entities from all articles...")
+    #extracted_data = extract_entities_from_archive(nlp_model, articles)
     
-    print(f"\nProcessed {len(articles)} articles")
-    print(f"Extracted data saved to extracted_entities.jsonl")
+    #print(f"\nProcessed {len(articles)} articles")
+    #print(f"Extracted data saved to extracted_entities.jsonl")

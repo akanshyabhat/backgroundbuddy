@@ -18,6 +18,7 @@ import spacy
 import subprocess
 import freeport
 
+
 TRAINING_SIZE = 10 # number of article paragraphs to use for training
 TRAINING_EPOCHS = 20 # number of epochs to train the model
 def parse_single_article(article: Dict[str, Any]) -> Dict[str, Any]:
@@ -108,7 +109,7 @@ def extract_for_annotation(articles: List[Dict[str, Any]], output_file: str = "i
     subprocess.run(command, check=True)
 
 def main():
-    sample_path = "BackgroundBuddy.json"
+    sample_path = "filtered_articles.json"
     articles = parse_archive(sample_path)
     
     print("Starting the annotation process via Prodigy ...")

@@ -29,6 +29,11 @@ import prodigy
 from collections import defaultdict
 from consolidate_entities import consolidate_entities_with_kb
 from relationship_extractor import extract_relationships_block_by_block
+from entity_training import extract_entities_from_archive
+from entity_training import load_trained_model
+import re
+from bs4 import BeautifulSoup
+
 
 
 from prodigy.components.loaders import JSONL
@@ -52,6 +57,16 @@ password = os.getenv("NEO4J_PASSWORD")
 openai_api_key = os.getenv("OPENAI_API_KEY")
 
 
+def clean_text(text: str) -> str:
+    """Clean text by removing HTML tags, CSS attributes, and extra whitespace"""
+    # Remove HTML tags and attributes
+    text = BeautifulSoup(text, "html.parser").get_text()
+    # Remove any remaining HTML/CSS artifacts
+    text = re.sub(r'css_[a-zA-Z_]+="[^"]*"', '', text)
+    text = re.sub(r'<[^>]+>', '', text)
+    # Clean up whitespace
+    text = re.sub(r'\s+', ' ', text)
+    return text.strip()
 ''' 
 ------------------------------------------------------------
 1. EXTRACT RELEVANT TEXT FROM ARTICLES
@@ -223,7 +238,7 @@ def piecewise_extraction_to_records(accepted_records: List[Dict[str, Any]]) -> L
                 "entity_label": entity_label,
                 "entity_text": entity_text,
                 "evidence": evidence_sentence,
-                "embedding": embedding_vec,
+                "embedding": embedding_vec, #embedding_vec
                 "block_text": block_text
             }
             final_data.append(record)
@@ -238,6 +253,7 @@ note: right now this is being done content block by content block
 '''
 
 import time
+
 
 def process_article(article: Dict[str, Any], model_name: str) -> List[Dict[str, Any]]:
     """
@@ -254,14 +270,19 @@ def process_article(article: Dict[str, Any], model_name: str) -> List[Dict[str, 
     
     # Process each text block in the article
     for block_index, block_text in enumerate(article["contentBlocks"]):
-        doc = nlp(block_text)
+        # use trained model to extract entities
+        cleaned_text = clean_text(block_text)
+
+        trained_model = "trained-models"
+        use_trained_model = load_trained_model(trained_model)
+        doc = use_trained_model(cleaned_text)
         spans = []
         for ent in doc.ents:
             spans.append({
                 "start": ent.start_char,
                 "end": ent.end_char,
                 "text": ent.text,
-                "label": ent.label_
+                "label": ent.label_,
             })
         if spans:  # Only keep blocks with found entities
             accepted_records.append({
@@ -270,7 +291,8 @@ def process_article(article: Dict[str, Any], model_name: str) -> List[Dict[str, 
                     "article_id": article["id"],
                     "headline": article["headline"],
                     "date": article["date"],
-                    "block_index": block_index
+                    "block_index": block_index,
+
                 },
                 "spans": spans
             })
@@ -278,11 +300,20 @@ def process_article(article: Dict[str, Any], model_name: str) -> List[Dict[str, 
     if not accepted_records:
         print(f"[INFO] No entities found for article {article['id']}.")
         return article_relationships
-
+    print("accepted_records", accepted_records)
     # Create final records with evidence and embeddings for each entity mention
     final_data = piecewise_extraction_to_records(accepted_records)
+    print("After piecewise_extraction_to_records")
+    for entity in KB:
+        print("canonical_name", KB[entity]["canonical_name"])
+        print("aliases", KB[entity]["aliases"])
+
     # Consolidate entities with the KB (updates KB in place)
     updated_data = consolidate_entities_with_kb(final_data, KB)
+    print("After consolidate_entities_with_kb")
+    for entity in KB:
+        print("canonical_name", KB[entity]["canonical_name"])
+        print("aliases", KB[entity]["aliases"])
 
     # Group records by block_text for relationship extraction
     # (Assuming extract_relationships_block_by_block groups internally)
@@ -301,6 +332,7 @@ def process_article(article: Dict[str, Any], model_name: str) -> List[Dict[str, 
     time.sleep(10)
     
     return article_relationships
+
 
 def parse_archive(archive_path: str) -> List[Dict[str, Any]]:
     """
@@ -335,11 +367,12 @@ if __name__ == "__main__":
             print(f"Aliases: {entity_data['aliases']}")
             print("-" * 40)  # Separator for clarity
         all_relationships.extend(article_rels)
+         #save the KB to a json file
+        with open("KB.json", "w", encoding="utf-8") as f:
+            json.dump(KB, f, indent=4)
 
     # save the relationships to a JSONL file for verification in prodigy
     save_relationships_for_prodigy(all_relationships, output_file="relationships.jsonl") # prints instructions for Prodigy
-    
-    
 
-
+    
     
