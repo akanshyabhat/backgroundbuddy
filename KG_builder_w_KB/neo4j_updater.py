@@ -2,16 +2,20 @@ import os
 import dotenv
 import json
 import re
-import uuid  # To generate unique IDs
 from neo4j import GraphDatabase
 
-# Try to load environment variables from multiple possible locations
-if os.path.exists('NEO4J_KEY.env'):
+# Load environment variables from multiple possible locations
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+dotenv_path = os.path.join(BASE_DIR, "neo4jKey.env")
+if os.path.exists(dotenv_path):
+    dotenv.load_dotenv(dotenv_path, override=True)
+elif os.path.exists('NEO4J_KEY.env'):
     dotenv.load_dotenv('NEO4J_KEY.env')
 elif os.path.exists('KG_v2/neo4jKey.env'):
     dotenv.load_dotenv('KG_v2/neo4jKey.env')
 elif os.path.exists('.env'):
     dotenv.load_dotenv('.env')
+
 
 ''' 
 ------------------------------------------------------------
@@ -23,7 +27,6 @@ elif os.path.exists('.env'):
 class Neo4jHandler:
     def __init__(self, uri, user, password):
         try:
-            # Use basic auth explicitly
             self.driver = GraphDatabase.driver(uri, auth=(user, password))
             print("✅ Connected to Neo4j")
         except Exception as e:
@@ -43,35 +46,23 @@ class Neo4jHandler:
             return False
 
     def close(self):
+        """Close the Neo4j connection."""
         self.driver.close()
 
-    def clear_database(self):
-        """Clear all nodes and relationships from the database."""
-        query = "MATCH (n) DETACH DELETE n"
-        try:
-            with self.driver.session() as session:
-                session.run(query)
-                print("✅ Database cleared successfully")
-        except Exception as e:
-            print(f"Error clearing database: {str(e)}")
-
-    def add_entity(self, entity_id, entity_name):
-        """Create or update an entity in Neo4j."""
+    def add_entity(self, entity_id, entity_name, entity_type="Unknown"):
+        """Create or update an entity in Neo4j with its type."""
         if not entity_name:
             print(f"⚠️ Skipping entity with empty name (ID: {entity_id})")
             return
             
         query = """
         MERGE (n:Entity {id: $id})
-        SET n.name = $name
+        SET n.name = $name, n.type = $type
         """
         try:
             with self.driver.session() as session:
-                session.run(query, {
-                    "id": entity_id,
-                    "name": entity_name
-                })
-                print(f"✅ Added/Updated entity: {entity_name} (ID: {entity_id})")
+                session.run(query, {"id": entity_id, "name": entity_name, "type": entity_type})
+                print(f"✅ Added/Updated entity: {entity_name} (ID: {entity_id}) with type {entity_type}")
         except Exception as e:
             print(f"❌ Error adding entity {entity_name}: {str(e)}")
 
@@ -82,11 +73,11 @@ class Neo4jHandler:
             return
             
         # Format relationship type - must be alphanumeric with underscores
-        sanitized_rel = re.sub(r"\s+", "_", relationship.upper())  # Format relationship type
+        sanitized_rel = re.sub(r"\s+", "_", relationship.upper())  
         sanitized_rel = re.sub(r"[^a-zA-Z0-9_]", "", sanitized_rel)
         
         if not sanitized_rel:
-            sanitized_rel = "RELATED_TO"  # Default relationship type
+            sanitized_rel = "RELATED_TO"  
 
         query = f"""
         MATCH (a:Entity {{id: $subject_id}})
@@ -113,96 +104,84 @@ class Neo4jHandler:
         except Exception as e:
             print(f"❌ Error adding relationship: {str(e)}")
 
-def extract_span_text(text, spans, label):
-    """Extract text from a given span label."""
-    for span in spans:
-        if span.get("label") == label:
-            start, end = span.get("start"), span.get("end")
-            if start is not None and end is not None and 0 <= start < len(text) and end <= len(text):
-                return text[start:end].strip()
-    return None
+    def export_relationships_to_json(self, output_file="output.json"):
+        """Pull relationships from Neo4j and save them as a JSON file."""
+        query = """
+        MATCH (a:Entity)-[r]->(b:Entity)
+        RETURN 
+            a.name AS subject_text, 
+            a.type AS subject_type,
+            type(r) AS relationship, 
+            b.name AS object_text, 
+            b.type AS object_type,
+            r.evidence AS evidence
+        """
 
-def load_relationships_to_neo4j(file_path, neo4j_handler):
-    """Load relationships from JSONL file into Neo4j."""
-    
-    if not os.path.exists(file_path):
-        print(f"❌ File not found: {file_path}")
-        return
+        try:
+            with self.driver.session() as session:
+                results = session.run(query)
+                data = [record.data() for record in results]
 
-    # Test connection before proceeding
-    if not neo4j_handler.test_connection():
-        print("❌ Cannot proceed with loading relationships due to connection issues.")
-        return
+                with open(output_file, "w", encoding="utf-8") as f:
+                    json.dump(data, f, indent=4)
+                
+                print(f"✅ Relationships successfully exported to {output_file}")
 
-    relationship_count = 0
-    entity_mapping = {}  # To track entities we've already added
+        except Exception as e:
+            print(f"❌ Error exporting relationships: {str(e)}")
 
-    try:
-        with open(file_path, "r", encoding="utf-8") as f:
-            for line_num, line in enumerate(f, 1):
-                try:
-                    # Parse the JSON line
-                    entry = json.loads(line)
-                    
-                    # Extract data
-                    text = entry.get("text", "")
-                    spans = entry.get("spans", [])
-                    meta = entry.get("meta", {})
-                    
-                    # Extract subject and object from spans
-                    subject_text = extract_span_text(text, spans, "SUBJECT")
-                    object_text = extract_span_text(text, spans, "OBJECT")
-                    
-                    # Get relationship type from meta
-                    relationship_type = meta.get("relationship")
-                    
-                    # Get KB IDs from meta if available, otherwise use the entity text as ID
+    def import_relationships_from_jsonl(self, file_path="relationships.jsonl"):
+        """Read relationships from JSONL and store them in Neo4j with proper entity types."""
+        try:
+            with open(file_path, "r", encoding="utf-8") as f:
+                for line in f:
+                    data = json.loads(line)
+                    meta = data.get("meta", {})
+
                     subject_id = meta.get("subject_kb_id")
-                    if not subject_id:
-                        subject_id = entity_mapping.get(subject_text)
-                        if not subject_id:
-                            subject_id = str(uuid.uuid4())
-                            entity_mapping[subject_text] = subject_id
-                    
                     object_id = meta.get("object_kb_id")
-                    if not object_id:
-                        object_id = entity_mapping.get(object_text)
-                        if not object_id:
-                            object_id = str(uuid.uuid4())
-                            entity_mapping[object_text] = object_id
-                    
-                    # Skip if missing critical data
-                    if not subject_text or not object_text or not relationship_type:
-                        print(f"⚠️ Line {line_num}: Missing critical data, skipping.")
-                        print(f"   Subject: {subject_text}, Object: {object_text}, Relationship: {relationship_type}")
-                        continue
-                    
-                    print(f"Processing: {subject_text} -[{relationship_type}]-> {object_text}")
-                    
-                    # Add entities to Neo4j
-                    neo4j_handler.add_entity(subject_id, subject_text)
-                    neo4j_handler.add_entity(object_id, object_text)
-                    
-                    # Add relationship
-                    neo4j_handler.add_relationship(
-                        subject_id, subject_text,
-                        relationship_type,
-                        object_id, object_text,
-                        text,  # Full text as evidence
-                        meta   # All metadata
-                    )
-                    
-                    relationship_count += 1
-                    
-                except json.JSONDecodeError:
-                    print(f"❌ Line {line_num}: Invalid JSON format")
-                except Exception as e:
-                    print(f"❌ Line {line_num}: Error processing entry: {str(e)}")
-        
-        print(f"\n✅ Processing completed: {relationship_count} relationships loaded into Neo4j.")
-        
-    except Exception as e:
-        print(f"❌ Error reading file: {str(e)}")
+                    relationship = meta.get("relationship")
+                    article_id = meta.get("article_id")
+                    headline = meta.get("headline")
+                    date = meta.get("date")
+
+                    subject_text, object_text = None, None
+                    subject_type, object_type = "Unknown", "Unknown"
+
+                    # Extract entity names & their real types (not just "SUBJECT"/"OBJECT")
+                    for span in data.get("spans", []):
+                        start, end = span["start"], span["end"]
+                        extracted_text = data["text"][start:end]
+
+                        # Check if the span is an entity and contains type info
+                        if "label" in span:
+                            entity_type = span["label"]  # "PERSON", "ORG", etc.
+
+                            if span["label"] == "SUBJECT":
+                                subject_text = extracted_text
+                                subject_type = entity_type  # Assign actual entity type - NOTE: not working rn bc smth wrong with how types are not being passed
+                            elif span["label"] == "OBJECT":
+                                object_text = extracted_text
+                                object_type = entity_type  # Assign actual entity type
+
+                    # Handle missing entity names
+                    if not subject_text:
+                        subject_text = f"Unidentified Entity {subject_id}"
+
+                    if not object_text:
+                        object_text = f"Unidentified Entity {object_id}"
+
+                    if subject_id and object_id and relationship:
+                        self.add_entity(subject_id, subject_text, subject_type)
+                        self.add_entity(object_id, object_text, object_type)
+
+                        metadata = {"article_id": article_id, "headline": headline, "date": date}
+                        self.add_relationship(subject_id, subject_text, relationship, object_id, object_text, data["text"], metadata)
+                    else:
+                        print(f"⚠️ Skipping record due to missing required fields: {data}")
+
+        except Exception as e:
+            print(f"❌ Error reading JSONL file: {str(e)}")
 
 if __name__ == "__main__":
     try:
@@ -214,35 +193,23 @@ if __name__ == "__main__":
         if not all([neo4j_uri, neo4j_user, neo4j_password]):
             raise ValueError("Missing Neo4j credentials in environment variables")
 
-        print(f"URI: {neo4j_uri}")
-        print(f"Username: {neo4j_user}")
-        print(f"Password: {'*' * len(neo4j_password) if neo4j_password else 'None'}")
-
         # Initialize Neo4j handler
         handler = Neo4jHandler(neo4j_uri, neo4j_user, neo4j_password)
-        
+
         # Test connection
         if not handler.test_connection():
             raise ValueError("Failed to connect to Neo4j database")
 
-        # Load relationships from JSONL
-        file_path = "relationships.jsonl"
-        print(f"\n📂 Processing file: {file_path}")
-        load_relationships_to_neo4j(file_path, handler)
+        # Import relationships from JSONL
+        print("\n📥 Importing relationships from relationships.jsonl...")
+        handler.import_relationships_from_jsonl("relationships.jsonl")
 
-        # Display Neo4j query for visualization
-        print("\n🔍 To visualize relationships in Neo4j, run this query:")
-        print("""
-        MATCH (n:Entity)-[r]->(m:Entity)
-        RETURN n.name as Subject, 
-               type(r) as Relationship, 
-               m.name as Object,
-               r.evidence as Evidence
-        LIMIT 25;
-        """)
+        # Export relationships to JSON file
+        print("\n📤 Exporting relationships to output.json...")
+        handler.export_relationships_to_json("output.json")
 
     except Exception as e:
         print(f"❌ Error: {str(e)}")
     finally:
-        if 'handler' in locals():
+        if "handler" in locals():
             handler.close()

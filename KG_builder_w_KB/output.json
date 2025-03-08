@@ -1,0 +1,122 @@
+[
+  {
+    "subject_text": "Unidentified Entity 05d5dcf0-9b42-4e8c-a93d-3fb180b5ca3f",
+    "subject_type": "Unknown",
+    "relationship": "OPPOSED",
+    "object_text": "Jacob Frey's",
+    "object_type": "OBJECT",
+    "evidence": "Minneapolis City Council members postponed a vote Tuesday on Mayor Jacob Frey's choice for a location for a future Third Precinct police station."
+  },
+  {
+    "subject_text": "Unidentified Entity fc265f27-fe82-4e1c-a4d4-050d422814a6",
+    "subject_type": "Unknown",
+    "relationship": "OPPOSED",
+    "object_text": "Unidentified Entity 05d5dcf0-9b42-4e8c-a93d-3fb180b5ca3f",
+    "object_type": "Unknown",
+    "evidence": "But Council Member Emily Koski, who led a group of council members in pushing for the delay, as well as a request for more information on the city's site selection thus far, disagreed, saying there was \"still outstanding information\" preventing the council from responsibly making a decision."
+  },
+  {
+    "subject_text": "Unidentified Entity fc265f27-fe82-4e1c-a4d4-050d422814a6",
+    "subject_type": "Unknown",
+    "relationship": "SUPPORTED",
+    "object_text": "Unidentified Entity 05d5dcf0-9b42-4e8c-a93d-3fb180b5ca3f",
+    "object_type": "Unknown",
+    "evidence": "Those in favor of the delay and request for more information by Oct. 31 included Koski and Council Members Elliott Payne, Robin Wonsley, Jeremiah Ellison, Jamal Osman, Jason Chavez and Aisha Chughtai."
+  },
+  {
+    "subject_text": "Elliott Payne",
+    "subject_type": "SUBJECT",
+    "relationship": "SUPPORTED",
+    "object_text": "Unidentified Entity 05d5dcf0-9b42-4e8c-a93d-3fb180b5ca3f",
+    "object_type": "Unknown",
+    "evidence": "Those in favor of the delay and request for more information by Oct. 31 included Koski and Council Members Elliott Payne, Robin Wonsley, Jeremiah Ellison, Jamal Osman, Jason Chavez and Aisha Chughtai."
+  },
+  {
+    "subject_text": "Robin Wonsley",
+    "subject_type": "SUBJECT",
+    "relationship": "SUPPORTED",
+    "object_text": "Unidentified Entity 05d5dcf0-9b42-4e8c-a93d-3fb180b5ca3f",
+    "object_type": "Unknown",
+    "evidence": "Those in favor of the delay and request for more information by Oct. 31 included Koski and Council Members Elliott Payne, Robin Wonsley, Jeremiah Ellison, Jamal Osman, Jason Chavez and Aisha Chughtai."
+  },
+  {
+    "subject_text": "Jeremiah Ellison",
+    "subject_type": "SUBJECT",
+    "relationship": "SUPPORTED",
+    "object_text": "Unidentified Entity 05d5dcf0-9b42-4e8c-a93d-3fb180b5ca3f",
+    "object_type": "Unknown",
+    "evidence": "Those in favor of the delay and request for more information by Oct. 31 included Koski and Council Members Elliott Payne, Robin Wonsley, Jeremiah Ellison, Jamal Osman, Jason Chavez and Aisha Chughtai."
+  },
+  {
+    "subject_text": "Jamal Osman",
+    "subject_type": "SUBJECT",
+    "relationship": "SUPPORTED",
+    "object_text": "Unidentified Entity 05d5dcf0-9b42-4e8c-a93d-3fb180b5ca3f",
+    "object_type": "Unknown",
+    "evidence": "Those in favor of the delay and request for more information by Oct. 31 included Koski and Council Members Elliott Payne, Robin Wonsley, Jeremiah Ellison, Jamal Osman, Jason Chavez and Aisha Chughtai."
+  },
+  {
+    "subject_text": "Jason Chavez",
+    "subject_type": "SUBJECT",
+    "relationship": "SUPPORTED",
+    "object_text": "Unidentified Entity 05d5dcf0-9b42-4e8c-a93d-3fb180b5ca3f",
+    "object_type": "Unknown",
+    "evidence": "Those in favor of the delay and request for more information by Oct. 31 included Koski and Council Members Elliott Payne, Robin Wonsley, Jeremiah Ellison, Jamal Osman, Jason Chavez and Aisha Chughtai."
+  },
+  {
+    "subject_text": "Aisha Chughtai",
+    "subject_type": "SUBJECT",
+    "relationship": "SUPPORTED",
+    "object_text": "Unidentified Entity 05d5dcf0-9b42-4e8c-a93d-3fb180b5ca3f",
+    "object_type": "Unknown",
+    "evidence": "Those in favor of the delay and request for more information by Oct. 31 included Koski and Council Members Elliott Payne, Robin Wonsley, Jeremiah Ellison, Jamal Osman, Jason Chavez and Aisha Chughtai."
+  },
+  {
+    "subject_text": "Andrea Jenkins",
+    "subject_type": "SUBJECT",
+    "relationship": "SUPPORTED",
+    "object_text": "Unidentified Entity 05d5dcf0-9b42-4e8c-a93d-3fb180b5ca3f",
+    "object_type": "Unknown",
+    "evidence": "Council President Andrea Jenkins and Vice President Linea Palmisano also voted in favor of it but expressed reservations and acknowledged that any attempt to force the vote would result in failure."
+  },
+  {
+    "subject_text": "Linea Palmisano",
+    "subject_type": "SUBJECT",
+    "relationship": "SUPPORTED",
+    "object_text": "Unidentified Entity 05d5dcf0-9b42-4e8c-a93d-3fb180b5ca3f",
+    "object_type": "Unknown",
+    "evidence": "Council President Andrea Jenkins and Vice President Linea Palmisano also voted in favor of it but expressed reservations and acknowledged that any attempt to force the vote would result in failure."
+  },
+  {
+    "subject_text": "Andrew Johnson",
+    "subject_type": "SUBJECT",
+    "relationship": "SUPPORTED",
+    "object_text": "Unidentified Entity 05d5dcf0-9b42-4e8c-a93d-3fb180b5ca3f",
+    "object_type": "Unknown",
+    "evidence": "Council Member Andrew Johnson, who was a co-sponsor of the delay, was absent."
+  },
+  {
+    "subject_text": "Michael Rainville",
+    "subject_type": "SUBJECT",
+    "relationship": "OPPOSED",
+    "object_text": "Unidentified Entity 05d5dcf0-9b42-4e8c-a93d-3fb180b5ca3f",
+    "object_type": "Unknown",
+    "evidence": "Those voting against were Council Members Michael Rainville, LaTrisha Vetaw and Lisa Goodman."
+  },
+  {
+    "subject_text": "LaTrisha Vetaw",
+    "subject_type": "SUBJECT",
+    "relationship": "OPPOSED",
+    "object_text": "Unidentified Entity 05d5dcf0-9b42-4e8c-a93d-3fb180b5ca3f",
+    "object_type": "Unknown",
+    "evidence": "Those voting against were Council Members Michael Rainville, LaTrisha Vetaw and Lisa Goodman."
+  },
+  {
+    "subject_text": "Lisa Goodman",
+    "subject_type": "SUBJECT",
+    "relationship": "OPPOSED",
+    "object_text": "Unidentified Entity 05d5dcf0-9b42-4e8c-a93d-3fb180b5ca3f",
+    "object_type": "Unknown",
+    "evidence": "Those voting against were Council Members Michael Rainville, LaTrisha Vetaw and Lisa Goodman."
+  }
+]
