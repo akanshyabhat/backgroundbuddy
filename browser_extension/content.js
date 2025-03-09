@@ -1,60 +1,162 @@
 // Define the function to fetch graph data from the API
 async function getGraphData() {
   try {
-    console.log("Attempting to fetch graph data from API...");
-    // Add a timeout to the fetch request to prevent long hanging requests
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 5000); // 5 second timeout
-
-    const response = await fetch("http://localhost:3001/api/graph", {
-      signal: controller.signal,
-      // Add cache control to prevent caching issues
-      headers: {
-        "Cache-Control": "no-cache",
-        Pragma: "no-cache",
-      },
-    });
-
-    clearTimeout(timeoutId);
-
+    const response = await fetch("http://localhost:3001/api/graph");
     if (!response.ok) {
       throw new Error(`API responded with status: ${response.status}`);
     }
-
     const data = await response.json();
     console.log("Graph Data fetched successfully");
     return data;
   } catch (error) {
-    // Provide more specific error messages based on the error type
-    if (error.name === "AbortError") {
-      console.error(
-        "Request timed out. The API server might be down or unreachable."
-      );
-    } else if (error.message.includes("Failed to fetch")) {
-      console.error(
-        "Failed to connect to API server. Make sure the backend is running at http://localhost:3001"
-      );
-    } else {
-      console.error("Error fetching graph data:", error);
-    }
-
-    console.log("Using fallback data instead");
+    console.error("Error fetching graph data:", error);
     return fakeGraph; // Fall back to fake data if API fails
   }
 }
 
 // Fallback data if Neo4j connection fails
 const fakeGraph = {
+  "Kyrees Darius Johnson": [
+    {
+      relationship: "HAS_PARTICIPANT",
+      target: "Federal Investigation into Snapchat-based Gun Ring",
+      evidence:
+        "Kyrees Darius Johnson was sentenced to nearly eight years in prison as part of the investigation.",
+      articleID: "600381433",
+    },
+    {
+      relationship: "IS_CHARGED_WITH",
+      target: "Unlawful Possession of Machine Guns",
+      evidence:
+        "Kyrees Darius Johnson pleaded guilty to one count of unlawful possession of machine guns.",
+      articleID: "600381433",
+    },
+    {
+      relationship: "HAS_LOCATION",
+      target: "Minneapolis",
+      evidence: "Kyrees Darius Johnson is from Minneapolis.",
+      articleID: "600381433",
+    },
+    {
+      relationship: "IS_ACCUSED_OF",
+      target: "Attempted Carjacking",
+      evidence:
+        "Johnson was accused of an attempted carjacking in August 2023.",
+      articleID: "600381433",
+    },
+  ],
+  "Snapchat-based Gun Ring": [
+    {
+      relationship: "HAS_DATE",
+      target: "2024-07-17",
+      evidence:
+        "The investigation into the gun ring concluded with sentencing on this date.",
+      articleID: "600381433",
+    },
+    {
+      relationship: "HAS_LOCATION",
+      target: "Twin Cities Metro",
+      evidence:
+        "The Snapchat-based gun ring operated in the Twin Cities metro area.",
+      articleID: "600381433",
+    },
+  ],
+  "U.S. District Judge Donovan Frank": [
+    {
+      relationship: "HAS_PARTICIPANT",
+      target: "Federal Investigation into Snapchat-based Gun Ring",
+      evidence:
+        "Judge Donovan Frank sentenced Kyrees Darius Johnson as part of the case.",
+      articleID: "600381433",
+    },
+  ],
+  "Central Minnesota Violent Offender Task Force": [
+    {
+      relationship: "MENTIONS",
+      target: "Bureau of Alcohol, Tobacco, Firearms and Explosives",
+      evidence:
+        "The task force notified federal authorities about the Snapchat group suspected of trafficking firearms and illicit drugs.",
+      articleID: "600381433",
+    },
+  ],
+  "Undercover Officers": [
+    {
+      relationship: "HAS_PARTICIPANT",
+      target: "Federal Investigation into Snapchat-based Gun Ring",
+      evidence:
+        "Undercover officers carried out about six controlled buys with various members of the group between March and June 2023.",
+      articleID: "600381433",
+    },
+  ],
+  "Assistant U.S. Attorney Ruth Shnider": [
+    {
+      relationship: "WORKS_FOR",
+      target: "U.S. Department of Justice",
+      evidence:
+        "Assistant U.S. Attorney Ruth Shnider prosecuted the case against Johnson.",
+      articleID: "600381433",
+    },
+  ],
   "Jacob Frey": [
     {
-      relationship: "PROPOSED",
-      target: "Third Precinct",
+      relationship: "PARTICIPATING_IN",
+      target: "Minneapolis Mayoral Election 2025",
+      evidence: "Jacob Frey is running for mayor of Minneapolis in 2025.",
+      articleID: "1234567890",
+    },
+    {
+      relationship: "LIVES_IN",
+      target: "Minneapolis",
+      evidence: "Jacob Frey lives in Minneapolis.",
+      articleID: "1234567890",
+    },
+  ],
+  "Minnesota Legislature": [
+    {
+      relationship: "PROPOSED_BILL",
+      target: "Gun Control Reform Act 2025",
       evidence:
-        "Minneapolis City Council members postponed a vote Tuesday on Mayor Jacob Frey's choice for a location for a future Third Precinct police station.",
-      articleID: "600312948",
-      headline:
-        "Minneapolis City Council delays vote on Third Precinct police station",
-      date: "2023-10-17T22:27:51.242Z",
+        "Minnesota lawmakers proposed a new gun control reform act in early 2025.",
+      articleID: "9876543210",
+    },
+    {
+      relationship: "DEBATING",
+      target: "Statewide Minimum Wage Increase",
+      evidence:
+        "Minnesota legislators are debating an increase in the statewide minimum wage.",
+      articleID: "5678901234",
+    },
+  ],
+  "Ilhan Omar": [
+    {
+      relationship: "ENDORSED",
+      target: "Community Housing Initiative",
+      evidence:
+        "Ilhan Omar endorsed a community-led housing initiative in Minneapolis.",
+      articleID: "8765432109",
+    },
+    {
+      relationship: "CRITICIZED",
+      target: "Minneapolis Police Department Policy",
+      evidence:
+        "Ilhan Omar publicly criticized new MPD policies on surveillance.",
+      articleID: "3456789012",
+    },
+  ],
+  "Tim Walz": [
+    {
+      relationship: "SIGNED_BILL",
+      target: "Green Energy Investment Plan",
+      evidence:
+        "Governor Tim Walz signed a new bill to promote green energy investments in Minnesota.",
+      articleID: "2345678901",
+    },
+    {
+      relationship: "ANNOUNCED",
+      target: "Infrastructure Rebuild Program",
+      evidence:
+        "Tim Walz announced a $500 million infrastructure rebuild program for roads and bridges.",
+      articleID: "4567890123",
     },
   ],
 };
@@ -65,7 +167,6 @@ let graphData = fakeGraph;
 // Fetch the real graph data when the extension loads
 async function initializeGraphData() {
   try {
-    console.log("Initializing graph data...");
     const data = await getGraphData();
     if (data && Object.keys(data).length > 0) {
       graphData = data;
@@ -76,559 +177,73 @@ async function initializeGraphData() {
   } catch (error) {
     console.error("Failed to load graph data, using fallback data", error);
   }
-
-  // Log the data we're using, whether from API or fallback
-  console.log(
-    `Using graph data with ${Object.keys(graphData).length} entities`
-  );
 }
 
 // Initialize graph data
-console.log(
-  "Starting extension with fallback data while attempting to load from API"
-);
 initializeGraphData();
-
-// Add a test function to help debug entity highlighting
-function testEntityHighlighting() {
-  console.log("Testing entity highlighting functionality...");
-
-  // Log all entities in our graph
-  const allEntities = getAllEntities();
-  console.log(`Found ${allEntities.length} entities in our knowledge graph:`);
-  console.log(allEntities.slice(0, 10)); // Show first 10 entities
-
-  // Test finding entities in a sample text
-  const testText =
-    "Tim Walz announced a new infrastructure program in Minneapolis. Jacob Frey and Ilhan Omar were present at the event.";
-  console.log("Test text:", testText);
-
-  const foundEntities = findEntitiesInText(testText);
-  console.log(
-    `Found ${foundEntities.length} entities in test text:`,
-    foundEntities
-  );
-
-  // Log success
-  console.log(
-    "Entity highlighting test complete. If entities were found, the highlighting functionality should work."
-  );
-}
-
-// Run the test when the extension loads
-setTimeout(testEntityHighlighting, 2000);
 
 // Track active overlays to prevent duplicates
 let activeOverlay = null;
-// Track highlighted entities to prevent duplicates
-let highlightedEntities = new Set();
-// Track if we're currently processing a selection to prevent recursive calls
-let isProcessingSelection = false;
 
-// Helper function to escape special characters in regex
-function escapeRegExp(string) {
-  return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-}
-
-// Improved function to find entities in text - works with all selection types
-function findEntitiesInText(text) {
-  if (!text || text.length === 0) {
-    return [];
-  }
-
-  console.log(`Finding entities in text (${text.length} chars)`);
-
-  // Get all entities from our graph data
-  const allEntities = getAllEntities();
-  console.log(`Checking against ${allEntities.length} known entities`);
-
-  // Create a map to track found entities (to avoid duplicates)
-  const foundEntitiesMap = new Map();
-
-  // Normalize the text for matching
-  const normalizedText = text.toLowerCase();
-
-  // ALWAYS use the same approach regardless of text length
-  // Check each entity to see if it appears in the text
-  allEntities.forEach((entity) => {
-    // Skip empty entities
-    if (!entity || entity.length === 0) return;
-
-    const normalizedEntity = entity.toLowerCase();
-
-    // Simple check: is the entity in the text?
-    if (normalizedText.includes(normalizedEntity)) {
-      console.log(`Found entity match: "${entity}" in the text`);
-      foundEntitiesMap.set(entity, { entity, text: entity });
-    }
-  });
-
-  // For short selections only, also check if they're part of a longer entity
-  if (normalizedText.length < 30) {
-    allEntities.forEach((entity) => {
-      if (!entity || entity.length === 0 || foundEntitiesMap.has(entity))
-        return;
-
-      const normalizedEntity = entity.toLowerCase();
-
-      if (
-        normalizedEntity.includes(normalizedText) &&
-        normalizedText.length > 2
-      ) {
-        console.log(
-          `Found containing entity match: "${entity}" for the text "${text}"`
-        );
-        foundEntitiesMap.set(entity, {
-          entity,
-          text: entity,
-          isContainingMatch: true,
-        });
-      }
-    });
-  }
-
-  // Convert found entities to array
-  const foundEntities = Array.from(foundEntitiesMap.values());
-
-  // Sort results by entity length (longer entities first)
-  foundEntities.sort((a, b) => b.entity.length - a.entity.length);
-
-  console.log(
-    `Found ${foundEntities.length} entities in text:`,
-    foundEntities.map((e) => e.entity)
-  );
-
-  return foundEntities;
-}
-
-// Process the current text selection with improved reliability
-function processSelection(selection, event) {
-  if (!selection || selection.rangeCount === 0) return;
-
-  const selectedText = selection.toString().trim();
-
-  if (selectedText && selectedText.length > 0) {
-    console.log("Text selected:", selectedText);
-
-    // Find entities in the selected text using our improved function
-    const entities = findEntitiesInText(selectedText);
-
-    if (entities.length > 0) {
-      console.log(`Found ${entities.length} entities in selection`);
-      // Create a popup with the entities found
-      showEntitiesPopup(entities, selection, event);
-    } else {
-      console.log("No entities found in selection");
-
-      // Debug: Log all entities we're checking against
-      const allEntities = getAllEntities();
-      console.log(
-        `Available entities (${allEntities.length}):`,
-        allEntities.length > 20 ? allEntities.slice(0, 20) + "..." : allEntities
-      );
-    }
-  }
-}
-
-// Listen for text selection with standardized behavior
+// Listen for text selection
 document.addEventListener("mouseup", function (event) {
-  // Don't process if we're already processing a selection
-  if (isProcessingSelection) {
-    return;
-  }
-
-  // Don't process if we clicked on a highlighted entity or inside an active overlay
-  if (
-    (event.target.classList &&
-      event.target.classList.contains("kg-highlighted-entity")) ||
-    (activeOverlay && activeOverlay.contains(event.target))
-  ) {
-    return;
-  }
-
   // Remove any existing overlay if clicking outside
   if (activeOverlay && !activeOverlay.contains(event.target)) {
     activeOverlay.remove();
     activeOverlay = null;
   }
 
-  // Get the selection
-  const selection = window.getSelection();
-  if (!selection) return;
+  const selectedText = window.getSelection().toString().trim();
+  if (selectedText && selectedText.length > 0) {
+    // Find all relationships where the selected text appears
+    let foundRelationships = [];
 
-  // Force a small delay to ensure the selection is complete
-  setTimeout(() => {
-    processSelection(selection, event);
-  }, 10);
-});
-
-// Function to show a popup with the entities found - standardized for all selection types
-function showEntitiesPopup(entities, selection, event) {
-  // Remove any existing overlay
-  if (activeOverlay) {
-    activeOverlay.remove();
-    activeOverlay = null;
-  }
-
-  // Get the selection coordinates
-  const range = selection.getRangeAt(0);
-  const rect = range.getBoundingClientRect();
-
-  // Create the popup
-  const div = document.createElement("div");
-  div.className = "kg-entity-popup";
-  div.style.position = "absolute";
-
-  // Position the popup - ensure it's visible even for small selections
-  if (rect.width < 5 || rect.height < 5) {
-    // For very small selections, position near the mouse
-    div.style.left = `${event.clientX + window.scrollX}px`;
-    div.style.top = `${event.clientY + window.scrollY + 20}px`;
-  } else {
-    // Normal positioning
-    div.style.left = `${rect.left + window.scrollX}px`;
-    div.style.top = `${rect.bottom + window.scrollY + 10}px`;
-  }
-
-  div.style.background = "#1e1e1e";
-  div.style.color = "white";
-  div.style.padding = "15px";
-  div.style.borderRadius = "8px";
-  div.style.boxShadow = "0 4px 15px rgba(0, 0, 0, 0.2)";
-  div.style.zIndex = "10000";
-  div.style.fontSize = "14px";
-  div.style.minWidth = "250px";
-  div.style.maxWidth = "400px";
-
-  // Make the popup draggable
-  let isDragging = false;
-  let offsetX, offsetY;
-
-  div.addEventListener("mousedown", (e) => {
-    if (e.target === div || e.target.classList.contains("popup-header")) {
-      isDragging = true;
-      offsetX = e.clientX - div.getBoundingClientRect().left;
-      offsetY = e.clientY - div.getBoundingClientRect().top;
-      document.body.style.cursor = "grabbing";
-    }
-  });
-
-  document.addEventListener("mousemove", (e) => {
-    if (isDragging) {
-      div.style.left = `${e.clientX - offsetX}px`;
-      div.style.top = `${e.clientY - offsetY}px`;
-    }
-  });
-
-  document.addEventListener("mouseup", () => {
-    isDragging = false;
-    document.body.style.cursor = "default";
-  });
-
-  // Create the content
-  let content = `
-    <div class="popup-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; cursor: grab;">
-      <div style="font-weight: bold;">Entities found in your selection:</div>
-      <button class="close-btn" style="background: none; border: none; color: #aaa; font-size: 18px; cursor: pointer;">×</button>
-    </div>
-    <div style="max-height: 300px; overflow-y: auto;">
-  `;
-
-  // Add entities to the popup - always show all entities, even nested ones
-  entities.forEach((entity) => {
-    let matchType = "match";
-    if (entity.isExactMatch) matchType = "exact match";
-    else if (entity.isPartialMatch) matchType = "partial match";
-    else if (entity.isContainingMatch) matchType = "related entity";
-
-    content += `
-      <div class="kg-entity-item" style="padding: 8px; margin-bottom: 8px; background: #333; border-radius: 4px; cursor: pointer;" data-entity="${entity.entity}">
-        <strong>${entity.entity}</strong> 
-        <span style="color: #61dafb; font-size: 12px;">(${matchType})</span>
-        <div style="color: #aaa; font-size: 12px; margin-top: 4px;">Click to see relationships</div>
-      </div>
-    `;
-  });
-
-  content += `</div>`;
-
-  div.innerHTML = content;
-  document.body.appendChild(div);
-  activeOverlay = div;
-
-  // Add click handler for close button
-  div.querySelector(".close-btn").addEventListener("click", () => {
-    div.remove();
-    activeOverlay = null;
-  });
-
-  // Add click handler for highlight button
-  div.querySelector(".highlight-entities-btn").addEventListener("click", () => {
-    highlightEntitiesInPage(entities, selection);
-    div.remove();
-    activeOverlay = null;
-  });
-
-  // Add click handlers for the entities
-  div.querySelectorAll(".kg-entity-item").forEach((item) => {
-    item.addEventListener("click", function () {
-      const entityName = this.dataset.entity;
-      console.log(`Clicked on entity: ${entityName}`);
-
-      // Find relationships for this entity
-      let foundRelationships = [];
-
-      // Check if this entity is a source
-      if (graphData[entityName]) {
-        // Add all relationships where this entity is the source
-        graphData[entityName].forEach((rel) => {
+    // Check each entity in the graph
+    Object.entries(graphData).forEach(([source, relationships]) => {
+      if (source.toLowerCase().includes(selectedText.toLowerCase())) {
+        // If selected text is in the source, add its relationships
+        relationships.forEach((rel) => {
           foundRelationships.push({
             ...rel,
-            source: entityName,
+            source: source,
           });
         });
-      }
-
-      // Check if this entity appears as a target in any relationships
-      Object.entries(graphData).forEach(([source, relationships]) => {
+      } else {
+        // Check if selected text appears in any targets
         relationships.forEach((rel) => {
-          if (rel.target === entityName) {
+          if (rel.target.toLowerCase().includes(selectedText.toLowerCase())) {
             foundRelationships.push({
               ...rel,
               source: source,
             });
           }
         });
-      });
-
-      if (foundRelationships.length > 0) {
-        console.log(
-          `Found ${foundRelationships.length} relationships for entity: ${entityName}`
-        );
-
-        // Remove the entities popup
-        div.remove();
-        activeOverlay = null;
-
-        // Show the relationships popup
-        const itemRect = this.getBoundingClientRect();
-        displayGraphOverlay(entityName, foundRelationships, itemRect);
-      } else {
-        console.log(`No relationships found for entity: ${entityName}`);
-      }
-    });
-  });
-
-  // Close popup when clicking outside
-  document.addEventListener("mousedown", function closePopup(e) {
-    if (activeOverlay && !activeOverlay.contains(e.target)) {
-      activeOverlay.remove();
-      activeOverlay = null;
-      document.removeEventListener("mousedown", closePopup);
-    }
-  });
-}
-
-// Function to highlight entities in the page - improved to handle overlapping entities
-function highlightEntitiesInPage(entities, selection) {
-  if (
-    !entities ||
-    entities.length === 0 ||
-    !selection ||
-    selection.rangeCount === 0
-  ) {
-    console.log("No entities to highlight or no selection");
-    return;
-  }
-
-  console.log(`Highlighting ${entities.length} entities in the page`);
-
-  try {
-    isProcessingSelection = true;
-
-    // Get the current selection range
-    const range = selection.getRangeAt(0);
-    const selectedText = selection.toString();
-
-    // Create a document fragment to hold our highlighted content
-    const fragment = document.createDocumentFragment();
-
-    // Find all occurrences of all entities in the text
-    const occurrences = [];
-
-    entities.forEach((entity) => {
-      const entityText = entity.entity;
-      const entityLower = entityText.toLowerCase();
-      const textLower = selectedText.toLowerCase();
-
-      let startIndex = 0;
-      while ((startIndex = textLower.indexOf(entityLower, startIndex)) !== -1) {
-        occurrences.push({
-          entity: entityText,
-          start: startIndex,
-          end: startIndex + entityText.length,
-          length: entityText.length,
-        });
-        startIndex += 1; // Move forward to find next occurrence
       }
     });
 
-    // Sort occurrences by start position, then by length (descending) for overlaps
-    occurrences.sort((a, b) => {
-      if (a.start === b.start) return b.length - a.length;
-      return a.start - b.start;
-    });
-
-    // Process occurrences to handle overlaps
-    // We'll use a non-greedy approach that preserves shorter entities when possible
-    const finalOccurrences = [];
-    const coveredRanges = [];
-
-    occurrences.forEach((occurrence) => {
-      // Check if this occurrence overlaps with any covered range
-      let isOverlapping = false;
-
-      for (const range of coveredRanges) {
-        // Check for overlap
-        if (
-          (occurrence.start >= range.start && occurrence.start < range.end) ||
-          (occurrence.end > range.start && occurrence.end <= range.end) ||
-          (occurrence.start <= range.start && occurrence.end >= range.end)
-        ) {
-          isOverlapping = true;
-
-          // If this is a shorter entity contained within a longer one,
-          // we still want to include it in the UI popup, but not highlight it
-          if (occurrence.start >= range.start && occurrence.end <= range.end) {
-            // This is a nested entity - we'll add it to finalOccurrences
-            // but mark it as nested so we don't highlight it
-            occurrence.nested = true;
-            finalOccurrences.push(occurrence);
-          }
-
-          break;
-        }
-      }
-
-      if (!isOverlapping) {
-        // Add to final occurrences and mark the range as covered
-        finalOccurrences.push(occurrence);
-        coveredRanges.push({
-          start: occurrence.start,
-          end: occurrence.end,
-        });
-      }
-    });
-
-    // Sort final occurrences by start position for highlighting
-    finalOccurrences.sort((a, b) => a.start - b.start);
-
-    // Now build the highlighted text
-    let currentPosition = 0;
-
-    finalOccurrences.forEach((occurrence) => {
-      // Skip nested occurrences for highlighting (but they're still in the popup)
-      if (occurrence.nested) return;
-
-      // Add text before this entity
-      if (occurrence.start > currentPosition) {
-        const beforeText = selectedText.substring(
-          currentPosition,
-          occurrence.start
-        );
-        fragment.appendChild(document.createTextNode(beforeText));
-      }
-
-      // Create a span for the entity
-      const span = document.createElement("span");
-      span.className = "kg-highlighted-entity";
-      span.style.backgroundColor = "#61dafb33";
-      span.style.borderBottom = "2px solid #61dafb";
-      span.style.padding = "0 2px";
-      span.style.cursor = "pointer";
-      span.textContent = selectedText.substring(
-        occurrence.start,
-        occurrence.end
+    if (foundRelationships.length > 0) {
+      console.log(
+        `Found ${foundRelationships.length} relationships for: ${selectedText}`
       );
-      span.dataset.entity = occurrence.entity;
 
-      // Add click handler to show relationships
-      span.addEventListener("click", function (e) {
-        e.preventDefault();
-        e.stopPropagation();
-
-        // Find relationships for this entity
-        let foundRelationships = [];
-
-        // Check if this entity is a source
-        if (graphData[occurrence.entity]) {
-          graphData[occurrence.entity].forEach((rel) => {
-            foundRelationships.push({
-              ...rel,
-              source: occurrence.entity,
-            });
-          });
-        }
-
-        // Check if this entity appears as a target
-        Object.entries(graphData).forEach(([source, relationships]) => {
-          relationships.forEach((rel) => {
-            if (rel.target === occurrence.entity) {
-              foundRelationships.push({
-                ...rel,
-                source: source,
-              });
-            }
-          });
-        });
-
-        if (foundRelationships.length > 0) {
-          // Remove any existing overlay
-          if (activeOverlay) {
-            activeOverlay.remove();
-            activeOverlay = null;
-          }
-
-          // Show the relationships popup
-          const rect = span.getBoundingClientRect();
-          displayGraphOverlay(occurrence.entity, foundRelationships, rect);
-        }
-      });
-
-      fragment.appendChild(span);
-
-      // Update the current position
-      currentPosition = occurrence.end;
-    });
-
-    // Add any remaining text
-    if (currentPosition < selectedText.length) {
-      const afterText = selectedText.substring(currentPosition);
-      fragment.appendChild(document.createTextNode(afterText));
+      // Only show if we don't already have an active overlay
+      if (!activeOverlay) {
+        displayGraphOverlay(selectedText, foundRelationships);
+      }
     }
-
-    // Clear the current selection
-    range.deleteContents();
-
-    // Insert our highlighted content
-    range.insertNode(fragment);
-
-    // Clear the selection
-    selection.removeAllRanges();
-
-    console.log("Entities highlighted successfully");
-  } catch (error) {
-    console.error("Error highlighting entities:", error);
-  } finally {
-    isProcessingSelection = false;
   }
-}
+});
 
-function displayGraphOverlay(selectedText, relationships, rect) {
+function displayGraphOverlay(selectedText, relationships) {
   // Create overlay
   const div = document.createElement("div");
   div.id = "kg-overlay";
   activeOverlay = div;
+
+  // Get selection coordinates
+  const selection = window.getSelection();
+  const range = selection.getRangeAt(0);
+  const rect = range.getBoundingClientRect();
 
   // Position overlay below the selected text
   div.style.position = "absolute";
@@ -783,12 +398,27 @@ function displayGraphOverlay(selectedText, relationships, rect) {
     .form-input {
       width: 100%;
       padding: 8px;
-      margin: 5px 0 10px 0;
-      border: 1px solid #444;
+      margin-bottom: 10px;
+      background: #444;
+      border: 1px solid #555;
       border-radius: 4px;
-      background: #222;
       color: white;
       font-size: 13px;
+    }
+
+    textarea.form-input {
+      resize: vertical;
+      min-height: 60px;
+      line-height: 1.4;
+    }
+
+    select.form-input {
+      appearance: none;
+      background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23FFFFFF%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+      background-repeat: no-repeat;
+      background-position: right 8px center;
+      background-size: 12px;
+      padding-right: 30px;
     }
 
     .form-submit {
@@ -808,8 +438,49 @@ function displayGraphOverlay(selectedText, relationships, rect) {
     }
 
     .relationship-type {
+      display: inline-block;
+      margin: 0 8px;
+      padding: 2px 6px;
+      background: rgba(97, 218, 251, 0.2);
+      border-radius: 4px;
+      font-size: 12px;
       color: #61dafb;
       font-weight: 500;
+    }
+    
+    .review-badge {
+      background-color: #ff9800;
+      color: white;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: bold;
+      display: inline-block;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+    
+    .recently-added-badge {
+      background-color: #4caf50;
+      color: white;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: bold;
+      display: inline-block;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+    
+    .confirmation-message {
+      color: #ff9800;
+      padding: 8px;
+      margin-top: 10px;
+      background: rgba(255, 152, 0, 0.1);
+      border-radius: 4px;
+      text-align: center;
+      font-size: 14px;
+      margin-bottom: 10px;
     }
 
     .show-more-btn {
@@ -838,17 +509,6 @@ function displayGraphOverlay(selectedText, relationships, rect) {
     .article-link:hover {
       border-bottom: 1px solid #61dafb;
     }
-    
-    .kg-highlighted-entity {
-      background-color: rgba(255, 255, 150, 0.5);
-      border-radius: 2px;
-      cursor: pointer;
-      padding: 0 2px;
-    }
-    
-    .kg-highlighted-entity:hover {
-      background-color: rgba(255, 255, 100, 0.7);
-    }
   `;
   document.head.appendChild(style);
 
@@ -858,14 +518,35 @@ function displayGraphOverlay(selectedText, relationships, rect) {
 
   let content = `
     <div class="overlay-header">
-      <h3 style="margin: 0; font-size: 16px;">🔍 Relationships for "${selectedText}"</h3>
+      <h3 style="margin: 0; font-size: 16px;">🔍 Showing Top 3 Relationships for "${selectedText}"</h3>
+      <button class="add-btn">Add Relationship</button>
+       <div class="add-form" id="add-form">
+          <div class="form-title">Add a new relationship:</div>
+          <label>Subject:</label>
+          <input type="text" class="form-input subject-input" placeholder="Entity name">
+          <label>Relationship:</label>
+          <select class="form-input relationship-input">
+            <option value="">-- Select Relationship Type --</option>
+            <option value="VETOED">VETOED</option>
+            <option value="PROPOSED">PROPOSED</option>
+            <option value="SUPPORTED">SUPPORTED</option>
+            <option value="OPPOSED">OPPOSED</option>
+          </select>
+          <label>Target:</label>
+          <input type="text" class="form-input target-input" placeholder="Related entity">
+          <label>Supporting Quote:</label>
+          <textarea class="form-input quote-input" placeholder="Enter a quote that supports this relationship" rows="3"></textarea>
+          <label>Source URL:</label>
+          <input type="text" class="form-input url-input" placeholder="Article URL">
+          <button class="form-submit add-submit">Add Relationship</button>
+        </div>
       <button class="close-btn">×</button>
     </div>
   `;
 
   // Add the first 3 relationships
   initialRelationships.forEach((rel, index) => {
-    // Convert article ID to a URL
+    // Convert article ID to a URL (in a real implementation, you'd use your actual URL pattern)
     const articleUrl = `https://startribune.com/search/${rel.articleID}`;
 
     content += `
@@ -879,11 +560,10 @@ function displayGraphOverlay(selectedText, relationships, rect) {
         </div>
         <div class="action-buttons">
           <button class="source-btn" data-index="${index}">Source & Details</button>
-          <button class="report-btn" data-index="${index}">Report</button>
-          <button class="add-btn" data-index="${index}">Add Relationship</button>
+          <button class="report-btn" data-index="${index}">Report Relationship</button>
         </div>
         <div class="source-content" id="source-${index}">
-          <p><strong>Details:</strong> ${rel.evidence}</p>
+          <p><strong>Quote:</strong> "${rel.evidence}"</p>
           <p><strong>Source:</strong> <a href="${articleUrl}" target="_blank" class="article-link">Article #${rel.articleID}</a></p>
         </div>
         <div class="report-form" id="report-form-${index}">
@@ -891,18 +571,7 @@ function displayGraphOverlay(selectedText, relationships, rect) {
           <textarea class="form-input" placeholder="What's incorrect about this relationship?" rows="3"></textarea>
           <button class="form-submit report-submit" data-index="${index}">Submit Report</button>
         </div>
-        <div class="add-form" id="add-form-${index}">
-          <div class="form-title">Add a new relationship:</div>
-          <label>Subject:</label>
-          <input type="text" class="form-input" placeholder="Entity name">
-          <label>Relationship:</label>
-          <input type="text" class="form-input" placeholder="Type of relationship">
-          <label>Target:</label>
-          <input type="text" class="form-input" placeholder="Related entity">
-          <label>Source URL:</label>
-          <input type="text" class="form-input" placeholder="Article URL">
-          <button class="form-submit add-submit">Add Relationship</button>
-        </div>
+       
       </div>
     `;
   });
@@ -973,11 +642,71 @@ function displayGraphOverlay(selectedText, relationships, rect) {
     });
   });
 
+  // Add event listeners for report submit buttons
+  div.querySelectorAll(".report-submit").forEach((button) => {
+    button.addEventListener("click", function () {
+      const index = this.dataset.index;
+      const reportForm = document.getElementById(`report-form-${index}`);
+      const relationshipItem = reportForm.closest(".relationship-item");
+
+      // Close the form
+      reportForm.style.display = "none";
+
+      // Mark the relationship as under review
+      const relationshipText =
+        relationshipItem.querySelector(".relationship-text");
+
+      // Add "Under Review" badge if it doesn't exist already
+      if (!relationshipItem.querySelector(".review-badge")) {
+        const reviewBadge = document.createElement("div");
+        reviewBadge.className = "review-badge";
+        reviewBadge.textContent = "Under Review";
+        reviewBadge.style.cssText = `
+          background-color: #ff9800;
+          color: white;
+          padding: 2px 6px;
+          border-radius: 4px;
+          font-size: 11px;
+          font-weight: bold;
+          display: inline-block;
+          margin-left: 8px;
+          vertical-align: middle;
+        `;
+        relationshipText.appendChild(reviewBadge);
+      }
+
+      // Show confirmation message
+      const confirmationMsg = document.createElement("div");
+      confirmationMsg.className = "confirmation-message";
+      confirmationMsg.textContent =
+        "Report sent. Relationship is under review.";
+      confirmationMsg.style.cssText = `
+        color: #ff9800;
+        padding: 8px;
+        margin-top: 10px;
+        background: rgba(255, 152, 0, 0.1);
+        border-radius: 4px;
+        text-align: center;
+        font-size: 14px;
+      `;
+      relationshipItem.appendChild(confirmationMsg);
+
+      // Remove confirmation message after 3 seconds
+      setTimeout(() => {
+        confirmationMsg.remove();
+      }, 3000);
+    });
+  });
+
   // Add event listeners for add relationship buttons
   div.querySelectorAll(".add-btn").forEach((button) => {
     button.addEventListener("click", function () {
       const index = this.dataset.index;
-      const addForm = document.getElementById(`add-form-${index}`);
+      // Handle both the main add button (no index) and relationship-specific add buttons
+      const addFormId = index ? `add-form-${index}` : "add-form";
+      const addForm = document.getElementById(addFormId);
+
+      if (!addForm) return;
 
       // Toggle add form
       if (addForm.style.display === "block") {
@@ -987,7 +716,7 @@ function displayGraphOverlay(selectedText, relationships, rect) {
         div
           .querySelectorAll(".report-form, .add-form, .source-content")
           .forEach((el) => {
-            if (el.id !== `add-form-${index}`) {
+            if (el.id !== addFormId) {
               el.style.display = "none";
             }
           });
@@ -998,6 +727,235 @@ function displayGraphOverlay(selectedText, relationships, rect) {
         });
 
         addForm.style.display = "block";
+      }
+    });
+  });
+
+  // Add event listener for add relationship submit buttons
+  div.querySelectorAll(".add-submit").forEach((button) => {
+    button.addEventListener("click", function () {
+      const form = this.closest(".add-form");
+      const subjectInput = form.querySelector(".subject-input");
+      const relationshipInput = form.querySelector(".relationship-input");
+      const targetInput = form.querySelector(".target-input");
+      const quoteInput = form.querySelector(".quote-input");
+      const urlInput = form.querySelector(".url-input");
+
+      // Validate inputs
+      if (
+        !subjectInput.value ||
+        !relationshipInput.value ||
+        !targetInput.value
+      ) {
+        alert("Please fill in all required fields");
+        return;
+      }
+
+      // Create new relationship object
+      const newRelationship = {
+        source: subjectInput.value,
+        relationship: relationshipInput.value,
+        target: targetInput.value,
+        evidence: quoteInput.value,
+        articleID: urlInput.value || window.location.href,
+        confidence: 1.0,
+      };
+
+      try {
+        // Clear form
+        subjectInput.value = "";
+        relationshipInput.value = "";
+        targetInput.value = "";
+        quoteInput.value = "";
+        urlInput.value = "";
+
+        // Hide form
+        form.style.display = "none";
+
+        // Add the new relationship to the display
+        const relationshipsContainer =
+          div.querySelector(".relationship-item").parentNode;
+        const newRelationshipItem = document.createElement("div");
+        newRelationshipItem.className = "relationship-item";
+
+        // Generate a unique index for this new item
+        const newIndex = Date.now().toString();
+
+        newRelationshipItem.innerHTML = `
+          <div class="relationship-content">
+            <div class="relationship-text">
+              <strong>${newRelationship.source}</strong>
+              <span class="relationship-type">${
+                newRelationship.relationship
+              }</span>
+              <strong>${newRelationship.target}</strong>
+            </div>
+          </div>
+          <div class="action-buttons">
+            <button class="source-btn" data-index="${newIndex}">Source & Details</button>
+            <button class="report-btn" data-index="${newIndex}">Report Relationship</button>
+          </div>
+          <div class="source-content" id="source-${newIndex}" style="display: none;">
+            <p><strong>Details:</strong> ${
+              newRelationship.evidence || "No supporting quote provided."
+            }</p>
+            <p><strong>Source:</strong> <a href="${
+              newRelationship.articleID
+            }" target="_blank" class="article-link">Source Link</a></p>
+          </div>
+          <div class="report-form" id="report-form-${newIndex}" style="display: none;">
+            <div class="form-title">Report this relationship:</div>
+            <textarea class="form-input" placeholder="What's incorrect about this relationship?" rows="3"></textarea>
+            <button class="form-submit report-submit" data-index="${newIndex}">Submit Report</button>
+          </div>
+        `;
+
+        // Add with a highlight effect
+        newRelationshipItem.style.animation = "highlight 2s";
+        relationshipsContainer.appendChild(newRelationshipItem);
+
+        // Add event listeners to the new buttons
+        const sourceBtn = newRelationshipItem.querySelector(".source-btn");
+        const reportBtn = newRelationshipItem.querySelector(".report-btn");
+        const reportSubmitBtn =
+          newRelationshipItem.querySelector(".report-submit");
+
+        sourceBtn.addEventListener("click", function () {
+          const sourceContent = document.getElementById(`source-${newIndex}`);
+          if (sourceContent.style.display === "block") {
+            sourceContent.style.display = "none";
+            this.textContent = "Source & Details";
+          } else {
+            // Hide all other forms first
+            div
+              .querySelectorAll(".report-form, .add-form, .source-content")
+              .forEach((el) => {
+                if (el.id !== `source-${newIndex}`) {
+                  el.style.display = "none";
+                }
+              });
+
+            // Reset button text
+            div.querySelectorAll(".source-btn").forEach((btn) => {
+              btn.textContent = "Source & Details";
+            });
+
+            sourceContent.style.display = "block";
+            this.textContent = "Hide Details";
+          }
+        });
+
+        reportBtn.addEventListener("click", function () {
+          const reportForm = document.getElementById(`report-form-${newIndex}`);
+          if (reportForm.style.display === "block") {
+            reportForm.style.display = "none";
+          } else {
+            // Hide all other forms first
+            div
+              .querySelectorAll(".report-form, .add-form, .source-content")
+              .forEach((el) => {
+                if (el.id !== `report-form-${newIndex}`) {
+                  el.style.display = "none";
+                }
+              });
+
+            // Reset button text
+            div.querySelectorAll(".source-btn").forEach((btn) => {
+              btn.textContent = "Source & Details";
+            });
+
+            reportForm.style.display = "block";
+          }
+        });
+
+        // Add event listener for the report submit button
+        reportSubmitBtn.addEventListener("click", function () {
+          const reportIndex = this.dataset.index;
+          const reportForm = document.getElementById(
+            `report-form-${reportIndex}`
+          );
+          const relationshipItem = reportForm.closest(".relationship-item");
+
+          // Close the form
+          reportForm.style.display = "none";
+
+          // Mark the relationship as under review
+          const relationshipText =
+            relationshipItem.querySelector(".relationship-text");
+
+          // Add "Under Review" badge if it doesn't exist already
+          if (!relationshipItem.querySelector(".review-badge")) {
+            const reviewBadge = document.createElement("div");
+            reviewBadge.className = "review-badge";
+            reviewBadge.textContent = "Under Review";
+            reviewBadge.style.cssText = `
+              background-color: #ff9800;
+              color: white;
+              padding: 2px 6px;
+              border-radius: 4px;
+              font-size: 11px;
+              font-weight: bold;
+              display: inline-block;
+              margin-left: 8px;
+              vertical-align: middle;
+            `;
+            relationshipText.appendChild(reviewBadge);
+          }
+
+          // Show confirmation message
+          const confirmationMsg = document.createElement("div");
+          confirmationMsg.className = "confirmation-message";
+          confirmationMsg.textContent =
+            "Report sent. Relationship is under review.";
+          confirmationMsg.style.cssText = `
+            color: #ff9800;
+            padding: 8px;
+            margin-top: 10px;
+            background: rgba(255, 152, 0, 0.1);
+            border-radius: 4px;
+            text-align: center;
+            font-size: 14px;
+          `;
+          relationshipItem.appendChild(confirmationMsg);
+
+          // Remove confirmation message after 3 seconds
+          setTimeout(() => {
+            confirmationMsg.remove();
+          }, 3000);
+        });
+
+        // Add highlight animation to CSS
+        const style = document.createElement("style");
+        style.textContent = `
+          @keyframes highlight {
+            0% { background-color: #61dafb33; }
+            100% { background-color: #2a2a2a; }
+          }
+        `;
+        document.head.appendChild(style);
+
+        // Show success message
+        const successMsg = document.createElement("div");
+        successMsg.className = "success-message";
+        successMsg.textContent = "Relationship added successfully!";
+        successMsg.style.cssText = `
+          color: #4caf50;
+          padding: 8px;
+          margin-top: 10px;
+          background: rgba(76, 175, 80, 0.1);
+          border-radius: 4px;
+          text-align: center;
+          font-size: 14px;
+        `;
+        form.parentNode.insertBefore(successMsg, form.nextSibling);
+
+        // Remove success message after 3 seconds
+        setTimeout(() => {
+          successMsg.remove();
+        }, 3000);
+      } catch (error) {
+        console.error("Error adding relationship:", error);
+        alert("Failed to add relationship. Please try again.");
       }
     });
   });
@@ -1016,7 +974,7 @@ function displayGraphOverlay(selectedText, relationships, rect) {
       // Add the remaining relationships
       remainingRelationships.forEach((rel, i) => {
         const index = i + 3; // Offset by the initial 3 relationships
-        const articleUrl = `https://startribune.com/search/${rel.articleID}`;
+        const articleUrl = `https://example.com/articles/${rel.articleID}`;
 
         const relationshipItem = document.createElement("div");
         relationshipItem.className = "relationship-item";
@@ -1047,13 +1005,21 @@ function displayGraphOverlay(selectedText, relationships, rect) {
           <div class="add-form" id="add-form-${index}">
             <div class="form-title">Add a new relationship:</div>
             <label>Subject:</label>
-            <input type="text" class="form-input" placeholder="Entity name">
+            <input type="text" class="form-input subject-input" placeholder="Entity name">
             <label>Relationship:</label>
-            <input type="text" class="form-input" placeholder="Type of relationship">
+            <select class="form-input relationship-input">
+              <option value="">-- Select Relationship Type --</option>
+              <option value="VETOED">VETOED</option>
+              <option value="PROPOSED">PROPOSED</option>
+              <option value="SUPPORTED">SUPPORTED</option>
+              <option value="OPPOSED">OPPOSED</option>
+            </select>
             <label>Target:</label>
-            <input type="text" class="form-input" placeholder="Related entity">
+            <input type="text" class="form-input target-input" placeholder="Related entity">
+            <label>Supporting Quote:</label>
+            <textarea class="form-input quote-input" placeholder="Enter a quote that supports this relationship" rows="3"></textarea>
             <label>Source URL:</label>
-            <input type="text" class="form-input" placeholder="Article URL">
+            <input type="text" class="form-input url-input" placeholder="Article URL">
             <button class="form-submit add-submit">Add Relationship</button>
           </div>
         `;
@@ -1135,56 +1101,3 @@ function displayGraphOverlay(selectedText, relationships, rect) {
     }
   });
 }
-
-// Function to get all entities from the graph data
-function getAllEntities() {
-  // Get unique entities from the graph data
-  const entities = new Set();
-
-  // Add all sources
-  Object.keys(graphData).forEach((source) => {
-    entities.add(source);
-
-    // Add all targets
-    if (graphData[source] && Array.isArray(graphData[source])) {
-      graphData[source].forEach((rel) => {
-        if (rel.target) {
-          entities.add(rel.target);
-        }
-      });
-    }
-  });
-
-  // Convert to array and filter out empty entities
-  return Array.from(entities).filter(
-    (entity) => entity && entity.trim().length > 0
-  );
-}
-
-// Add a debug function to test entity detection with different selection types
-function testEntityDetection() {
-  console.log("Testing entity detection...");
-
-  // Test cases - different selection types
-  const testCases = [
-    "Minnesota",
-    "Minnesota Legislature",
-    "The Minnesota Legislature passed a bill",
-    "Tim Walz is the governor of Minnesota",
-    "Minneapolis is a city in Minnesota where Jacob Frey is mayor",
-  ];
-
-  testCases.forEach((text) => {
-    console.log(`\nTest case: "${text}"`);
-    const entities = findEntitiesInText(text);
-    console.log(
-      `Found ${entities.length} entities:`,
-      entities.map((e) => e.entity)
-    );
-  });
-
-  console.log("Entity detection test complete");
-}
-
-// Run the test on page load
-setTimeout(testEntityDetection, 2000);
