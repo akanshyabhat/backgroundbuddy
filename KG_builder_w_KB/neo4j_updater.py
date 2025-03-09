@@ -128,7 +128,14 @@ class Neo4jHandler:
             type(r) AS relationship, 
             b.name AS object_text, 
             b.type AS object_type,
-            r.evidence AS evidence
+            r.evidence AS evidence,
+            r.article_id AS article_id,
+            r.headline AS headline,
+            r.date AS date,
+            r.confidence AS confidence,
+            r.subject_type AS subject_type,
+            r.object_type AS object_type
+
         """
 
         try:
@@ -249,8 +256,8 @@ if __name__ == "__main__":
         handler.import_relationships_from_jsonl("validated_relationships.jsonl")
 
         # Export relationships to JSON file
-        print("\n📤 Exporting relationships to output.json...")
-        handler.export_relationships_to_json("output.json")
+        #print("\n📤 Exporting relationships to output.json...")
+        #handler.export_relationships_to_json("output.json")
 
     except Exception as e:
         print(f"❌ Error: {str(e)}")
