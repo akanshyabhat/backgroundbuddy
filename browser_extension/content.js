@@ -17,61 +17,6 @@ async function getGraphData() {
 const fakeGraph = {
   "Jacob Frey": [
     {
-      relationship: "OPPOSED_BY",
-      target: "City Council Member Emily Koski",
-      evidence:
-        "Minneapolis City Council Member Emily Koski announced her candidacy for mayor, challenging incumbent Mayor Jacob Frey in the upcoming 2025 election.",
-      articleID: "601213414",
-      articleName:
-        "Minneapolis Mayor Jacob Frey is running for re-election in 2025",
-      relevance: 0.9,
-      date: "2025-01-29",
-    },
-    {
-      relationship: "OPPOSED_BY",
-      target: "Jazz Hampton",
-      evidence:
-        "Jazz Hampton, an app developer and former attorney, has declared his intention to run against Mayor Jacob Frey in the 2025 Minneapolis mayoral election.",
-      articleID: "601213414",
-      articleName:
-        "Minneapolis Mayor Jacob Frey is running for re-election in 2025",
-      relevance: 0.8,
-      date: "2025-01-29",
-    },
-    {
-      relationship: "OPPOSED_BY",
-      target: "Rev. DeWayne Davis",
-      evidence:
-        "The Rev. DeWayne Davis has announced his candidacy for the 2025 Minneapolis mayoral election, positioning himself as a challenger to incumbent Mayor Jacob Frey.",
-      articleID: "601213414",
-      articleName:
-        "Minneapolis Mayor Jacob Frey is running for re-election in 2025",
-      relevance: 0.8,
-      date: "2025-01-29",
-    },
-    {
-      relationship: "OPPOSED_BY",
-      target: "State Sen. Omar Fateh",
-      evidence:
-        "State Senator Omar Fateh has declared his intention to run for mayor of Minneapolis in 2025, challenging incumbent Mayor Jacob Frey.",
-      articleID: "601213414",
-      articleName:
-        "Minneapolis Mayor Jacob Frey is running for re-election in 2025",
-      relevance: 0.8,
-      date: "2025-01-29",
-    },
-    {
-      relationship: "OPPOSED_BY",
-      target: "Brenda Short",
-      evidence:
-        "Brenda Short has announced her candidacy for the 2025 Minneapolis mayoral election, joining the list of challengers to incumbent Mayor Jacob Frey.",
-      articleID: "601213414",
-      articleName:
-        "Minneapolis Mayor Jacob Frey is running for re-election in 2025",
-      relevance: 0.7,
-      date: "2025-01-29",
-    },
-    {
       relationship: "VETOED",
       target: "2025 Minneapolis Budget",
       evidence:
@@ -79,8 +24,19 @@ const fakeGraph = {
       articleID: "601193824",
       articleName:
         "Minneapolis City Council passes 2025 budget after veto override",
-      relevance: 0.4,
+      relevance: 0.6,
       date: "2024-12-11",
+    },
+    {
+      relationship: "VETOED",
+      target: "Affordable Rental Housing Ordinance",
+      evidence:
+        "The Minneapolis City Council was unable to override Mayor Jacob Frey's recent veto of an ordinance that would give some organizations first dibs on buying certain rental housing units in an effort to preserve affordable housing.",
+      articleID: "601180840",
+      articleName:
+        "Minneapolis council fails to override affordable Frey rental housing veto",
+      relevance: 0.6,
+      date: "2024-11-14",
     },
     {
       relationship: "VETOED",
@@ -90,7 +46,7 @@ const fakeGraph = {
       articleID: "601185075",
       articleName:
         "Labor Standards Board vetoed by Mayor Frey, St. Paul leaders watching",
-      relevance: 0.7,
+      relevance: 0.8,
       date: "2024-11-21",
     },
     {
@@ -101,7 +57,7 @@ const fakeGraph = {
       articleID: "601180840",
       articleName:
         "Minneapolis council fails to override affordable Frey rental housing veto",
-      relevance: 0.7,
+      relevance: 0.9,
       date: "2024-11-14",
     },
     {
@@ -112,7 +68,7 @@ const fakeGraph = {
       articleID: "600053063",
       articleName:
         "How Jacob Frey won another term in ranked-choice votes, held off Kate Knuth",
-      relevance: 0.9,
+      relevance: 0.6,
       date: "2021-11-02",
     },
     {
@@ -122,7 +78,7 @@ const fakeGraph = {
         "Mayor Jacob Frey is highlighting a major win for the Minneapolis 2040 Comprehensive Plan, which has been stuck in a years-long court battle. On Sunday night, state lawmakers passed a bill that will resolve the legal challenge under the 2040 Plan that gave rise to the lawsuit.",
       articleID: "600376164",
       articleName: "Mayor Frey Highlights Major Win for Minneapolis 2040 Plan",
-      relevance: 0.9,
+      relevance: 0.8,
       date: "2024-05-20",
     },
     {
@@ -133,7 +89,7 @@ const fakeGraph = {
       articleID: "600112156",
       articleName:
         "Minneapolis voters reject plan to replace Police Department",
-      relevance: 0.8,
+      relevance: 0.6,
       date: "2021-11-02",
     },
     {
@@ -144,19 +100,67 @@ const fakeGraph = {
       articleID: "600361110",
       articleName:
         "Minneapolis City Council declines to endorse Frey's Third Precinct plan",
-      relevance: 0.7,
+      relevance: 0.8,
       date: "2024-10-15",
     },
     {
-      relationship: "ELECTED_TO",
-      target: "Minneapolis Mayor - Second Term",
+      relationship: "ENDORSED",
+      target: "Minneapolis Police Department Expansion",
       evidence:
-        "After only two rounds of tabulation, incumbent Mayor Jacob Frey won a second term at the helm of the City of Minneapolis with a total of 70,669 votes.",
-      articleID: "600053063",
+        "Mayor Jacob Frey backed a proposal to expand the Minneapolis Police Department, citing public safety concerns and the need for more officers on patrol.",
+      articleID: "600320678",
+      articleName: "Frey pushes for more police funding amid crime concerns",
+      relevance: 0.7,
+      date: "2024-02-15",
+    },
+
+    {
+      relationship: "LAUNCHED",
+      target: "Guaranteed Basic Income Pilot",
+      evidence:
+        "Minneapolis Mayor Jacob Frey launched a Guaranteed Basic Income pilot program aimed at providing $500 per month to 200 low-income families for two years.",
+      articleID: "600276543",
       articleName:
-        "How Jacob Frey won another term in ranked-choice votes, held off Kate Knuth",
-      relevance: 0.9,
-      date: "2021-11-02",
+        "Minneapolis launches basic income pilot program for low-income families",
+      relevance: 0.8,
+      date: "2023-07-10",
+    },
+    {
+      relationship: "OPPOSED",
+      target: "Rent Control Proposal",
+      evidence:
+        "Mayor Jacob Frey voiced opposition to a proposed rent control measure, arguing that it could deter new housing development in the city.",
+      articleID: "600254789",
+      articleName:
+        "Frey opposes rent control, says it may hurt new development",
+      relevance: 0.7,
+      date: "2023-04-05",
+    },
+  ],
+  "Emily Koski": [
+    {
+      relationship: "OPPOSED",
+      target: "Jacob Frey",
+      evidence:
+        "Minneapolis City Council Member Emily Koski announced her candidacy for mayor, challenging incumbent Mayor Jacob Frey in the upcoming 2025 election.",
+      articleID: "601213414",
+      articleName:
+        "Minneapolis Mayor Jacob Frey is running for re-election in 2025",
+      relevance: 0.7,
+      date: "2025-01-29",
+    },
+  ],
+  "Jazz Hampton": [
+    {
+      relationship: "OPPOSED",
+      target: "Jacob Frey",
+      evidence:
+        "Jazz Hampton, an app developer and former attorney, has declared his intention to run against Mayor Jacob Frey in the 2025 Minneapolis mayoral election.",
+      articleID: "601213414",
+      articleName:
+        "Minneapolis Mayor Jacob Frey is running for re-election in 2025",
+      relevance: 0.7,
+      date: "2025-01-29",
     },
   ],
 };
@@ -177,39 +181,6 @@ async function initializeGraphData() {
   } catch (error) {
     console.error("Failed to load graph data, using fallback data", error);
   }
-}
-function rankRelationshipsByRelevance(paragraph, relationships) {
-  return relationships
-    .map((rel) => {
-      const matchScore = computeRelevanceScore(paragraph, rel);
-      return { ...rel, relevance: matchScore };
-    })
-    .sort((a, b) => b.relevance - a.relevance); // Sort descending by relevance
-}
-
-function computeRelevanceScore(paragraph, relationship) {
-  const keywords = relationship.evidence.toLowerCase().split(" ");
-  let score = 0;
-
-  keywords.forEach((word) => {
-    if (paragraph.toLowerCase().includes(word)) {
-      score += 1;
-    }
-  });
-
-  return score / keywords.length; // Normalize by total words in evidence
-}
-function extractEntities(text) {
-  const knownEntities = Object.keys(graphData); // Get all known entities from graph
-  const foundEntities = [];
-
-  knownEntities.forEach((entity) => {
-    if (text.toLowerCase().includes(entity.toLowerCase())) {
-      foundEntities.push(entity);
-    }
-  });
-
-  return foundEntities;
 }
 
 // Initialize graph data
@@ -282,45 +253,129 @@ document.addEventListener("mouseup", function (event) {
   }
 
   const selectedText = window.getSelection().toString().trim();
-  if (selectedText && selectedText.length > 0) {
-    // Find all relationships where the selected text appears
-    let foundRelationships = [];
+  if (selectedText.length > 0) {
+    console.log("Extracting entities from:", selectedText);
 
-    // Check each entity in the graph
-    Object.entries(graphData).forEach(([source, relationships]) => {
-      if (source.toLowerCase().includes(selectedText.toLowerCase())) {
-        // If selected text is in the source, add its relationships
-        relationships.forEach((rel) => {
-          foundRelationships.push({
-            ...rel,
-            source: source,
-          });
+    // Step 1: Extract entities from the paragraph
+    const extractedEntities = extractEntities(selectedText);
+
+    // Step 2: Find relationships where entity is either the subject OR target
+    let foundRelationships = [];
+    extractedEntities.forEach((entity) => {
+      // Find relationships where entity is the subject
+      if (graphData[entity]) {
+        graphData[entity].forEach((rel) => {
+          foundRelationships.push({ ...rel, source: entity });
         });
-      } else {
-        // Check if selected text appears in any targets
-        relationships.forEach((rel) => {
-          if (rel.target.toLowerCase().includes(selectedText.toLowerCase())) {
-            foundRelationships.push({
-              ...rel,
-              source: source,
-            });
+      }
+
+      // Find relationships where entity appears as a target
+      Object.keys(graphData).forEach((subject) => {
+        graphData[subject].forEach((rel) => {
+          if (rel.target === entity) {
+            foundRelationships.push({ ...rel, source: subject });
           }
         });
-      }
+      });
     });
 
-    if (foundRelationships.length > 0) {
-      console.log(
-        `Found ${foundRelationships.length} relationships for: ${selectedText}`
+    // Step 3: Rank relationships by relevance to paragraph
+    if (foundRelationships.length > 0 && !activeOverlay) {
+      const rankedRelationships = rankRelationshipsByRelevance(
+        selectedText,
+        foundRelationships
       );
 
-      // Only show if we don't already have an active overlay
-      if (!activeOverlay) {
-        displayGraphOverlay(selectedText, foundRelationships);
-      }
+      console.log(
+        `Found ${rankedRelationships.length} relevant relationships for:`,
+        extractedEntities
+      );
+
+      displayGraphOverlay(selectedText, rankedRelationships);
     }
   }
 });
+
+// 📌 **Extract Entities with Partial Match Support**
+function extractEntities(text) {
+  const knownEntities = Object.keys(graphData);
+  const foundEntities = new Set();
+
+  knownEntities.forEach((entity) => {
+    const entityWords = entity.toLowerCase().split(" ");
+    entityWords.forEach((word) => {
+      if (text.toLowerCase().includes(word)) {
+        foundEntities.add(entity);
+      }
+    });
+  });
+
+  return Array.from(foundEntities);
+}
+
+// 📌 **Rank Relationships by Contextual Relevance**
+function rankRelationshipsByRelevance(paragraph, relationships) {
+  return relationships
+    .map((rel) => {
+      const matchScore = computeRelevanceScore(paragraph, rel);
+      return { ...rel, relevance: matchScore };
+    })
+    .sort((a, b) => b.relevance - a.relevance); // Sort descending by relevance
+}
+
+// 📌 **Compute Relevance Score**
+function computeRelevanceScore(paragraph, relationship) {
+  /*// Base score from keyword matching
+  const keywords = relationship.evidence.toLowerCase().split(" ");
+  let keywordScore = 0;
+
+  keywords.forEach((word) => {
+    if (word.length > 3 && paragraph.toLowerCase().includes(word)) {
+      keywordScore += 1;
+    }
+  });
+
+  // Normalize keyword score
+  const normalizedKeywordScore =
+    keywords.length > 0 ? keywordScore / keywords.length : 0;
+
+  // Bonus points for relationship type appearing in the paragraph
+  let relationshipTypeBonus = 0;
+  if (
+    paragraph.toLowerCase().includes(relationship.relationship.toLowerCase())
+  ) {
+    relationshipTypeBonus = 0.2; // 20% bonus for relationship type match
+  }
+
+  // Bonus points for source and target appearing in the paragraph
+  let entityMatchBonus = 0;
+  if (
+    relationship.source &&
+    paragraph.toLowerCase().includes(relationship.source.toLowerCase())
+  ) {
+    entityMatchBonus += 0.15; // 15% bonus for source match
+  }
+  if (
+    relationship.target &&
+    paragraph.toLowerCase().includes(relationship.target.toLowerCase())
+  ) {
+    entityMatchBonus += 0.15; // 15% bonus for target match
+  }
+
+  // If both source and target appear in the paragraph, add extra bonus
+  if (entityMatchBonus >= 0.3) {
+    entityMatchBonus += 0.1; // Additional 10% bonus for both entities
+  }
+
+  // Calculate final score (capped at 1.0)
+  const finalScore = Math.min(
+    normalizedKeywordScore + relationshipTypeBonus + entityMatchBonus,
+    1.0
+  );
+
+  return finalScore;*/
+  return relationship.relevance || 0;
+}
 
 // Function to make an element draggable
 function makeDraggable(element) {
@@ -950,7 +1005,7 @@ function displayGraphOverlay(selectedText, relationships) {
 
         if (sourceContent.style.display === "block") {
           sourceContent.style.display = "none";
-          this.innerHTML = ICON_TEXT.CLOSE_BTN;
+          this.innerHTML = ICON_TEXT.DETAILS_BTN;
         } else {
           // Hide all other forms first
           container
@@ -963,7 +1018,9 @@ function displayGraphOverlay(selectedText, relationships) {
 
           // Reset button text
           container.querySelectorAll(".source-btn").forEach((btn) => {
-            btn.innerHTML = ICON_TEXT.DETAILS_BTN;
+            if (btn !== this) {
+              btn.innerHTML = ICON_TEXT.DETAILS_BTN;
+            }
           });
 
           // Reset report button text
@@ -985,7 +1042,7 @@ function displayGraphOverlay(selectedText, relationships) {
 
         if (reportForm.style.display === "block") {
           reportForm.style.display = "none";
-          this.innerHTML = ICON_TEXT.CLOSE_BTN;
+          this.innerHTML = ICON_TEXT.REPORT_ISSUE;
         } else {
           // Hide all other forms first
           container
@@ -1003,7 +1060,9 @@ function displayGraphOverlay(selectedText, relationships) {
 
           // Reset other report button text
           container.querySelectorAll(".report-btn").forEach((btn) => {
-            btn.innerHTML = ICON_TEXT.REPORT_ISSUE;
+            if (btn !== this) {
+              btn.innerHTML = ICON_TEXT.REPORT_ISSUE;
+            }
           });
 
           reportForm.style.display = "block";
@@ -1502,7 +1561,7 @@ function displayGraphOverlay(selectedText, relationships) {
   });
 }
 
-// Update the relationship item template to use the new icon text constants
+// Update the relationship item template to show the computed relevance
 function createRelationshipItem(rel, index, articleUrl, showRelevance = true) {
   const formattedDate = rel.date
     ? new Date(rel.date).toLocaleDateString()
@@ -1513,13 +1572,11 @@ function createRelationshipItem(rel, index, articleUrl, showRelevance = true) {
     : "";
 
   const relevanceInfo =
-    showRelevance && rel.relevance
-      ? `<div class="meta-info">${ICONS.RELEVANCE} ${(
-          rel.relevance * 100
-        ).toFixed(0)}%</div>`
+    showRelevance && rel.relevance !== undefined
+      ? `<div class="meta-info" style="display: flex; align-items: center; gap: 4px;">${
+          ICONS.RELEVANCE
+        } ${(rel.relevance * 100).toFixed(0)}%</div>`
       : "";
-
-  const dateInfo = `<div class="meta-info" style="display: flex; align-items: center; gap: 4px;">${ICONS.DATE} Published: ${formattedDate}</div>`;
 
   return `
     <div class="relationship-item" data-index="${index}">
@@ -1531,7 +1588,9 @@ function createRelationshipItem(rel, index, articleUrl, showRelevance = true) {
           ${recentlyAddedBadge}
         </div>
         <div class="meta-data">
-          ${dateInfo}
+          <div class="meta-info" style="display: flex; align-items: center; gap: 4px;">${
+            ICONS.DATE
+          } Published: ${formattedDate}</div>
         </div>
       </div>
       <div class="action-buttons">
